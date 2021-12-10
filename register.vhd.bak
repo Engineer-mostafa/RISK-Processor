@@ -9,8 +9,6 @@ GENERIC ( n : integer :=32 );
 	END dff;
 
 
-------------------------------------------------------------
-
 ARCHITECTURE a_Dff OF dff IS
 BEGIN
 	PROCESS(clk,rst,en)

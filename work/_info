@@ -1,6 +1,7 @@
 m255
 K4
 z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
 13
 !s112 1.1
 !i10d 8192
@@ -8,3 +9,156 @@ z2
 !i10f 100
 cModel Technology
 dD:/Mostafa/CMP3/CA/MostafaMagdyAbdelrahman_226 - Copy
+Eadder
+Z0 w1639126240
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 12
+Z4 dD:/Mostafa/CMP3/CA/RISK-Processor
+Z5 8D:/Mostafa/CMP3/CA/RISK-Processor/Adder.vhd
+Z6 FD:/Mostafa/CMP3/CA/RISK-Processor/Adder.vhd
+l0
+L6 1
+VC@CMoM[DP=LAmWlG@V5kL0
+!s100 5oPeJ<087WLmRBIRc[OX?0
+Z7 OV;C;2020.1;71
+32
+Z8 !s110 1639158083
+!i10b 1
+Z9 !s108 1639158083.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Mostafa/CMP3/CA/RISK-Processor/Adder.vhd|
+Z11 !s107 D:/Mostafa/CMP3/CA/RISK-Processor/Adder.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Aa_adder
+R1
+R2
+R3
+Z14 DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
+!i122 12
+l17
+L16 8
+VIfC:;A@:OB>X19f8Sa3373
+!s100 HKR`:]^hLbbgX5D63QhZ10
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Ebus_multiplexer
+w1639157130
+DPx4 work 11 edc_mux_pkg 0 22 @O9aN=N@7n8YMJUM<>>^42
+R1
+R2
+R3
+!i122 10
+R4
+8D:\Mostafa\CMP3\CA\RISK-Processor\mux.vhd
+FD:\Mostafa\CMP3\CA\RISK-Processor\mux.vhd
+l0
+L8 1
+V^YK=QJP:fV>NEgGZBU9z91
+!s100 k7JCAzaLV^Xfd?=zgQ3lk1
+R7
+32
+!s110 1639157136
+!i10b 1
+!s108 1639157136.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:\Mostafa\CMP3\CA\RISK-Processor\mux.vhd|
+!s107 D:\Mostafa\CMP3\CA\RISK-Processor\mux.vhd|
+!i113 1
+R12
+R13
+Edff
+Z15 w1639126232
+R2
+R3
+!i122 11
+R4
+Z16 8D:\Mostafa\CMP3\CA\RISK-Processor\register.vhd
+Z17 FD:\Mostafa\CMP3\CA\RISK-Processor\register.vhd
+l0
+L4 1
+V]DFm:VK0]7^kK[>M?@P163
+!s100 2>RFZNE;lcLnOXNV5=OO?1
+R7
+32
+Z18 !s110 1639158081
+!i10b 1
+Z19 !s108 1639158081.000000
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:\Mostafa\CMP3\CA\RISK-Processor\register.vhd|
+Z21 !s107 D:\Mostafa\CMP3\CA\RISK-Processor\register.vhd|
+!i113 1
+R12
+R13
+Aa_dff
+R2
+R3
+DEx4 work 3 dff 0 22 ]DFm:VK0]7^kK[>M?@P163
+!i122 11
+l15
+Z22 L14 12
+Vo=EPPiS:JF8Af::k2zLZY0
+!s100 i?Jj[dVg5V<h^VOBF^SBc0
+R7
+32
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 1
+R12
+R13
+Aadff
+R2
+R3
+DEx4 work 3 dff 0 22 6DCkj;GBc8LTH_Z5;7=>A1
+!i122 0
+l15
+R22
+V>[bKVi3GhIa8mVQlV0=H>2
+!s100 MGA:_bga;nh7_mF`F]oUb2
+R7
+32
+!s110 1639124613
+!i10b 1
+!s108 1639124613.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Mostafa/CMP3/CA/RISK-Processor/register.vhd|
+!s107 D:/Mostafa/CMP3/CA/RISK-Processor/register.vhd|
+!i113 1
+R12
+R13
+FD:/Mostafa/CMP3/CA/RISK-Processor/register.vhd
+w1639124572
+8D:/Mostafa/CMP3/CA/RISK-Processor/register.vhd
+Pedc_mux_pkg
+R1
+R2
+R3
+!i122 9
+w1639156972
+R4
+8D:/Mostafa/CMP3/CA/RISK-Processor/edc-mux-pkg.vhd
+FD:/Mostafa/CMP3/CA/RISK-Processor/edc-mux-pkg.vhd
+l0
+L8 1
+V@O9aN=N@7n8YMJUM<>>^42
+!s100 acRJU3Qf7UY3QV?nAbbN`1
+R7
+32
+!s110 1639156975
+!i10b 1
+!s108 1639156975.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Mostafa/CMP3/CA/RISK-Processor/edc-mux-pkg.vhd|
+!s107 D:/Mostafa/CMP3/CA/RISK-Processor/edc-mux-pkg.vhd|
+!i113 1
+R12
+R13

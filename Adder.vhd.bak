@@ -11,7 +11,6 @@ GENERIC ( n : integer :=32 );
 	      output : OUT std_logic_vector(n - 1 DOWNTO 0));
 	END adder;
 
-------------------------------------------------------------------
 
 ARCHITECTURE a_Adder OF adder IS
 BEGIN

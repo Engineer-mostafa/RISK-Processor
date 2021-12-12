@@ -29,7 +29,7 @@ process(opcode,Input1)
 begin
  case opcode is
  when "00010" => --Set Carry
-  Carry_Flag <= '1';
+  CCR(2 downto 2) <= '1';
  when "00011" =>
   result <= not (Input1); -- NOT Rdst
  when "00100" => 
@@ -37,7 +37,7 @@ begin
  when others => result <= x"0000"; -- Others
  end case;
 end process;
-  Zero_Flag <= '1' when result=x"0000" else '0';
-  Negative_Flag <= '1' when signed(result) < 0 else '0';
+  CCR(0) <= '1' when result=x"0000" else '0';
+  --CCR(1 downto 1) <= '1' when signed(result) < 0 else '0';
   alu_result <= result;
 end Behavioral;

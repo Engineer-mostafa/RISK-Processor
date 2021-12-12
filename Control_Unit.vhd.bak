@@ -11,7 +11,7 @@ entity control_unit_VHDL is
 port (
   opcode: in std_logic_vector(4 downto 0);
   reset: in std_logic;
-  RegWrite,WB_To_Reg,HLT,SETC,RST,OUT_PORT_SIG,IN_PORT_SIG: out std_logic
+  RegWrite,WB_To_Reg,HLT,SETC,RST,OUT_PORT_SIG,IN_PORT_SIG: out std_logic_vector;
  );
 end control_unit_VHDL;
 

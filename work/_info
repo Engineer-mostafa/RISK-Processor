@@ -8,27 +8,27 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-dD:/Mostafa/CMP3/CA/MostafaMagdyAbdelrahman_226 - Copy
+dD:/Third Year/CA/RISK-Processor
 Eadder
-Z0 w1639126240
+Z0 w1639311110
 Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 12
-Z4 dD:/Mostafa/CMP3/CA/RISK-Processor
-Z5 8D:/Mostafa/CMP3/CA/RISK-Processor/Adder.vhd
-Z6 FD:/Mostafa/CMP3/CA/RISK-Processor/Adder.vhd
+!i122 0
+Z4 dD:/Third Year/CA/prog_temp
+Z5 8D:/Third Year/CA/prog_temp/Adder.vhd
+Z6 FD:/Third Year/CA/prog_temp/Adder.vhd
 l0
 L6 1
 VC@CMoM[DP=LAmWlG@V5kL0
 !s100 5oPeJ<087WLmRBIRc[OX?0
 Z7 OV;C;2020.1;71
 32
-Z8 !s110 1639158083
+Z8 !s110 1639312140
 !i10b 1
-Z9 !s108 1639158083.000000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Mostafa/CMP3/CA/RISK-Processor/Adder.vhd|
-Z11 !s107 D:/Mostafa/CMP3/CA/RISK-Processor/Adder.vhd|
+Z9 !s108 1639312140.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Adder.vhd|
+Z11 !s107 D:/Third Year/CA/prog_temp/Adder.vhd|
 !i113 1
 Z12 o-work work -2002 -explicit
 Z13 tExplicit 1 CvgOpt 0
@@ -36,8 +36,8 @@ Aa_adder
 R1
 R2
 R3
-Z14 DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
-!i122 12
+DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
+!i122 0
 l17
 L16 8
 VIfC:;A@:OB>X19f8Sa3373
@@ -52,49 +52,113 @@ R11
 !i113 1
 R12
 R13
-Ebus_multiplexer
-w1639157130
-DPx4 work 11 edc_mux_pkg 0 22 @O9aN=N@7n8YMJUM<>>^42
+Ealu_vhdl
+Z14 w1639319651
 R1
+Z15 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z16 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
 R2
 R3
-!i122 10
+!i122 15
 R4
-8D:\Mostafa\CMP3\CA\RISK-Processor\mux.vhd
-FD:\Mostafa\CMP3\CA\RISK-Processor\mux.vhd
+Z17 8D:/Third Year/CA/prog_temp/alu.vhd
+Z18 FD:/Third Year/CA/prog_temp/alu.vhd
 l0
-L8 1
-V^YK=QJP:fV>NEgGZBU9z91
-!s100 k7JCAzaLV^Xfd?=zgQ3lk1
+L11 1
+V7L2d9YIW5^oHdO<cG;zbB1
+!s100 9dU?A5B3?JQN]@e`z9OP22
 R7
 32
-!s110 1639157136
+Z19 !s110 1639319655
 !i10b 1
-!s108 1639157136.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:\Mostafa\CMP3\CA\RISK-Processor\mux.vhd|
-!s107 D:\Mostafa\CMP3\CA\RISK-Processor\mux.vhd|
+Z20 !s108 1639319655.000000
+Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/alu.vhd|
+Z22 !s107 D:/Third Year/CA/prog_temp/alu.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R1
+R15
+R16
+R2
+R3
+DEx4 work 8 alu_vhdl 0 22 7L2d9YIW5^oHdO<cG;zbB1
+!i122 15
+l27
+Z23 L25 19
+VSZU:TTTG7V`Qcl[XKUXmB2
+!s100 G0WARO3Yg2TTM_bZMoagI0
+R7
+32
+R19
+!i10b 1
+R20
+R21
+R22
+!i113 1
+R12
+R13
+Econtrol_unit_vhdl
+Z24 w1639315270
+R2
+R3
+!i122 2
+R4
+Z25 8D:/Third Year/CA/prog_temp/Control_Unit.vhd
+Z26 FD:/Third Year/CA/prog_temp/Control_Unit.vhd
+l0
+L10 1
+VHm3OMBSB6]2KVO42BdBP_3
+!s100 ;3c>TOQ_hd1XKB08hS]V<0
+R7
+32
+Z27 !s110 1639315276
+!i10b 1
+Z28 !s108 1639315276.000000
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Control_Unit.vhd|
+Z30 !s107 D:/Third Year/CA/prog_temp/Control_Unit.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R2
+R3
+DEx4 work 17 control_unit_vhdl 0 22 Hm3OMBSB6]2KVO42BdBP_3
+!i122 2
+l21
+L19 83
+Vb?iN]oa8@VmHNfE?n_X<l2
+!s100 Q=I7_nz?1BC5N8z`>D=k03
+R7
+32
+R27
+!i10b 1
+R28
+R29
+R30
 !i113 1
 R12
 R13
 Edff
-Z15 w1639126232
+R0
 R2
 R3
-!i122 11
+!i122 1
 R4
-Z16 8D:\Mostafa\CMP3\CA\RISK-Processor\register.vhd
-Z17 FD:\Mostafa\CMP3\CA\RISK-Processor\register.vhd
+Z31 8D:/Third Year/CA/prog_temp/register.vhd
+Z32 FD:/Third Year/CA/prog_temp/register.vhd
 l0
 L4 1
 V]DFm:VK0]7^kK[>M?@P163
 !s100 2>RFZNE;lcLnOXNV5=OO?1
 R7
 32
-Z18 !s110 1639158081
+Z33 !s110 1639312158
 !i10b 1
-Z19 !s108 1639158081.000000
-Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:\Mostafa\CMP3\CA\RISK-Processor\register.vhd|
-Z21 !s107 D:\Mostafa\CMP3\CA\RISK-Processor\register.vhd|
+Z34 !s108 1639312158.000000
+Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/register.vhd|
+Z36 !s107 D:/Third Year/CA/prog_temp/register.vhd|
 !i113 1
 R12
 R13
@@ -102,63 +166,18 @@ Aa_dff
 R2
 R3
 DEx4 work 3 dff 0 22 ]DFm:VK0]7^kK[>M?@P163
-!i122 11
+!i122 1
 l15
-Z22 L14 12
+L14 12
 Vo=EPPiS:JF8Af::k2zLZY0
 !s100 i?Jj[dVg5V<h^VOBF^SBc0
 R7
 32
-R18
+R33
 !i10b 1
-R19
-R20
-R21
-!i113 1
-R12
-R13
-Aadff
-R2
-R3
-DEx4 work 3 dff 0 22 6DCkj;GBc8LTH_Z5;7=>A1
-!i122 0
-l15
-R22
-V>[bKVi3GhIa8mVQlV0=H>2
-!s100 MGA:_bga;nh7_mF`F]oUb2
-R7
-32
-!s110 1639124613
-!i10b 1
-!s108 1639124613.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Mostafa/CMP3/CA/RISK-Processor/register.vhd|
-!s107 D:/Mostafa/CMP3/CA/RISK-Processor/register.vhd|
-!i113 1
-R12
-R13
-FD:/Mostafa/CMP3/CA/RISK-Processor/register.vhd
-w1639124572
-8D:/Mostafa/CMP3/CA/RISK-Processor/register.vhd
-Pedc_mux_pkg
-R1
-R2
-R3
-!i122 9
-w1639156972
-R4
-8D:/Mostafa/CMP3/CA/RISK-Processor/edc-mux-pkg.vhd
-FD:/Mostafa/CMP3/CA/RISK-Processor/edc-mux-pkg.vhd
-l0
-L8 1
-V@O9aN=N@7n8YMJUM<>>^42
-!s100 acRJU3Qf7UY3QV?nAbbN`1
-R7
-32
-!s110 1639156975
-!i10b 1
-!s108 1639156975.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Mostafa/CMP3/CA/RISK-Processor/edc-mux-pkg.vhd|
-!s107 D:/Mostafa/CMP3/CA/RISK-Processor/edc-mux-pkg.vhd|
+R34
+R35
+R36
 !i113 1
 R12
 R13

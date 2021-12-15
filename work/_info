@@ -10,117 +10,117 @@ z2
 cModel Technology
 dD:/Third Year/CA/RISK-Processor
 Eadder
-Z0 w1639311110
+Z0 w1639473374
 Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 0
-Z4 dD:/Third Year/CA/prog_temp
-Z5 8D:/Third Year/CA/prog_temp/Adder.vhd
-Z6 FD:/Third Year/CA/prog_temp/Adder.vhd
+!i122 36
+Z4 dD:/faculty/CMP3/computer architecture/RISK-Processor
+Z5 8D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd
+Z6 FD:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd
 l0
 L6 1
 VC@CMoM[DP=LAmWlG@V5kL0
 !s100 5oPeJ<087WLmRBIRc[OX?0
 Z7 OV;C;2020.1;71
 32
-Z8 !s110 1639312140
+Z8 !s110 1639504149
 !i10b 1
-Z9 !s108 1639312140.000000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Adder.vhd|
-Z11 !s107 D:/Third Year/CA/prog_temp/Adder.vhd|
+Z9 !s108 1639504149.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd|
+!s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd|
 !i113 1
-Z12 o-work work -2002 -explicit
-Z13 tExplicit 1 CvgOpt 0
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
 Aa_adder
 R1
 R2
 R3
-DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
-!i122 0
+Z13 DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
+!i122 36
 l17
-L16 8
-VIfC:;A@:OB>X19f8Sa3373
-!s100 HKR`:]^hLbbgX5D63QhZ10
+Z14 L16 8
+Z15 VIfC:;A@:OB>X19f8Sa3373
+Z16 !s100 HKR`:]^hLbbgX5D63QhZ10
 R7
 32
 R8
 !i10b 1
 R9
 R10
-R11
+Z17 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd|
 !i113 1
+R11
 R12
-R13
 Ealu_vhdl
-Z14 w1639319651
+Z18 w1639319651
 R1
-Z15 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z16 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
+Z19 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z20 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
 R2
 R3
 !i122 15
-R4
-Z17 8D:/Third Year/CA/prog_temp/alu.vhd
-Z18 FD:/Third Year/CA/prog_temp/alu.vhd
+Z21 dD:/Third Year/CA/prog_temp
+Z22 8D:/Third Year/CA/prog_temp/alu.vhd
+Z23 FD:/Third Year/CA/prog_temp/alu.vhd
 l0
 L11 1
 V7L2d9YIW5^oHdO<cG;zbB1
 !s100 9dU?A5B3?JQN]@e`z9OP22
 R7
 32
-Z19 !s110 1639319655
+Z24 !s110 1639319655
 !i10b 1
-Z20 !s108 1639319655.000000
-Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/alu.vhd|
-Z22 !s107 D:/Third Year/CA/prog_temp/alu.vhd|
+Z25 !s108 1639319655.000000
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/alu.vhd|
+Z27 !s107 D:/Third Year/CA/prog_temp/alu.vhd|
 !i113 1
+R11
 R12
-R13
 Abehavioral
 R1
-R15
-R16
+R19
+R20
 R2
 R3
 DEx4 work 8 alu_vhdl 0 22 7L2d9YIW5^oHdO<cG;zbB1
 !i122 15
 l27
-Z23 L25 19
+L25 19
 VSZU:TTTG7V`Qcl[XKUXmB2
 !s100 G0WARO3Yg2TTM_bZMoagI0
 R7
 32
-R19
+R24
 !i10b 1
-R20
-R21
-R22
+R25
+R26
+R27
 !i113 1
+R11
 R12
-R13
 Econtrol_unit_vhdl
-Z24 w1639315270
+Z28 w1639315270
 R2
 R3
 !i122 2
-R4
-Z25 8D:/Third Year/CA/prog_temp/Control_Unit.vhd
-Z26 FD:/Third Year/CA/prog_temp/Control_Unit.vhd
+R21
+Z29 8D:/Third Year/CA/prog_temp/Control_Unit.vhd
+Z30 FD:/Third Year/CA/prog_temp/Control_Unit.vhd
 l0
 L10 1
 VHm3OMBSB6]2KVO42BdBP_3
 !s100 ;3c>TOQ_hd1XKB08hS]V<0
 R7
 32
-Z27 !s110 1639315276
+Z31 !s110 1639315276
 !i10b 1
-Z28 !s108 1639315276.000000
-Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Control_Unit.vhd|
-Z30 !s107 D:/Third Year/CA/prog_temp/Control_Unit.vhd|
+Z32 !s108 1639315276.000000
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Control_Unit.vhd|
+Z34 !s107 D:/Third Year/CA/prog_temp/Control_Unit.vhd|
 !i113 1
+R11
 R12
-R13
 Abehavioral
 R2
 R3
@@ -132,52 +132,224 @@ Vb?iN]oa8@VmHNfE?n_X<l2
 !s100 Q=I7_nz?1BC5N8z`>D=k03
 R7
 32
-R27
+R31
 !i10b 1
-R28
-R29
-R30
+R32
+R33
+R34
 !i113 1
+R11
 R12
-R13
 Edff
-R0
+Z35 w1639501595
 R2
 R3
-!i122 1
+!i122 29
 R4
-Z31 8D:/Third Year/CA/prog_temp/register.vhd
-Z32 FD:/Third Year/CA/prog_temp/register.vhd
+Z36 8D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd
+Z37 FD:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd
 l0
 L4 1
-V]DFm:VK0]7^kK[>M?@P163
-!s100 2>RFZNE;lcLnOXNV5=OO?1
+V6j:DJO2<UX@Z2QW;9E=BF0
+!s100 K:n@OlMF?5bJ40Tk1722M0
 R7
 32
-Z33 !s110 1639312158
+Z38 !s110 1639501607
 !i10b 1
-Z34 !s108 1639312158.000000
-Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/register.vhd|
-Z36 !s107 D:/Third Year/CA/prog_temp/register.vhd|
+Z39 !s108 1639501606.000000
+Z40 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd|
+Z41 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd|
 !i113 1
+R11
 R12
-R13
 Aa_dff
 R2
 R3
-DEx4 work 3 dff 0 22 ]DFm:VK0]7^kK[>M?@P163
-!i122 1
-l15
-L14 12
-Vo=EPPiS:JF8Af::k2zLZY0
-!s100 i?Jj[dVg5V<h^VOBF^SBc0
+DEx4 work 3 dff 0 22 6j:DJO2<UX@Z2QW;9E=BF0
+!i122 29
+l17
+L16 17
+Vb;ZHGoU4l>CDQCBd_HG>Z3
+!s100 DiQ_^;@LaA^9Sz_mZScf[2
 R7
 32
-R33
+R38
 !i10b 1
-R34
-R35
-R36
+R39
+R40
+R41
 !i113 1
+R11
 R12
-R13
+Efetch
+Z42 w1639504116
+R1
+R2
+R3
+!i122 35
+R4
+Z43 8D:\faculty\CMP3\computer architecture\RISK-Processor\Fetching_Stage.vhd
+Z44 FD:\faculty\CMP3\computer architecture\RISK-Processor\Fetching_Stage.vhd
+l0
+L7 1
+V:XN<42S_05ehgPiT>YKoX0
+!s100 4iV:Q;OGKEP4jIf56ZeSb3
+R7
+32
+Z45 !s110 1639504122
+!i10b 1
+Z46 !s108 1639504122.000000
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:\faculty\CMP3\computer architecture\RISK-Processor\Fetching_Stage.vhd|
+Z48 !s107 D:\faculty\CMP3\computer architecture\RISK-Processor\Fetching_Stage.vhd|
+!i113 1
+R11
+R12
+Aa_fetch
+R1
+R2
+R3
+DEx4 work 5 fetch 0 22 :XN<42S_05ehgPiT>YKoX0
+!i122 35
+l74
+L23 77
+VOl;gfc0]72U9UHg<J3jE71
+!s100 J7f^;0em10YC4OdB]gVz61
+R7
+32
+R45
+!i10b 1
+R46
+R47
+R48
+!i113 1
+R11
+R12
+Ememory
+Z49 w1639501345
+R1
+R2
+R3
+!i122 22
+R4
+Z50 8D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd
+Z51 FD:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd
+l0
+L6 1
+VXn]g_0__i[>SOif=<]LFR2
+!s100 n0ChKzPz:D1c=XkGA6iWi2
+R7
+32
+Z52 !s110 1639501355
+!i10b 1
+Z53 !s108 1639501355.000000
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd|
+Z55 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd|
+!i113 1
+R11
+R12
+Aa_memory
+R1
+R2
+R3
+DEx4 work 6 memory 0 22 Xn]g_0__i[>SOif=<]LFR2
+!i122 22
+l19
+L13 27
+V4REG;7Zj9Q1UbDRkR7JdE1
+!s100 c6_TJSNPmK<1JULmQXi2O3
+R7
+32
+R52
+!i10b 1
+R53
+R54
+R55
+!i113 1
+R11
+R12
+Emux_2x1
+Z56 w1639501519
+R1
+R2
+R3
+!i122 26
+R4
+Z57 8D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd
+Z58 FD:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd
+l0
+L7 1
+VcK]d^4jlCRi>4PzYlLDhH3
+!s100 P^kS>B<[IUE5:0_@YzOKN1
+R7
+32
+Z59 !s110 1639501532
+!i10b 1
+Z60 !s108 1639501532.000000
+Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd|
+Z62 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd|
+!i113 1
+R11
+R12
+Aa_mux_2x1
+R1
+R2
+R3
+DEx4 work 7 mux_2x1 0 22 cK]d^4jlCRi>4PzYlLDhH3
+!i122 26
+l18
+L16 14
+V<]40^Y97=m=lin9Ri@z9S2
+!s100 T_L<53]b<DGX[hH<9c93i3
+R7
+32
+R59
+!i10b 1
+R60
+R61
+R62
+!i113 1
+R11
+R12
+Emux_4x1
+Z63 w1639501527
+R1
+R2
+R3
+!i122 27
+R4
+Z64 8D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd
+Z65 FD:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd
+l0
+L7 1
+VJZOmoBG<L400_P7A0@Ckh1
+!s100 59mBd46T]iE>OXMZVAXXH3
+R7
+32
+Z66 !s110 1639501536
+!i10b 1
+Z67 !s108 1639501536.000000
+Z68 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd|
+Z69 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd|
+!i113 1
+R11
+R12
+Aa_mux_4x1
+R1
+R2
+R3
+DEx4 work 7 mux_4x1 0 22 JZOmoBG<L400_P7A0@Ckh1
+!i122 27
+l21
+L19 16
+VJ6?kA]kE4V48f5;?M0F6U2
+!s100 6PdDLI9?GjIocLWbgJ_011
+R7
+32
+R66
+!i10b 1
+R67
+R68
+R69
+!i113 1
+R11
+R12

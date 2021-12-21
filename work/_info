@@ -8,110 +8,110 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-dD:/Third Year/CA/RISK-Processor
+Z0 dD:/Third Year/CA/RISK-Processor
 Eadder
-Z0 w1639311110
-Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
-Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+Z1 w1639311110
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
 !i122 0
-Z4 dD:/Third Year/CA/prog_temp
-Z5 8D:/Third Year/CA/prog_temp/Adder.vhd
-Z6 FD:/Third Year/CA/prog_temp/Adder.vhd
+Z5 dD:/Third Year/CA/prog_temp
+Z6 8D:/Third Year/CA/prog_temp/Adder.vhd
+Z7 FD:/Third Year/CA/prog_temp/Adder.vhd
 l0
 L6 1
 VC@CMoM[DP=LAmWlG@V5kL0
 !s100 5oPeJ<087WLmRBIRc[OX?0
-Z7 OV;C;2020.1;71
+Z8 OV;C;2020.1;71
 32
-Z8 !s110 1639312140
+Z9 !s110 1639312140
 !i10b 1
-Z9 !s108 1639312140.000000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Adder.vhd|
-Z11 !s107 D:/Third Year/CA/prog_temp/Adder.vhd|
+Z10 !s108 1639312140.000000
+Z11 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Adder.vhd|
+Z12 !s107 D:/Third Year/CA/prog_temp/Adder.vhd|
 !i113 1
-Z12 o-work work -2002 -explicit
-Z13 tExplicit 1 CvgOpt 0
+Z13 o-work work -2002 -explicit
+Z14 tExplicit 1 CvgOpt 0
 Aa_adder
-R1
 R2
 R3
+R4
 DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
 !i122 0
 l17
 L16 8
 VIfC:;A@:OB>X19f8Sa3373
 !s100 HKR`:]^hLbbgX5D63QhZ10
-R7
-32
 R8
-!i10b 1
+32
 R9
+!i10b 1
 R10
 R11
-!i113 1
 R12
+!i113 1
 R13
+R14
 Ealu_vhdl
-Z14 w1639319651
-R1
-Z15 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z16 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
+Z15 w1639319651
 R2
+Z16 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z17 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
 R3
-!i122 15
 R4
-Z17 8D:/Third Year/CA/prog_temp/alu.vhd
-Z18 FD:/Third Year/CA/prog_temp/alu.vhd
+!i122 15
+R5
+Z18 8D:/Third Year/CA/prog_temp/alu.vhd
+Z19 FD:/Third Year/CA/prog_temp/alu.vhd
 l0
 L11 1
 V7L2d9YIW5^oHdO<cG;zbB1
 !s100 9dU?A5B3?JQN]@e`z9OP22
-R7
+R8
 32
-Z19 !s110 1639319655
+Z20 !s110 1639319655
 !i10b 1
-Z20 !s108 1639319655.000000
-Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/alu.vhd|
-Z22 !s107 D:/Third Year/CA/prog_temp/alu.vhd|
+Z21 !s108 1639319655.000000
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/alu.vhd|
+Z23 !s107 D:/Third Year/CA/prog_temp/alu.vhd|
 !i113 1
-R12
 R13
+R14
 Abehavioral
-R1
-R15
-R16
 R2
+R16
+R17
 R3
+R4
 DEx4 work 8 alu_vhdl 0 22 7L2d9YIW5^oHdO<cG;zbB1
 !i122 15
 l27
-Z23 L25 19
+L25 19
 VSZU:TTTG7V`Qcl[XKUXmB2
 !s100 G0WARO3Yg2TTM_bZMoagI0
-R7
+R8
 32
-R19
-!i10b 1
 R20
+!i10b 1
 R21
 R22
+R23
 !i113 1
-R12
 R13
+R14
 Econtrol_unit_vhdl
 Z24 w1639315270
-R2
 R3
-!i122 2
 R4
+!i122 2
+R5
 Z25 8D:/Third Year/CA/prog_temp/Control_Unit.vhd
 Z26 FD:/Third Year/CA/prog_temp/Control_Unit.vhd
 l0
 L10 1
 VHm3OMBSB6]2KVO42BdBP_3
 !s100 ;3c>TOQ_hd1XKB08hS]V<0
-R7
+R8
 32
 Z27 !s110 1639315276
 !i10b 1
@@ -119,18 +119,18 @@ Z28 !s108 1639315276.000000
 Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Control_Unit.vhd|
 Z30 !s107 D:/Third Year/CA/prog_temp/Control_Unit.vhd|
 !i113 1
-R12
 R13
+R14
 Abehavioral
-R2
 R3
+R4
 DEx4 work 17 control_unit_vhdl 0 22 Hm3OMBSB6]2KVO42BdBP_3
 !i122 2
 l21
 L19 83
 Vb?iN]oa8@VmHNfE?n_X<l2
 !s100 Q=I7_nz?1BC5N8z`>D=k03
-R7
+R8
 32
 R27
 !i10b 1
@@ -138,21 +138,21 @@ R28
 R29
 R30
 !i113 1
-R12
 R13
+R14
 Edff
-R0
-R2
+R1
 R3
-!i122 1
 R4
+!i122 1
+R5
 Z31 8D:/Third Year/CA/prog_temp/register.vhd
 Z32 FD:/Third Year/CA/prog_temp/register.vhd
 l0
 L4 1
 V]DFm:VK0]7^kK[>M?@P163
 !s100 2>RFZNE;lcLnOXNV5=OO?1
-R7
+R8
 32
 Z33 !s110 1639312158
 !i10b 1
@@ -160,18 +160,18 @@ Z34 !s108 1639312158.000000
 Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/register.vhd|
 Z36 !s107 D:/Third Year/CA/prog_temp/register.vhd|
 !i113 1
-R12
 R13
+R14
 Aa_dff
-R2
 R3
+R4
 DEx4 work 3 dff 0 22 ]DFm:VK0]7^kK[>M?@P163
 !i122 1
 l15
 L14 12
 Vo=EPPiS:JF8Af::k2zLZY0
 !s100 i?Jj[dVg5V<h^VOBF^SBc0
-R7
+R8
 32
 R33
 !i10b 1
@@ -179,5 +179,87 @@ R34
 R35
 R36
 !i113 1
-R12
 R13
+R14
+Eex_mem
+Z37 w1640077845
+R3
+R4
+!i122 20
+R0
+Z38 8D:\Third Year\CA\RISK-Processor\EX_MEM.vhd
+Z39 FD:\Third Year\CA\RISK-Processor\EX_MEM.vhd
+l0
+L5 1
+VT4U_E<@8a=J=0M2c_F<<X3
+!s100 o@=K7m090;@Dic;YPRLCm1
+R8
+32
+Z40 !s110 1640077851
+!i10b 1
+Z41 !s108 1640077850.000000
+Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:\Third Year\CA\RISK-Processor\EX_MEM.vhd|
+Z43 !s107 D:\Third Year\CA\RISK-Processor\EX_MEM.vhd|
+!i113 1
+R13
+R14
+Abehavioralex_mem
+R3
+R4
+DEx4 work 6 ex_mem 0 22 T4U_E<@8a=J=0M2c_F<<X3
+!i122 20
+l16
+L15 11
+V[eK;k`6P9e8`6Hj:lg9HU3
+!s100 6TdPO<6_7lf4Gl:TI_Yh]0
+R8
+32
+R40
+!i10b 1
+R41
+R42
+R43
+!i113 1
+R13
+R14
+Egeneric_buffer
+Z44 w1640078030
+R3
+R4
+!i122 21
+R0
+Z45 8D:\Third Year\CA\RISK-Processor\Generic_Buffer.vhd
+Z46 FD:\Third Year\CA\RISK-Processor\Generic_Buffer.vhd
+l0
+L4 1
+VE5i3BP^G;IZR_0lg1CAI00
+!s100 _IhSm3d8F=S5A<E@h;YPX1
+R8
+32
+Z47 !s110 1640078044
+!i10b 1
+Z48 !s108 1640078044.000000
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:\Third Year\CA\RISK-Processor\Generic_Buffer.vhd|
+!s107 D:\Third Year\CA\RISK-Processor\Generic_Buffer.vhd|
+!i113 1
+R13
+R14
+Abehavioralgeneric_buffer
+R3
+R4
+DEx4 work 14 generic_buffer 0 22 E5i3BP^G;IZR_0lg1CAI00
+!i122 21
+l15
+L14 11
+VUNVYc@gk35X9Qb1abjV4S3
+!s100 3zo3g_?5V>GZO>:zdPm1a3
+R8
+32
+R47
+!i10b 1
+R48
+R49
+Z50 !s107 D:\Third Year\CA\RISK-Processor\Generic_Buffer.vhd|
+!i113 1
+R13
+R14

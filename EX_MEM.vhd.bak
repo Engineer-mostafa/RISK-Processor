@@ -1,0 +1,25 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Ex_Mem is
+Generic( n :  Integer := 128)
+port (
+  LeftInput : in std_logic_vector(n-1 downto 0);
+  RightOutput : out std_logic_vector (n-1 downto 0);
+  clk,rst: in std_logic
+ );
+end Ex_Mem;
+
+
+architecture BehavioralEx_Mem of Ex_Mem is
+begin
+process(clk,rst)
+begin
+ if(rst = '1') then
+   RightOutput<= (others=>'0');
+ elsif(rising_edge(clk)) then
+	RightOutput<= LeftInput; 
+ end if;
+end process;
+end BehavioralEx_Mem;

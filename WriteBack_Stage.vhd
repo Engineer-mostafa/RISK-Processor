@@ -9,8 +9,7 @@ GENERIC ( n : integer :=16 );
 Port( 	
 	ALUresult 			: in std_logic_vector(15 downto 0);
 	In_Data	  			: in std_logic_vector(15 downto 0);
-	IN_OUTSig , IN_RegWrite , WBtoReg 	: in std_logic;
-	OUT_OUTSig , OUT_RegWrite  		: out std_logic;
+	WBtoReg 			: in std_logic;
 	result_WritingOutput		: out std_logic_vector(15 downto 0)
 );
 end WriteBackStage;

@@ -10,346 +10,529 @@ z2
 cModel Technology
 dD:/Third Year/CA/RISK-Processor
 Eadder
-Z0 w1639473374
-Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z0 w1639311159
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 36
-Z4 dD:/faculty/CMP3/computer architecture/RISK-Processor
-Z5 8D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd
-Z6 FD:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor
+Z5 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Adder.vhd
+Z6 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Adder.vhd
 l0
-L6 1
+L6
 VC@CMoM[DP=LAmWlG@V5kL0
 !s100 5oPeJ<087WLmRBIRc[OX?0
-Z7 OV;C;2020.1;71
+Z7 OV;C;10.5b;63
 32
-Z8 !s110 1639504149
+Z8 !s110 1640078451
 !i10b 1
-Z9 !s108 1639504149.000000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd|
-!s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd|
+Z9 !s108 1640078451.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Adder.vhd|
+Z11 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Adder.vhd|
 !i113 1
-Z11 o-work work -2002 -explicit
-Z12 tExplicit 1 CvgOpt 0
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
 Aa_adder
 R1
 R2
 R3
-Z13 DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
-!i122 36
+DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
 l17
-Z14 L16 8
-Z15 VIfC:;A@:OB>X19f8Sa3373
-Z16 !s100 HKR`:]^hLbbgX5D63QhZ10
+L16
+VIfC:;A@:OB>X19f8Sa3373
+!s100 HKR`:]^hLbbgX5D63QhZ10
 R7
 32
 R8
 !i10b 1
 R9
 R10
-Z17 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd|
-!i113 1
 R11
+!i113 1
 R12
+R13
 Ealu_vhdl
-Z18 w1639319651
+Z14 w1639336556
 R1
-Z19 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z20 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
+Z15 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z16 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
 R2
 R3
-!i122 15
-Z21 dD:/Third Year/CA/prog_temp
-Z22 8D:/Third Year/CA/prog_temp/alu.vhd
-Z23 FD:/Third Year/CA/prog_temp/alu.vhd
+R4
+Z17 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/alu.vhd
+Z18 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/alu.vhd
 l0
-L11 1
+L11
 V7L2d9YIW5^oHdO<cG;zbB1
 !s100 9dU?A5B3?JQN]@e`z9OP22
 R7
 32
-Z24 !s110 1639319655
+R8
 !i10b 1
-Z25 !s108 1639319655.000000
-Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/alu.vhd|
-Z27 !s107 D:/Third Year/CA/prog_temp/alu.vhd|
+R9
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/alu.vhd|
+Z20 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/alu.vhd|
 !i113 1
-R11
 R12
+R13
 Abehavioral
 R1
-R19
-R20
+R15
+R16
 R2
 R3
 DEx4 work 8 alu_vhdl 0 22 7L2d9YIW5^oHdO<cG;zbB1
-!i122 15
 l27
-L25 19
+L25
 VSZU:TTTG7V`Qcl[XKUXmB2
 !s100 G0WARO3Yg2TTM_bZMoagI0
 R7
 32
-R24
+R8
 !i10b 1
-R25
-R26
-R27
+R9
+R19
+R20
 !i113 1
-R11
 R12
+R13
 Econtrol_unit_vhdl
-Z28 w1639315270
+R14
 R2
 R3
-!i122 2
-R21
-Z29 8D:/Third Year/CA/prog_temp/Control_Unit.vhd
-Z30 FD:/Third Year/CA/prog_temp/Control_Unit.vhd
+R4
+Z21 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Control_Unit.vhd
+Z22 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Control_Unit.vhd
 l0
-L10 1
+L10
 VHm3OMBSB6]2KVO42BdBP_3
 !s100 ;3c>TOQ_hd1XKB08hS]V<0
 R7
 32
-Z31 !s110 1639315276
+R8
 !i10b 1
-Z32 !s108 1639315276.000000
-Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Third Year/CA/prog_temp/Control_Unit.vhd|
-Z34 !s107 D:/Third Year/CA/prog_temp/Control_Unit.vhd|
+R9
+Z23 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Control_Unit.vhd|
+Z24 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Control_Unit.vhd|
 !i113 1
-R11
 R12
+R13
 Abehavioral
 R2
 R3
 DEx4 work 17 control_unit_vhdl 0 22 Hm3OMBSB6]2KVO42BdBP_3
-!i122 2
 l21
-L19 83
+L19
 Vb?iN]oa8@VmHNfE?n_X<l2
 !s100 Q=I7_nz?1BC5N8z`>D=k03
 R7
 32
-R31
+R8
 !i10b 1
-R32
-R33
-R34
+R9
+R23
+R24
 !i113 1
-R11
 R12
-Edff
-Z35 w1639501595
+R13
+Edecoder3x8
+Z25 w1639586452
 R2
 R3
-!i122 29
 R4
-Z36 8D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd
-Z37 FD:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd
+Z26 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/decoder3x8.vhd
+Z27 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/decoder3x8.vhd
 l0
-L4 1
-V6j:DJO2<UX@Z2QW;9E=BF0
-!s100 K:n@OlMF?5bJ40Tk1722M0
+L4
+VRX0[hFYFNO^^`1PLk9cZo1
+!s100 Q9cIgE`1Y^]8FJNTNU8Ng2
 R7
 32
-Z38 !s110 1639501607
+Z28 !s110 1640078452
 !i10b 1
-Z39 !s108 1639501606.000000
-Z40 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd|
-Z41 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd|
+R9
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/decoder3x8.vhd|
+Z30 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/decoder3x8.vhd|
 !i113 1
-R11
 R12
+R13
+Aarch1
+R2
+R3
+DEx4 work 10 decoder3x8 0 22 RX0[hFYFNO^^`1PLk9cZo1
+l11
+L10
+V1k:dN@RGT[T7?bLh>9C642
+!s100 f[?AeQG<9N7m3GkjZ<:i32
+R7
+32
+R28
+!i10b 1
+R9
+R29
+R30
+!i113 1
+R12
+R13
+Edff
+Z31 w1639587554
+R2
+R3
+R4
+Z32 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/register.vhd
+Z33 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/register.vhd
+l0
+L4
+VIm[kU5<8d_825<=g_9mQ]0
+!s100 DeTj8eHlJnYo`@6oBgeYX3
+R7
+32
+Z34 !s110 1640078450
+!i10b 1
+Z35 !s108 1640078449.000000
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/register.vhd|
+Z37 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/register.vhd|
+!i113 1
+R12
+R13
 Aa_dff
 R2
 R3
-DEx4 work 3 dff 0 22 6j:DJO2<UX@Z2QW;9E=BF0
-!i122 29
+DEx4 work 3 dff 0 22 Im[kU5<8d_825<=g_9mQ]0
 l17
-L16 17
+L16
 Vb;ZHGoU4l>CDQCBd_HG>Z3
 !s100 DiQ_^;@LaA^9Sz_mZScf[2
 R7
 32
-R38
+R34
 !i10b 1
-R39
-R40
-R41
+R35
+R36
+R37
 !i113 1
-R11
 R12
+R13
+Edff_fedge
+Z38 w1640066188
+R2
+R3
+R4
+Z39 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/dff_fedge.vhd
+Z40 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/dff_fedge.vhd
+l0
+L4
+VCZaDa:Q7`PJ>Ce9`NblTd0
+!s100 iF1^oOgGkUjNoKKn^FFRH2
+R7
+32
+R28
+!i10b 1
+Z41 !s108 1640078452.000000
+Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/dff_fedge.vhd|
+Z43 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/dff_fedge.vhd|
+!i113 1
+R12
+R13
+Aa_dff
+R2
+R3
+Z44 DEx4 work 9 dff_fedge 0 22 CZaDa:Q7`PJ>Ce9`NblTd0
+l17
+L16
+Z45 VAccJi;PVZM^9_CToij<MM3
+Z46 !s100 ND]UUmmTU;aHED;W43@D]0
+R7
+32
+R28
+!i10b 1
+R41
+R42
+R43
+!i113 1
+R12
+R13
 Efetch
-Z42 w1639504116
+Z47 w1639531749
 R1
 R2
 R3
-!i122 35
 R4
-Z43 8D:\faculty\CMP3\computer architecture\RISK-Processor\Fetching_Stage.vhd
-Z44 FD:\faculty\CMP3\computer architecture\RISK-Processor\Fetching_Stage.vhd
+Z48 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Fetching_Stage.vhd
+Z49 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Fetching_Stage.vhd
 l0
-L7 1
+L7
 V:XN<42S_05ehgPiT>YKoX0
 !s100 4iV:Q;OGKEP4jIf56ZeSb3
 R7
 32
-Z45 !s110 1639504122
+Z50 !s110 1640078448
 !i10b 1
-Z46 !s108 1639504122.000000
-Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:\faculty\CMP3\computer architecture\RISK-Processor\Fetching_Stage.vhd|
-Z48 !s107 D:\faculty\CMP3\computer architecture\RISK-Processor\Fetching_Stage.vhd|
+Z51 !s108 1640078448.000000
+Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Fetching_Stage.vhd|
+Z53 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Fetching_Stage.vhd|
 !i113 1
-R11
 R12
+R13
 Aa_fetch
 R1
 R2
 R3
 DEx4 work 5 fetch 0 22 :XN<42S_05ehgPiT>YKoX0
-!i122 35
 l74
-L23 77
+L23
 VOl;gfc0]72U9UHg<J3jE71
 !s100 J7f^;0em10YC4OdB]gVz61
 R7
 32
-R45
+R50
 !i10b 1
-R46
-R47
-R48
+R51
+R52
+R53
 !i113 1
-R11
 R12
+R13
 Ememory
-Z49 w1639501345
+R47
 R1
 R2
 R3
-!i122 22
 R4
-Z50 8D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd
-Z51 FD:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd
+Z54 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/instruction memory.vhd
+Z55 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/instruction memory.vhd
 l0
-L6 1
+L6
 VXn]g_0__i[>SOif=<]LFR2
 !s100 n0ChKzPz:D1c=XkGA6iWi2
 R7
 32
-Z52 !s110 1639501355
+R50
 !i10b 1
-Z53 !s108 1639501355.000000
-Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd|
-Z55 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd|
+R51
+Z56 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/instruction memory.vhd|
+Z57 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/instruction memory.vhd|
 !i113 1
-R11
 R12
+R13
 Aa_memory
 R1
 R2
 R3
 DEx4 work 6 memory 0 22 Xn]g_0__i[>SOif=<]LFR2
-!i122 22
 l19
-L13 27
+L13
 V4REG;7Zj9Q1UbDRkR7JdE1
 !s100 c6_TJSNPmK<1JULmQXi2O3
 R7
 32
-R52
+R50
 !i10b 1
-R53
-R54
-R55
+R51
+R56
+R57
 !i113 1
-R11
 R12
+R13
 Emux_2x1
-Z56 w1639501519
+R47
 R1
 R2
 R3
-!i122 26
 R4
-Z57 8D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd
-Z58 FD:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd
+Z58 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_2x1.vhd
+Z59 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_2x1.vhd
 l0
-L7 1
+L7
 VcK]d^4jlCRi>4PzYlLDhH3
 !s100 P^kS>B<[IUE5:0_@YzOKN1
 R7
 32
-Z59 !s110 1639501532
+Z60 !s110 1640078449
 !i10b 1
-Z60 !s108 1639501532.000000
-Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd|
-Z62 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd|
+R35
+Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_2x1.vhd|
+Z62 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_2x1.vhd|
 !i113 1
-R11
 R12
+R13
 Aa_mux_2x1
 R1
 R2
 R3
 DEx4 work 7 mux_2x1 0 22 cK]d^4jlCRi>4PzYlLDhH3
-!i122 26
 l18
-L16 14
+L16
 V<]40^Y97=m=lin9Ri@z9S2
 !s100 T_L<53]b<DGX[hH<9c93i3
 R7
 32
-R59
-!i10b 1
 R60
+!i10b 1
+R35
 R61
 R62
 !i113 1
-R11
 R12
+R13
 Emux_4x1
-Z63 w1639501527
+R47
 R1
 R2
 R3
-!i122 27
 R4
-Z64 8D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd
-Z65 FD:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd
+Z63 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_4x1.vhd
+Z64 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_4x1.vhd
 l0
-L7 1
+L7
 VJZOmoBG<L400_P7A0@Ckh1
 !s100 59mBd46T]iE>OXMZVAXXH3
 R7
 32
-Z66 !s110 1639501536
+R60
 !i10b 1
-Z67 !s108 1639501536.000000
-Z68 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd|
-Z69 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd|
+R35
+Z65 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_4x1.vhd|
+Z66 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_4x1.vhd|
 !i113 1
-R11
 R12
+R13
 Aa_mux_4x1
 R1
 R2
 R3
 DEx4 work 7 mux_4x1 0 22 JZOmoBG<L400_P7A0@Ckh1
-!i122 27
 l21
-L19 16
+L19
 VJ6?kA]kE4V48f5;?M0F6U2
 !s100 6PdDLI9?GjIocLWbgJ_011
 R7
 32
-R66
+R60
 !i10b 1
-R67
-R68
-R69
+R35
+R65
+R66
 !i113 1
-R11
 R12
+R13
+Emux_8x1
+Z67 w1639537271
+R1
+R2
+R3
+R4
+Z68 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_8x1.vhd
+Z69 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_8x1.vhd
+l0
+L7
+VVEE@M4dF?^52Rn^`lz5?n0
+!s100 3C;XWYjC<k<^fV1@MmkF?1
+R7
+32
+R60
+!i10b 1
+R35
+Z70 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_8x1.vhd|
+Z71 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/mux_8x1.vhd|
+!i113 1
+R12
+R13
+Aa_mux_8x1
+R1
+R2
+R3
+DEx4 work 7 mux_8x1 0 22 VEE@M4dF?^52Rn^`lz5?n0
+l24
+L22
+VECW?dK_GVIBbVIZR_Chid3
+!s100 eT;VOn`EJ3RW9DAOUFDWZ0
+R7
+32
+R60
+!i10b 1
+R35
+R70
+R71
+!i113 1
+R12
+R13
+Eregister_file
+Z72 w1640076565
+R1
+R2
+R3
+R4
+Z73 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Register_File.vhd
+Z74 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Register_File.vhd
+l0
+L5
+VAI3nJVJ1zYUIEekFZ6VBb0
+!s100 KE`NZDBWz>QWB<K1;P7hW0
+R7
+32
+R34
+!i10b 1
+Z75 !s108 1640078450.000000
+Z76 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Register_File.vhd|
+Z77 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/Register_File.vhd|
+!i113 1
+R12
+R13
+Aarch1
+R1
+R2
+R3
+DEx4 work 13 register_file 0 22 AI3nJVJ1zYUIEekFZ6VBb0
+l80
+L32
+V>[CXYlV3dAVE^h=:[PiSz2
+!s100 mLQMBkN2H9?0jH1;Bea`_3
+R7
+32
+R34
+!i10b 1
+R75
+R76
+R77
+!i113 1
+R12
+R13
+Etristate_buffer
+Z78 w1639537680
+R2
+R3
+R4
+Z79 8D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/tristate_buffer.vhd
+Z80 FD:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/tristate_buffer.vhd
+l0
+L4
+VYRdHNFAnKP9o0Zd__56F>2
+!s100 lRRTc;;bI8^Ugoj`M>1_]1
+R7
+32
+R34
+!i10b 1
+R75
+Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/tristate_buffer.vhd|
+Z82 !s107 D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/tristate_buffer.vhd|
+!i113 1
+R12
+R13
+Aarch1
+R2
+R3
+DEx4 work 15 tristate_buffer 0 22 YRdHNFAnKP9o0Zd__56F>2
+l12
+L11
+VCVFn;fZldEGlk@k`WX>]c1
+!s100 nO?zeRLI:00L4MaLYKE0D0
+R7
+32
+R34
+!i10b 1
+R75
+R81
+R82
+!i113 1
+R12
+R13

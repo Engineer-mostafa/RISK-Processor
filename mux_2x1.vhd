@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 
 
 entity mux_2x1 is
-GENERIC ( n : integer :=1 );
+GENERIC ( n : integer :=32 );
 Port ( 
 in1 : in std_logic_vector(n-1 DOWNTO 0); -- mux input1
 in2 : in std_logic_vector(n-1 DOWNTO 0); -- mux input2

@@ -112,7 +112,7 @@ Port(
     end COMPONENT;
     SIGNAL Instruction,NewPc:  std_logic_vector(31 DOWNTO 0);
     -- SIGNAL InstructionOut,NewPcOut:  std_logic_vector(31 DOWNTO 0);
-    SIGNAL RegWrite,WB_To_Reg,HLT,SETC,RST,OUT_PORT_SIG,IN_PORT_SIG: std_logic;
+    SIGNAL RegWrite,WB_To_Reg,HLT,SETC,RSTs,OUT_PORT_SIG,IN_PORT_SIG: std_logic;
     SIGNAL alwayson: std_logic := '1';
     SIGNAL PCSrc: std_logic_vector(1 DOWNTO 0);
     SIGNAL pc_01, pc_10: std_logic_vector(31 DOWNTO 0);  --> Need to connect this
@@ -124,7 +124,7 @@ Port(
     SIGNAL immmediate_offsetD: std_logic_vector(15 DOWNTO 0); --> Need to connect this
     SIGNAL in_dataD: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this to id/ex buffer as IN
     SIGNAL write_reg: std_logic_vector(2 DOWNTO 0); --> Need to connect this
-    SIGNAL write_data: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this
+    -- SIGNAL write_data: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this
     SIGNAL read_data_1D, read_data_2D, read_data_3D: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this to id/ex buffer as IN
     SIGNAL ccr_inD, ccr_outD: std_logic_vector(3 DOWNTO 0); --> Need to connect this
     SIGNAL sp_inD, sp_outD: std_logic_vector(31 DOWNTO 0);--> Need to connect this
@@ -137,33 +137,34 @@ Port(
     Signal result_WriteBackOutput_sig: std_logic_vector(15 downto 0); 
     BEGIN
 
-        cu: control_unit_VHDL PORT MAP(opcode, rst, RegWrite, WB_To_Reg, HLT, SETC, RST, OUT_PORT_SIG, IN_PORT_SIG);
+        cu: control_unit_VHDL PORT MAP(opcode, rst, RegWrite, WB_To_Reg, HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG);
 
-        fetchs: fetch PORT MAP(HLT, clk, rst, alwayson, PCSrc, pc_01, pc_10, NewPc,Instruction);
+        fetchs: fetch PORT MAP(HLT, clk, RSTs, alwayson, PCSrc, pc_01, pc_10, NewPc,Instruction);
 
-        ifid: generic_buffer GENERIC MAP(64) PORT MAP(ifidin, ifidout, clk, rst);
+        ifid: generic_buffer GENERIC MAP(64) PORT MAP(ifidin, ifidout, clk, RSTs);
 
         ds: decode_stage GENERIC MAP (n) PORT MAP(ifidout(63 DOWNTO 32),ifidout(31 DOWNTO 0), pc_outD, opcode,
-        rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clresult_WriteBackOutput_sigk, rst, RegWrite, IN_PORT_SIG, OUT_PORT_SIG, in_port, in_dataD, out_port,
-        write_reg, write_data, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
+        rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, RegWrite, IN_PORT_SIG, OUT_PORT_SIG, in_port, in_dataD, out_port,
+        write_reg, result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
 
 
-        ifidin <= Intruction & NewPc;
+        ifidin(63 DOWNTO 32) <= Instruction;
+        ifidin(31 DOWNTO 0) <= NewPc;
 	
 
-	input_buffer_between_ID_IEX <= read_data_3D & IN_PORT_SIG & RegWrite & WB_To_Reg & SETC & RST & OUT_PORT_SIG & NewPc; -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 16<91,76> + 32<75,44> = 84
+	input_buffer_between_ID_IEX <= read_data_3D & IN_PORT_SIG & RegWrite & WB_To_Reg & SETC & RSTs & OUT_PORT_SIG & NewPc; -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 16<91,76> + 32<75,44> = 84
 -- buffer between decode and execution
-	ID_IEX: generic_buffer GENERIC MAP(128) PORT MAP(input_buffer_between_ID_IEX, out_buffer_between_ID_IEX, clk, rst);
+	ID_IEX: generic_buffer GENERIC MAP(128) PORT MAP(input_buffer_between_ID_IEX, out_buffer_between_ID_IEX, clk, RSTs);
 	
 	ExecutionStage: EXStage PORT MAP (read_data_3D , opcode , aluResult , ZFlag , NFlag , CFlag); -- src 16-bits , opcode , alu_result , flags 
 
-	input_buffer_between_IEX_IMEM <= aluResult & IN_PORT_SIG & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RST & OUT_PORT_SIG  ;  -- 16<63,48> + 16<47,32> + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 16<24,9> = 55
+	input_buffer_between_IEX_IMEM <= aluResult & IN_PORT_SIG & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RSTs & OUT_PORT_SIG  ;  -- 16<63,48> + 16<47,32> + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 16<24,9> = 55
 -- buffer between execution and memory
-	IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, rst); -- input -> aluresult + inData / output -> aluresult + inData
+	IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, RSTs); -- input -> aluresult + inData / output -> aluresult + inData
 	
 	MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB);
 -- buffer between memory and writeback
-	IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IMEM_IWB, out_buffer_between_IMEM_IWB, clk, rst);
+	IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IMEM_IWB, out_buffer_between_IMEM_IWB, clk, RSTs);
 	WriteBack_Stage: WriteBackStage PORT MAP ( out_buffer_between_IMEM_IWB(63 downto 48) , out_buffer_between_IMEM_IWB(47 downto 32) , out_buffer_between_IMEM_IWB(30),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
 	
 

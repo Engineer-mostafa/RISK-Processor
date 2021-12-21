@@ -1,0 +1,46 @@
+vsim -gui work.fetch -gm=2 -gn=32
+# vsim -gui work.fetch -gm=2 -gn=32 
+# Start time: 10:12:09 on Dec 21,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.fetch(a_fetch)
+# Loading work.dff(a_dff)
+# Loading work.adder(a_adder)
+# Loading work.mux_4x1(a_mux_4x1)
+# Loading work.mux_2x1(a_mux_2x1)
+# Loading work.memory(a_memory)
+mem load -filltype value -filldata 00000ZZZZZZZZZZZ -fillradix symbolic /fetch/instruction_mem/inst_memory(0)
+add wave -position insertpoint  \
+sim:/fetch/n \
+sim:/fetch/m \
+sim:/fetch/HLT_Signal \
+sim:/fetch/Clk \
+sim:/fetch/Rst \
+sim:/fetch/enable \
+sim:/fetch/PCSrc \
+sim:/fetch/pc_01 \
+sim:/fetch/pc_10 \
+sim:/fetch/NewPc \
+sim:/fetch/Instruction \
+sim:/fetch/empty \
+sim:/fetch/out_pc \
+sim:/fetch/out_PC_in \
+sim:/fetch/out_PC_mux_in \
+sim:/fetch/instruction_out \
+sim:/fetch/out_add_in_extended \
+sim:/fetch/newPcSignal \
+sim:/fetch/reset_val \
+sim:/fetch/out_add_in \
+sim:/fetch/OP \
+sim:/fetch/sth1 \
+sim:/fetch/sth2
+force -freeze sim:/fetch/HLT_Signal 0 0
+force -freeze sim:/fetch/Clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/fetch/Rst 1 0
+force -freeze sim:/fetch/enable 0 0
+force -freeze sim:/fetch/PCSrc 00 0
+force -freeze sim:/fetch/pc_01 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ 0
+force -freeze sim:/fetch/pc_10 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ 0
+run

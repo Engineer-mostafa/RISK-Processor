@@ -71,17 +71,16 @@ ARCHITECTURE arch1 OF integration IS
     );
     END COMPONENT;
 
-    COMPONENT ALU_VHDL is
+    COMPONENT EXStage is
         port(
-         Input1 : in std_logic_vector(15 downto 0); -- Rdst
-         opcode : in std_logic_vector(4 downto 0); -- function select
-         alu_result: out std_logic_vector(15 downto 0); -- ALU Output Result
-         Zero_Flag,Negative_Flag,Carry_Flag: out std_logic             -- Z<0>:=CCR<0> ; zero flag 
-                                           -- N<0>:=CCR<1> ; negative flag
-                                           -- C<0>:=CCR<2> ; carry flag
-        
-         );
-    end COMPONENT;
+         Input : in std_logic_vector(15 downto 0); 			-- Rdst
+         Opcode : in std_logic_vector(4 downto 0); 			-- function select
+         aluResult: out std_logic_vector(15 downto 0); 			-- ALU Output Result
+         zero_Flag,negative_Flag,carry_Flag: out std_logic             	-- Z<0>:=CCR<0> ; zero flag 
+                                           				-- N<0>:=CCR<1> ; negative flag
+                                   					-- C<0>:=CCR<2> ; carry flag
+         );    
+end COMPONENT;
 
     COMPONENT generic_buffer is
         Generic( n :  Integer := 128);
@@ -91,7 +90,26 @@ ARCHITECTURE arch1 OF integration IS
           clk,rst: in std_logic
          );
     end COMPONENT;
+
+COMPONENT MEM_STAGE is
+       GENERIC ( n : integer :=32 );
+Port( 	
+	Left_OUTPUT_BUFFER 	: in std_logic_vector(n-1 downto 0);
+	Right_INPUT_BUFFER 	: out std_logic_vector(n-1 downto 0)
+);
+    end COMPONENT;
         
+
+
+ COMPONENT WriteBackStage is
+       GENERIC ( n : integer :=16 );
+Port( 	
+	ALUresult 			: in std_logic_vector(15 downto 0);
+	In_Data	  			: in std_logic_vector(15 downto 0);
+	WBtoReg 			: in std_logic;
+	result_WritingOutput		: out std_logic_vector(15 downto 0)
+);
+    end COMPONENT;
     SIGNAL Instruction,NewPc:  std_logic_vector(31 DOWNTO 0);
     -- SIGNAL InstructionOut,NewPcOut:  std_logic_vector(31 DOWNTO 0);
     SIGNAL RegWrite,WB_To_Reg,HLT,SETC,RST,OUT_PORT_SIG,IN_PORT_SIG: std_logic;
@@ -111,7 +129,12 @@ ARCHITECTURE arch1 OF integration IS
     SIGNAL ccr_inD, ccr_outD: std_logic_vector(3 DOWNTO 0); --> Need to connect this
     SIGNAL sp_inD, sp_outD: std_logic_vector(31 DOWNTO 0);--> Need to connect this
     SIGNAL int_signal, rti_signal: std_logic; --> Need to connect this
-
+    Signal aluResult : std_logic_vector(n - 1 downto 0);
+    Signal ZFlag,NFlag,CFlag:  std_logic;
+    Signal input_buffer_between_IEX_IMEM , out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB,out_buffer_between_IMEM_IWB: std_logic_vector(63 downto 0);
+    Signal input_buffer_between_ID_IEX , out_buffer_between_ID_IEX : std_logic_vector(127 downto 0);
+    Signal OUT_OUTSig_sig , OUT_RegWrite_sig: std_logic;
+    Signal result_WriteBackOutput_sig: std_logic_vector(15 downto 0); 
     BEGIN
 
         cu: control_unit_VHDL PORT MAP(opcode, rst, RegWrite, WB_To_Reg, HLT, SETC, RST, OUT_PORT_SIG, IN_PORT_SIG);
@@ -121,11 +144,27 @@ ARCHITECTURE arch1 OF integration IS
         ifid: generic_buffer GENERIC MAP(64) PORT MAP(ifidin, ifidout, clk, rst);
 
         ds: decode_stage GENERIC MAP (n) PORT MAP(ifidout(63 DOWNTO 32),ifidout(31 DOWNTO 0), pc_outD, opcode,
-        rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, rst, RegWrite, IN_PORT_SIG, OUT_PORT_SIG, in_port, in_dataD, out_port,
+        rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clresult_WriteBackOutput_sigk, rst, RegWrite, IN_PORT_SIG, OUT_PORT_SIG, in_port, in_dataD, out_port,
         write_reg, write_data, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
 
 
         ifidin <= Intruction & NewPc;
+	
 
+	input_buffer_between_ID_IEX <= read_data_3D & IN_PORT_SIG & RegWrite & WB_To_Reg & SETC & RST & OUT_PORT_SIG & NewPc; -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 16<91,76> + 32<75,44> = 84
+-- buffer between decode and execution
+	ID_IEX: generic_buffer GENERIC MAP(128) PORT MAP(input_buffer_between_ID_IEX, out_buffer_between_ID_IEX, clk, rst);
+	
+	ExecutionStage: EXStage PORT MAP (read_data_3D , opcode , aluResult , ZFlag , NFlag , CFlag); -- src 16-bits , opcode , alu_result , flags 
 
-END arch1;
+	input_buffer_between_IEX_IMEM <= aluResult & IN_PORT_SIG & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RST & OUT_PORT_SIG  ;  -- 16<63,48> + 16<47,32> + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 16<24,9> = 55
+-- buffer between execution and memory
+	IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, rst); -- input -> aluresult + inData / output -> aluresult + inData
+	
+	MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB);
+-- buffer between memory and writeback
+	IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IMEM_IWB, out_buffer_between_IMEM_IWB, clk, rst);
+	WriteBack_Stage: WriteBackStage PORT MAP ( out_buffer_between_IMEM_IWB(63 downto 48) , out_buffer_between_IMEM_IWB(47 downto 32) , out_buffer_between_IMEM_IWB(30),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
+	
+
+END arch1; 

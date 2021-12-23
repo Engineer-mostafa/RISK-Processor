@@ -152,16 +152,19 @@ Port(
         ifidin(31 DOWNTO 0) <= NewPc;
 	
 
-	input_buffer_between_ID_IEX(127 DOWNTO 44) <= read_data_3D & IN_PORT_SIG & RegWrite & WB_To_Reg & SETC & RSTs & OUT_PORT_SIG & NewPc; -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 16<91,76> + 32<75,44> = 84
-    input_buffer_between_ID_IEX(43 DOWNTO 0) <= (OTHERS => '0');
+   	input_buffer_between_ID_IEX(127 DOWNTO 59) <= read_data_3D & in_dataD & RegWrite & WB_To_Reg & SETC & RSTs & OUT_PORT_SIG & NewPc;
+				 		    -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 1 + 32<75,44> = 69
+   	input_buffer_between_ID_IEX(58 DOWNTO 0) <= (OTHERS => '0');
+	--input_buffer_between_ID_IEX <= (OTHERS => '0');
     -- buffer between decode and execution
 	ID_IEX: generic_buffer GENERIC MAP(128) PORT MAP(input_buffer_between_ID_IEX, out_buffer_between_ID_IEX, clk, RSTs);
 	
-	ExecutionStage: EXStage PORT MAP (read_data_3D , opcode , aluResult , ZFlag , NFlag , CFlag); -- src 16-bits , opcode , alu_result , flags 
+	ExecutionStage: EXStage PORT MAP (read_data_3D , opcode , aluResult , ZFlag , NFlag , CFlag); 
+					-- src 16-bits , opcode , alu_result , flags 
 
-    input_buffer_between_IEX_IMEM(63 DOWNTO 9) <= aluResult & IN_PORT_SIG & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RSTs & OUT_PORT_SIG;  
-	input_buffer_between_IEX_IMEM(8 DOWNTO 0) <= (OTHERS => '0');
-                                -- 16<63,48> + 16<47,32> + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 16<24,9> = 55
+    	input_buffer_between_IEX_IMEM(63 DOWNTO 24 ) <= aluResult & in_dataD & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RSTs & OUT_PORT_SIG;  
+	input_buffer_between_IEX_IMEM(23 DOWNTO 0) <= (OTHERS => '0');
+                                -- 16<63,48> + 16<47,32> + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = 40
 -- buffer between execution and memory
 	IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, RSTs); -- input -> aluresult + inData / output -> aluresult + inData
 	

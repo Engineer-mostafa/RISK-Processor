@@ -52,6 +52,7 @@ dataout : out std_logic_vector(m-1 DOWNTO 0)); -- output data
 
 end component;
 
+
 component mux_2x1 is 
 Port ( 
 in1 : in std_logic_vector(n-1 DOWNTO 0); -- mux input1

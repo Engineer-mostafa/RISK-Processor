@@ -1,0 +1,151 @@
+vsim -gui work.decode_stage
+# vsim -gui work.decode_stage 
+# Start time: 12:25:12 on Dec 21,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decode_stage(arch1)
+# Loading work.decode_stage(arch1)
+# Loading work.dff_fedge(a_dff)
+# Loading work.decoder3x8(arch1)
+# Loading work.tristate_buffer(arch1)
+add wave -position insertpoint  \
+sim:/decode_stage/n \
+sim:/decode_stage/instruction \
+sim:/decode_stage/pc_in \
+sim:/decode_stage/pc_out \
+sim:/decode_stage/opfncode \
+sim:/decode_stage/rsrc1addr \
+sim:/decode_stage/rsrc2addr \
+sim:/decode_stage/rdstaddr \
+sim:/decode_stage/extrabits \
+sim:/decode_stage/immmediate_offset \
+sim:/decode_stage/clk \
+sim:/decode_stage/rst \
+sim:/decode_stage/RegWrite \
+sim:/decode_stage/in_signal \
+sim:/decode_stage/out_signal \
+sim:/decode_stage/in_port \
+sim:/decode_stage/in_data \
+sim:/decode_stage/out_port \
+sim:/decode_stage/write_reg \
+sim:/decode_stage/write_data \
+sim:/decode_stage/read_data_1 \
+sim:/decode_stage/read_data_2 \
+sim:/decode_stage/read_data_3 \
+sim:/decode_stage/ccr_in \
+sim:/decode_stage/ccr_out \
+sim:/decode_stage/sp_in \
+sim:/decode_stage/sp_out \
+sim:/decode_stage/int_signal \
+sim:/decode_stage/rti_signal
+force -freeze sim:/decode_stage/clk 1 0, 0 {50 ps} -r 100
+run
+# First, use Reset signal to make all the registers 0s
+force -freeze sim:/decode_stage/rst 1 0
+force -freeze sim:/decode_stage/RegWrite 0 0
+force -freeze sim:/decode_stage/in_signal 0 0
+force -freeze sim:/decode_stage/out_signal 0 0
+force -freeze sim:/decode_stage/in_port 0000000000000000 0
+force -freeze sim:/decode_stage/write_reg 000 0
+force -freeze sim:/decode_stage/write_data 0000000000000000 0
+force -freeze sim:/decode_stage/ccr_in 0000 0
+force -freeze sim:/decode_stage/instruction 00000000000000000000000000000000 0
+force -freeze sim:/decode_stage/pc_in 00000000000000000000000000000000 0
+force -freeze sim:/decode_stage/sp_in 00000000000000000000000000000000 0
+force -freeze sim:/decode_stage/int_signal 0 0
+force -freeze sim:/decode_stage/rti_signal 0 0
+run
+force -freeze sim:/decode_stage/rst 0 0
+# Now: Let's start testing the First Operand instructions
+# 1. NOP: PC ← PC + 1 --> This has nothing to do with the register file
+# We'll test it in the Decode Stage as a whole instead
+# 2. HLT: Freezes PC until a reset --> This has nothing to do with the register file
+# We'll test it in the Decode Stage as a whole instead
+# 3. SETC C ←1 --> Need to make sure that CCR is changed correctly
+# IN: rst=0, in_signal=0, out_signal=0, int_signal=0, rti_signal=0
+#     in_port, read_reg1, read_reg2, read_reg3=Don't Cares--> Let's assume that they're all 0z once and another time they're U
+#     RegWrite, write_reg, write_data --> All depend on another instruction (WB Stage)
+#     sp_in --> Depends on ALU Stage --> Let's assume it's 0z
+#     ccr_in --> Depends on ALU Stage --> Let's assume it's 0100 for a set carry
+force -freeze sim:/decode_stage/ccr_in 0100 0
+run
+force -freeze sim:/decode_stage/ccr_in 0010 0
+run
+force -freeze sim:/decode_stage/ccr_in 0001 0
+run
+force -freeze sim:/decode_stage/ccr_in 0111 0
+run
+# 4. NOT Rdst: NOT value stored in register  
+#              Rdst R[ Rdst ] ← 1’s Complement(R[ Rdst ]); 
+#    If (1’s Complement(R[ Rdst ]) = 0): Z ←1; else: Z ←0;
+#    If (1’s Complement(R[ Rdst ]) < 0): N ←1; else: N ←0
+# IN: rst=0, in_signal=0, out_signal=0, int_signal=0, rti_signal=0
+#     in_port, read_reg1, read_reg2, read_reg3=Don't Cares--> Let's assume that they're all 0z once and another time they're U
+#     ccr_in --> Depends on another instruction (After ALU Stage)
+#     sp_in --> Depends on ALU Stage --> Let's assume it's 0z
+#     RegWrite, write_reg, write_data --> All depend on values sent from WB Stage
+#     Let set RegWrite=1, then:
+#     DECODE: We can change read_reg3 to give it different values
+#     WB: We can change write_reg to choose the Rdst and change write_data to give it different values
+force -freeze sim:/decode_stage/RegWrite 1 0
+force -freeze sim:/decode_stage/instruction 00000000000001000000000000000000 0
+force -freeze sim:/decode_stage/write_data 0011000000001100 0
+force -freeze sim:/decode_stage/write_reg 011 0
+run
+# 5. INC  Rdst: Increment value stored in  Rdst
+#               R[ Rdst ] ←R[ Rdst ] + 1; 
+#     If ((R[ Rdst ] + 1) = 0): Z ←1; else: Z ←0;
+#     If ((R[ Rdst ] + 1) < 0): N ←1; else: N ←0
+# IN: rst=0, in_signal=0, out_signal=0, int_signal=0, rti_signal=0
+#     in_port, read_reg1, read_reg2, read_reg3=Don't Cares--> Let's assume that they're all 0z once and another time they're U
+#     ccr_in --> Depends on another instruction (After ALU Stage)
+#     sp_in --> Depends on ALU Stage --> Let's assume it's 0z
+#     RegWrite, write_reg, write_data --> All depend on values sent from WB Stage
+#     Let set RegWrite=1, then:
+#     DECODE: We can change read_reg3 to give it different values
+#     WB: We can change write_reg to choose the Rdst and change write_data to give it different values
+force -freeze sim:/decode_stage/RegWrite 1 0
+force -freeze sim:/decode_stage/instruction 00000000000010000000000000000000 0
+force -freeze sim:/decode_stage/write_data 1100000000001111 0
+force -freeze sim:/decode_stage/write_reg 010 0
+run
+# 7. IN Rdst: R[ Rdst ] ← IN.PORT --> Reads in_port in the Decode stage and writes value to Rdst in the Write Back Stage
+# IN: rst=0, in_signal=1, out_signal=0, int_signal=0, rti_signal=0
+#     read_reg1, read_reg2, read_reg3=Don't Cares--> Let's assume that they're all 0z once and another time they're U
+#     ccr_in --> Depends on another instruction (After ALU Stage)
+#     sp_in --> Depends on ALU Stage --> Let's assume it's 0z
+#     RegWrite, write_reg, write_data --> All depend on values sent from WB Stage
+#     Let set RegWrite=1, then:
+#     DECODE: We can change in_data to give it different values
+#     WB: We can change write_reg to choose the Rdst and change write_data to give it different values
+force -freeze sim:/decode_stage/in_signal 1 0
+force -freeze sim:/decode_stage/RegWrite 1 0
+force -freeze sim:/decode_stage/in_port 1001000000111110 0
+force -freeze sim:/decode_stage/write_data 0100000000110010 0
+force -freeze sim:/decode_stage/instruction 00000000000001000000000000000000 0
+force -freeze sim:/decode_stage/write_reg 001 0
+run
+force -freeze sim:/decode_stage/in_port 1001000000100010 0
+force -freeze sim:/decode_stage/write_data 1000000000110010 0
+force -freeze sim:/decode_stage/write_reg 000 0
+run
+force -freeze sim:/decode_stage/in_signal 0 0
+force -freeze sim:/decode_stage/RegWrite 0 0
+# 6. OUT Rdst: OUT.PORT ← R[ Rdst ] --> 
+# IN: rst=0, in_signal=0, out_signal=1, int_signal=0, rti_signal=0
+#     in_port, read_reg1, read_reg2=Don't Cares--> Let's assume that they're all 0z once and another time they're U
+#     RegWrite, write_reg, write_data --> All depend on another instruction (WB Stage)
+#     ccr_in --> Depends on another instruction (After ALU Stage)
+#     sp_in --> Depends on ALU Stage --> Let's assume it's 0z
+#     DECODE: We can change read_reg3 to give it different values
+#     WB: We can change write_data to give it different values
+force -freeze sim:/decode_stage/out_signal 1 0
+run
+force -freeze sim:/decode_stage/write_data 1000000000110010 0
+run
+force -freeze sim:/decode_stage/write_data 1001000000111110 0
+run
+force -freeze sim:/decode_stage/write_data 1100000000001111 0
+run

@@ -1,0 +1,55 @@
+vsim -gui work.integration
+# vsim -gui work.integration 
+# Start time: 21:19:13 on Dec 23,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.integration(arch1)
+# Loading work.control_unit_vhdl(behavioral)
+# Loading work.fetch(a_fetch)
+# Loading work.dff(a_dff)
+# Loading work.adder(a_adder)
+# Loading work.mux_4x1(a_mux_4x1)
+# Loading work.mux_2x1(a_mux_2x1)
+# Loading work.memory(a_memory)
+# Loading work.generic_buffer(behavioralgeneric_buffer)
+# Loading work.decode_stage(arch1)
+# Loading work.register_file(arch1)
+# Loading work.dff_fedge(a_dff)
+# Loading work.decoder3x8(arch1)
+# Loading work.tristate_buffer(arch1)
+# Loading work.exstage(arch_exstage)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading work.alu_vhdl(behavioral)
+# Loading work.mem_stage(arch_mem_stage)
+# Loading work.writebackstage(arch_writebackstage)
+
+force -freeze sim:/integration/in_port x\"0000\" 0
+force -freeze sim:/integration/out_port x\"0000\" 0
+
+mem load -filltype value -filldata { 0000000000010000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(0)
+mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(1)
+mem load -filltype value -filldata { 0000000100000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(2)
+mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(3)
+
+
+mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(16)
+mem load -filltype value -filldata { 0000000000000000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(17)
+mem load -filltype value -filldata { 0001100000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(18)
+mem load -filltype value -filldata { 0010000000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(19)
+mem load -filltype value -filldata { 0011000000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(20)
+mem load -filltype value -filldata { 0011000000001000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(21)
+mem load -filltype value -filldata { 0001100000001000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(22)
+mem load -filltype value -filldata { 0010000000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(23)
+mem load -filltype value -filldata { 0010100000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(24)
+mem load -filltype value -filldata { 0010100000001000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(25)
+mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(26)
+
+add wave -position insertpoint sim:/integration/*
+force -freeze sim:/integration/rst 1 0
+force -freeze sim:/integration/clk 1 0, 0 {50 ps} -r 100
+run
+force -freeze sim:/integration/rst 0 0
+run

@@ -1,0 +1,41 @@
+Vsim -gui work.integration(arch1)
+# vsim -gui work.integration(arch1) 
+# Start time: 20:41:19 on Dec 23,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.integration(arch1)
+# Loading work.control_unit_vhdl(behavioral)
+# Loading work.fetch(a_fetch)
+# Loading work.dff(a_dff)
+# Loading work.adder(a_adder)
+# Loading work.mux_4x1(a_mux_4x1)
+# Loading work.mux_2x1(a_mux_2x1)
+# Loading work.memory(a_memory)
+# Loading work.generic_buffer(behavioralgeneric_buffer)
+# Loading work.decode_stage(arch1)
+# Loading work.register_file(arch1)
+# Loading work.dff_fedge(a_dff)
+# Loading work.decoder3x8(arch1)
+# Loading work.tristate_buffer(arch1)
+# Loading work.exstage(arch_exstage)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading work.alu_vhdl(behavioral)
+# Loading work.mem_stage(arch_mem_stage)
+# Loading work.writebackstage(arch_writebackstage)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: Rema  Hostname: ENGREEM  ProcessID: 22524
+#           Attempting to use alternate WLF file "./wlftwi0kmc".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftwi0kmc
+add wave -position insertpoint  \
+sim:/integration/n \
+sim:/integration/clk \
+sim:/integration/rst \
+sim:/integration/in_port \
+sim:/integration/out_port
+#mem load -i {D:/College CUFE 2023/Senior I/1st Term/CMP3010 CA/Project/RISK-Processor/OneOperand.mem} /integration/fetchs/instruction_mem/inst_memory
+force -freeze sim:/integration/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/integration/rst 1 0

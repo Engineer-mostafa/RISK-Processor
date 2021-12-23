@@ -2,7 +2,7 @@ LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
 
 ENTITY dff IS
-GENERIC ( n : integer :=16 );
+GENERIC ( n : integer :=32 );
 	PORT(clk,rst,en : IN std_logic;
 	     reset_value: IN std_logic_vector(n - 1 DOWNTO 0); --reem
 	     --edge_signal: IN std_logic; --0:rise, 1:fall --reem

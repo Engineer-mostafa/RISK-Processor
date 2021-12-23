@@ -116,7 +116,7 @@ Port(
     SIGNAL alwayson: std_logic := '1';
     SIGNAL PCSrc: std_logic_vector(1 DOWNTO 0);
     SIGNAL pc_01, pc_10: std_logic_vector(31 DOWNTO 0);  --> Need to connect this
-    SIGNAL ifidin,ifidout: std_logic_vector(127 DOWNTO 0);
+    SIGNAL ifidin,ifidout: std_logic_vector(63 DOWNTO 0);
     SIGNAL opcode: std_logic_vector(4 downto 0);
     SIGNAL pc_outD: std_logic_vector(31 DOWNTO 0); --> Need to connect this
     SIGNAL rsrc1addrD, rsrc2addrD,rdstaddrD: std_logic_vector(2 DOWNTO 0); --> Need to connect this
@@ -152,13 +152,16 @@ Port(
         ifidin(31 DOWNTO 0) <= NewPc;
 	
 
-	input_buffer_between_ID_IEX <= read_data_3D & IN_PORT_SIG & RegWrite & WB_To_Reg & SETC & RSTs & OUT_PORT_SIG & NewPc; -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 16<91,76> + 32<75,44> = 84
--- buffer between decode and execution
+	input_buffer_between_ID_IEX(127 DOWNTO 44) <= read_data_3D & IN_PORT_SIG & RegWrite & WB_To_Reg & SETC & RSTs & OUT_PORT_SIG & NewPc; -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 16<91,76> + 32<75,44> = 84
+    input_buffer_between_ID_IEX(43 DOWNTO 0) <= (OTHERS => '0');
+    -- buffer between decode and execution
 	ID_IEX: generic_buffer GENERIC MAP(128) PORT MAP(input_buffer_between_ID_IEX, out_buffer_between_ID_IEX, clk, RSTs);
 	
 	ExecutionStage: EXStage PORT MAP (read_data_3D , opcode , aluResult , ZFlag , NFlag , CFlag); -- src 16-bits , opcode , alu_result , flags 
 
-	input_buffer_between_IEX_IMEM <= aluResult & IN_PORT_SIG & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RSTs & OUT_PORT_SIG  ;  -- 16<63,48> + 16<47,32> + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 16<24,9> = 55
+    input_buffer_between_IEX_IMEM(63 DOWNTO 9) <= aluResult & IN_PORT_SIG & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RSTs & OUT_PORT_SIG;  
+	input_buffer_between_IEX_IMEM(8 DOWNTO 0) <= (OTHERS => '0');
+                                -- 16<63,48> + 16<47,32> + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 16<24,9> = 55
 -- buffer between execution and memory
 	IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, RSTs); -- input -> aluresult + inData / output -> aluresult + inData
 	

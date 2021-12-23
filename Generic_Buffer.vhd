@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity generic_buffer is
-Generic( n :  Integer := 128);
+Generic( n :  Integer := 16);
 port (
   LeftInput : in std_logic_vector(n-1 downto 0);
   RightOutput : out std_logic_vector (n-1 downto 0);

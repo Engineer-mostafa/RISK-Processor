@@ -44,3 +44,7 @@ force -freeze sim:/fetch/PCSrc 00 0
 force -freeze sim:/fetch/pc_01 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ 0
 force -freeze sim:/fetch/pc_10 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ 0
 run
+force -freeze sim:/fetch/Rst 0 0
+force -freeze sim:/fetch/enable 1 0
+run
+run

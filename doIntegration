@@ -48,8 +48,14 @@ mem load -filltype value -filldata { 0010100000001000} -fillradix symbolic /inte
 mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(26)
 
 add wave -position insertpoint sim:/integration/*
+force -freeze sim:/integration/PCSrc 00 0
+force -freeze sim:/integration/enable_pc 0 0
 force -freeze sim:/integration/rst 1 0
 force -freeze sim:/integration/clk 1 0, 0 {50 ps} -r 100
 run
+run
 force -freeze sim:/integration/rst 0 0
+force -freeze sim:/integration/enable_pc 1 0
+run
+run
 run

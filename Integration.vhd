@@ -133,13 +133,13 @@ Port(
     Signal ZFlag,NFlag,CFlag:  std_logic;
     Signal input_buffer_between_IEX_IMEM , out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB,out_buffer_between_IMEM_IWB: std_logic_vector(63 downto 0);
     Signal input_buffer_between_ID_IEX , out_buffer_between_ID_IEX : std_logic_vector(127 downto 0);
-    Signal OUT_OUTSig_sig , OUT_RegWrite_sig: std_logic;
+    Signal OUT_OUTSig_sig , OUT_RegWrite_sig, enable_pc: std_logic;
     Signal result_WriteBackOutput_sig: std_logic_vector(15 downto 0); 
     BEGIN
 
         cu: control_unit_VHDL PORT MAP(opcode, rst, RegWrite, WB_To_Reg, HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG);
 
-        fetchs: fetch PORT MAP(HLT, clk, RSTs, alwayson, PCSrc, pc_01, pc_10, NewPc,Instruction);
+        fetchs: fetch PORT MAP(HLT, clk, RSTs, enable_pc, PCSrc, pc_01, pc_10, NewPc,Instruction);
 
         ifid: generic_buffer GENERIC MAP(64) PORT MAP(ifidin, ifidout, clk, RSTs);
 

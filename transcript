@@ -1,6 +1,66 @@
-<<<<<<< HEAD
 # Reading pref.tcl
-# OpenFile {D:/faculty/CMP3/computer architecture/RISK-Processor/RISK-Peocessor.mpf}
-# Loading project RISK-Peocessor
-=======
->>>>>>> 901899ea0d7f107fde0a45bec796e92f6e7657aa
+# OpenFile {D:/faculty/CMP3/computer architecture/RISK-Processor/RISK-Processor.mpf}
+# Loading project RISK-Processor
+# Compile of Adder.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of Control_Unit.vhd was successful.
+# Compile of decoder3x8.vhd was successful.
+# Compile of Decoding_Stage.vhd was successful.
+# Compile of dff_fedge.vhd was successful.
+# Compile of Execution_Stage.vhd was successful.
+# Compile of Fetching_Stage.vhd was successful.
+# Compile of Generic_Buffer.vhd was successful.
+# Compile of instruction memory.vhd was successful.
+# Compile of Integration.vhd was successful.
+# Compile of Memory_Stage.vhd was successful.
+# Compile of mux_2x1.vhd was successful.
+# Compile of mux_4x1.vhd was successful.
+# Compile of mux_8x1.vhd was successful.
+# Compile of register.vhd was successful.
+# Compile of Register_File.vhd was successful.
+# Compile of tristate_buffer.vhd was successful.
+# Compile of WriteBack_Stage.vhd was successful.
+# 19 compiles, 0 failed with no errors.
+# Compile of Integration.vhd was successful.
+do doIntegration
+# vsim -gui work.integration 
+# Start time: 23:11:12 on Dec 23,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.integration(arch1)
+# Loading work.control_unit_vhdl(behavioral)
+# Loading work.fetch(a_fetch)
+# Loading work.dff(a_dff)
+# Loading work.adder(a_adder)
+# Loading work.mux_4x1(a_mux_4x1)
+# Loading work.mux_2x1(a_mux_2x1)
+# Loading work.memory(a_memory)
+# Loading work.generic_buffer(behavioralgeneric_buffer)
+# Loading work.decode_stage(arch1)
+# Loading work.register_file(arch1)
+# Loading work.dff_fedge(a_dff)
+# Loading work.decoder3x8(arch1)
+# Loading work.tristate_buffer(arch1)
+# Loading work.exstage(arch_exstage)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading work.alu_vhdl(behavioral)
+# Loading work.mem_stage(arch_mem_stage)
+# Loading work.writebackstage(arch_writebackstage)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: Rema  Hostname: ENGREEM  ProcessID: 14124
+#           Attempting to use alternate WLF file "./wlftn7v833".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftn7v833
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /integration/ExecutionStage/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /integration/ExecutionStage/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+run
+run

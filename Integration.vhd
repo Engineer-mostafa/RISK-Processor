@@ -12,6 +12,7 @@ PORT (
 );
 END integration;
 
+
 ARCHITECTURE arch1 OF integration IS
 
     COMPONENT control_unit_VHDL is
@@ -76,7 +77,8 @@ ARCHITECTURE arch1 OF integration IS
          Input : in std_logic_vector(15 downto 0); 			-- Rdst
          Opcode : in std_logic_vector(4 downto 0); 			-- function select
          aluResult: out std_logic_vector(15 downto 0); 			-- ALU Output Result
-         zero_Flag,negative_Flag,carry_Flag: out std_logic             	-- Z<0>:=CCR<0> ; zero flag 
+	 RSTs : in std_logic;
+         zero_Flag,negative_Flag,carry_Flag : out std_logic            	-- Z<0>:=CCR<0> ; zero flag 
                                            				-- N<0>:=CCR<1> ; negative flag
                                    					-- C<0>:=CCR<2> ; carry flag
          );    
@@ -155,19 +157,21 @@ Port(
    	input_buffer_between_ID_IEX(127 DOWNTO 59) <= read_data_3D & in_dataD & RegWrite & WB_To_Reg & SETC & RSTs & OUT_PORT_SIG & NewPc;
 				 		    -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 1 + 32<75,44> = 69
    	input_buffer_between_ID_IEX(58 DOWNTO 0) <= (OTHERS => '0');
-	--input_buffer_between_ID_IEX <= (OTHERS => '0');
+	
     -- buffer between decode and execution
 	ID_IEX: generic_buffer GENERIC MAP(128) PORT MAP(input_buffer_between_ID_IEX, out_buffer_between_ID_IEX, clk, RSTs);
 	
-	ExecutionStage: EXStage PORT MAP (read_data_3D , opcode , aluResult , ZFlag , NFlag , CFlag); 
-					-- src 16-bits , opcode , alu_result , flags 
+	ExecutionStage: EXStage PORT MAP (read_data_3D , opcode , aluResult , RSTs , ZFlag , NFlag , CFlag); 
+					-- src 16-bits , opcode , alu_result, RSTs , flags
 
     	input_buffer_between_IEX_IMEM(63 DOWNTO 24 ) <= aluResult & in_dataD & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RSTs & OUT_PORT_SIG;  
-	input_buffer_between_IEX_IMEM(23 DOWNTO 0) <= (OTHERS => '0');
-                                -- 16<63,48> + 16<47,32> + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = 40
+	input_buffer_between_IEX_IMEM(23 DOWNTO 0)   <= (OTHERS => '0');
+                               			     -- 16<63,48> + 16<47,32> + 1<31> +     1<30>   + 1<29> + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> = 40
 -- buffer between execution and memory
-	IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, RSTs); -- input -> aluresult + inData / output -> aluresult + inData
+	IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, RSTs); 
+							-- input -> aluresult + inData / output -> aluresult + inData
 	
+	ccr_inD <=  '0' & out_buffer_between_IEX_IMEM(29) & out_buffer_between_IEX_IMEM(28) & out_buffer_between_IEX_IMEM(27) ;
 	MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB);
 -- buffer between memory and writeback
 	IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IMEM_IWB, out_buffer_between_IMEM_IWB, clk, RSTs);

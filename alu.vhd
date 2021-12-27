@@ -13,7 +13,8 @@ port(
  Input1 : in std_logic_vector(15 downto 0); -- Rdst
  opcode : in std_logic_vector(4 downto 0); -- function select
  alu_result: out std_logic_vector(15 downto 0); -- ALU Output Result
- Zero_Flag,Negative_Flag,Carry_Flag: out std_logic             -- Z<0>:=CCR<0> ; zero flag 
+ RSTs : in std_logic;
+ Zero_Flag,Negative_Flag,Carry_Flag : out std_logic             -- Z<0>:=CCR<0> ; zero flag 
 							       -- N<0>:=CCR<1> ; negative flag
 							       -- C<0>:=CCR<2> ; carry flag
 
@@ -34,8 +35,13 @@ begin
   result <= not (Input1); -- NOT Rdst
  when "00100" => 
   result <= std_logic_vector(to_unsigned(to_integer(unsigned( Input1 )) + 1, 16));  -- INC Rdst
- when others => result <= x"0000"; -- Others
+ when others => 
+	result <= x"0000"; -- Others
  end case;
+
+if RSTs = '1' then
+		Carry_Flag <= '0'; 
+end if;
 end process;
   Zero_Flag <= '1' when result=x"0000" else '0';
   Negative_Flag <= '1' when signed(result) < 0 else '0';

@@ -11,24 +11,27 @@ vsim -gui work.fetch -gm=2 -gn=32
 # Loading work.mux_4x1(a_mux_4x1)
 # Loading work.mux_2x1(a_mux_2x1)
 # Loading work.memory(a_memory)
+
+mem load -i {./Test Cases/OneOperand.mem} /fetch/instruction_mem/inst_memory
+
 # mem load -filltype value -filldata 00000ZZZZZZZZZZZ -fillradix symbolic /fetch/instruction_mem/inst_memory(0)
-mem load -filltype value -filldata { 0000000000010000 } -fillradix symbolic /fetch/instruction_mem/inst_memory(0)
-mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /fetch/instruction_mem/inst_memory(1)
-mem load -filltype value -filldata { 0000000100000000 } -fillradix symbolic /fetch/instruction_mem/inst_memory(2)
-mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /fetch/instruction_mem/inst_memory(3)
+# mem load -filltype value -filldata { 0000000000010000 } -fillradix symbolic /fetch/instruction_mem/inst_memory(0)
+# mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /fetch/instruction_mem/inst_memory(1)
+# mem load -filltype value -filldata { 0000000100000000 } -fillradix symbolic /fetch/instruction_mem/inst_memory(2)
+# mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /fetch/instruction_mem/inst_memory(3)
 
 
-mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /fetch/instruction_mem/inst_memory(16)
-mem load -filltype value -filldata { 0000000000000000} -fillradix symbolic /fetch/instruction_mem/inst_memory(17)
-mem load -filltype value -filldata { 0001100000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(18)
-mem load -filltype value -filldata { 0010000000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(19)
-mem load -filltype value -filldata { 0011000000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(20)
-mem load -filltype value -filldata { 0011000000001000} -fillradix symbolic /fetch/instruction_mem/inst_memory(21)
-mem load -filltype value -filldata { 0001100000001000} -fillradix symbolic /fetch/instruction_mem/inst_memory(22)
-mem load -filltype value -filldata { 0010000000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(23)
-mem load -filltype value -filldata { 0010100000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(24)
-mem load -filltype value -filldata { 0010100000001000} -fillradix symbolic /fetch/instruction_mem/inst_memory(25)
-mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /fetch/instruction_mem/inst_memory(26)
+# mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /fetch/instruction_mem/inst_memory(16)
+# mem load -filltype value -filldata { 0000000000000000} -fillradix symbolic /fetch/instruction_mem/inst_memory(17)
+# mem load -filltype value -filldata { 0001100000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(18)
+# mem load -filltype value -filldata { 0010000000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(19)
+# mem load -filltype value -filldata { 0011000000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(20)
+# mem load -filltype value -filldata { 0011000000001000} -fillradix symbolic /fetch/instruction_mem/inst_memory(21)
+# mem load -filltype value -filldata { 0001100000001000} -fillradix symbolic /fetch/instruction_mem/inst_memory(22)
+# mem load -filltype value -filldata { 0010000000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(23)
+# mem load -filltype value -filldata { 0010100000000100} -fillradix symbolic /fetch/instruction_mem/inst_memory(24)
+# mem load -filltype value -filldata { 0010100000001000} -fillradix symbolic /fetch/instruction_mem/inst_memory(25)
+# mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /fetch/instruction_mem/inst_memory(26)
 
 add wave -position insertpoint  \
 sim:/fetch/n \

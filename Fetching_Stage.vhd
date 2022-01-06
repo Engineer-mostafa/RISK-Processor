@@ -80,10 +80,15 @@ BEGIN
 
 	-----------1
 	-- we need to initialize, so begin with reset
-	reset_val <= (others => '0');
+	-- reset_val <= (others => '0');
+	reset_val <= "00000000000000000000000010100000";
 	PC: dff port map(Clk,Rst,enable,reset_val,out_PC_in,out_pc);
 
 	-----------5
+	-- out_pc <= to_integer(unsigned(instruction_out))
+	-- when Rst='1' 
+	-- else out_pc;
+
 	pc_adder: adder port map(out_pc , out_add_in_extended , newPcSignal );
 	NewPc <= newPcSignal;
 

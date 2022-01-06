@@ -21,8 +21,8 @@ ARCHITECTURE a_memory OF memory IS
 	
 	BEGIN 
 
-		instruction(31 downto 16) <= inst_memory(to_integer(unsigned(address(19 downto 0))));
-		instruction (15 downto 0) <= inst_memory(to_integer(unsigned(address(19 downto 0))+1));--take the next 16 bit
+		instruction(15 downto 0) <= inst_memory(to_integer(unsigned(address(19 downto 0))));
+		instruction (31 downto 16) <= inst_memory(to_integer(unsigned(address(19 downto 0))+1));--take the next 16 bit
 		
 		temp(31 downto 16) <= inst_memory(to_integer(unsigned(address(19 downto 0))));
 

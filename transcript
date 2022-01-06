@@ -1,15 +1,13 @@
 # Reading pref.tcl
 # OpenFile {D:/faculty/CMP3/computer architecture/RISK-Processor/RISK-Processor.mpf}
 # Loading project RISK-Processor
-# Compile of Fetching_Stage.vhd was successful.
-# Compile of instruction memory.vhd failed with 1 errors.
+# Compile of Fetching_Stage.vhd failed with 1 errors.
+# Compile of instruction memory.vhd was successful.
 # 2 compiles, 1 failed with 1 error.
 # Compile of Fetching_Stage.vhd was successful.
-# Compile of instruction memory.vhd was successful.
-# 2 compiles, 0 failed with no errors.
 do doIntegration
 # vsim -gui work.integration 
-# Start time: 10:13:09 on Jan 06,2022
+# Start time: 13:07:38 on Jan 06,2022
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -34,11 +32,6 @@ do doIntegration
 # Loading work.alu_vhdl(behavioral)
 # Loading work.mem_stage(arch_mem_stage)
 # Loading work.writebackstage(arch_writebackstage)
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: Rema  Hostname: ENGREEM  ProcessID: 14124
-#           Attempting to use alternate WLF file "./wlftabqwc7".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftabqwc7
 # ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
 #    Time: 0 ps  Iteration: 0  Instance: /integration/ExecutionStage/alu
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
@@ -49,11 +42,17 @@ do doIntegration
 #    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
 do doIntegration
-# End time: 10:21:27 on Jan 06,2022, Elapsed time: 0:08:18
-# Errors: 0, Warnings: 10
+# End time: 13:22:51 on Jan 06,2022, Elapsed time: 0:15:13
+# Errors: 0, Warnings: 11
 # vsim -gui work.integration 
-# Start time: 10:21:27 on Jan 06,2022
+# Start time: 13:22:51 on Jan 06,2022
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -78,183 +77,6 @@ do doIntegration
 # Loading work.alu_vhdl(behavioral)
 # Loading work.mem_stage(arch_mem_stage)
 # Loading work.writebackstage(arch_writebackstage)
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: Rema  Hostname: ENGREEM  ProcessID: 14124
-#           Attempting to use alternate WLF file "./wlftcc9ng9".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftcc9ng9
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# Error in macro ./doIntegration line 58
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-#     while executing
-# "add wave -position insertpoint  \
-# sim:/integration/clk \
-# sim:/integration/rst \
-# sim:/integration/in_port \
-# sim:/integration/out_port \
-# sim:/integr..."
-do doIntegration
-# End time: 10:31:50 on Jan 06,2022, Elapsed time: 0:10:23
-# Errors: 0, Warnings: 3
-# vsim -gui work.integration 
-# Start time: 10:31:50 on Jan 06,2022
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.integration(arch1)
-# Loading work.control_unit_vhdl(behavioral)
-# Loading work.fetch(a_fetch)
-# Loading work.dff(a_dff)
-# Loading work.adder(a_adder)
-# Loading work.mux_4x1(a_mux_4x1)
-# Loading work.mux_2x1(a_mux_2x1)
-# Loading work.memory(a_memory)
-# Loading work.generic_buffer(behavioralgeneric_buffer)
-# Loading work.decode_stage(arch1)
-# Loading work.register_file(arch1)
-# Loading work.dff_fedge(a_dff)
-# Loading work.decoder3x8(arch1)
-# Loading work.tristate_buffer(arch1)
-# Loading work.exstage(arch_exstage)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_signed(body)
-# Loading work.alu_vhdl(behavioral)
-# Loading work.mem_stage(arch_mem_stage)
-# Loading work.writebackstage(arch_writebackstage)
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: Rema  Hostname: ENGREEM  ProcessID: 14124
-#           Attempting to use alternate WLF file "./wlft5g9chi".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlft5g9chi
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# Error in macro ./doIntegration line 58
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-# ** UI-Msg: (vish-4014) No objects found matching '#'.
-#     while executing
-# "add wave -position insertpoint  \
-# sim:/integration/clk \
-# sim:/integration/rst \
-# sim:/integration/in_port \
-# sim:/integration/out_port \
-# sim:/integr..."
-do doIntegration
-# End time: 10:32:41 on Jan 06,2022, Elapsed time: 0:00:51
-# Errors: 0, Warnings: 3
-# vsim -gui work.integration 
-# Start time: 10:32:41 on Jan 06,2022
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.integration(arch1)
-# Loading work.control_unit_vhdl(behavioral)
-# Loading work.fetch(a_fetch)
-# Loading work.dff(a_dff)
-# Loading work.adder(a_adder)
-# Loading work.mux_4x1(a_mux_4x1)
-# Loading work.mux_2x1(a_mux_2x1)
-# Loading work.memory(a_memory)
-# Loading work.generic_buffer(behavioralgeneric_buffer)
-# Loading work.decode_stage(arch1)
-# Loading work.register_file(arch1)
-# Loading work.dff_fedge(a_dff)
-# Loading work.decoder3x8(arch1)
-# Loading work.tristate_buffer(arch1)
-# Loading work.exstage(arch_exstage)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_signed(body)
-# Loading work.alu_vhdl(behavioral)
-# Loading work.mem_stage(arch_mem_stage)
-# Loading work.writebackstage(arch_writebackstage)
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: Rema  Hostname: ENGREEM  ProcessID: 14124
-#           Attempting to use alternate WLF file "./wlfth7ra7q".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlfth7ra7q
 # ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
 #    Time: 0 ps  Iteration: 0  Instance: /integration/ExecutionStage/alu
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
@@ -265,12 +87,102 @@ do doIntegration
 #    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
-# WARNING: No extended dataflow license exists
-run
 run
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 700 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 700 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 700 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+run
+do doIntegration
+# End time: 13:24:16 on Jan 06,2022, Elapsed time: 0:01:25
+# Errors: 0, Warnings: 9
+# vsim -gui work.integration 
+# Start time: 13:24:16 on Jan 06,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.integration(arch1)
+# Loading work.control_unit_vhdl(behavioral)
+# Loading work.fetch(a_fetch)
+# Loading work.dff(a_dff)
+# Loading work.adder(a_adder)
+# Loading work.mux_4x1(a_mux_4x1)
+# Loading work.mux_2x1(a_mux_2x1)
+# Loading work.memory(a_memory)
+# Loading work.generic_buffer(behavioralgeneric_buffer)
+# Loading work.decode_stage(arch1)
+# Loading work.register_file(arch1)
+# Loading work.dff_fedge(a_dff)
+# Loading work.decoder3x8(arch1)
+# Loading work.tristate_buffer(arch1)
+# Loading work.exstage(arch_exstage)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading work.alu_vhdl(behavioral)
+# Loading work.mem_stage(arch_mem_stage)
+# Loading work.writebackstage(arch_writebackstage)
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /integration/ExecutionStage/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /integration/ExecutionStage/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+quit -sim
+# End time: 13:25:14 on Jan 06,2022, Elapsed time: 0:00:58
+# Errors: 0, Warnings: 9
+do doIntegration
+# vsim -gui work.integration 
+# Start time: 13:25:29 on Jan 06,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.integration(arch1)
+# Loading work.control_unit_vhdl(behavioral)
+# Loading work.fetch(a_fetch)
+# Loading work.dff(a_dff)
+# Loading work.adder(a_adder)
+# Loading work.mux_4x1(a_mux_4x1)
+# Loading work.mux_2x1(a_mux_2x1)
+# Loading work.memory(a_memory)
+# Loading work.generic_buffer(behavioralgeneric_buffer)
+# Loading work.decode_stage(arch1)
+# Loading work.register_file(arch1)
+# Loading work.dff_fedge(a_dff)
+# Loading work.decoder3x8(arch1)
+# Loading work.tristate_buffer(arch1)
+# Loading work.exstage(arch_exstage)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading work.alu_vhdl(behavioral)
+# Loading work.mem_stage(arch_mem_stage)
+# Loading work.writebackstage(arch_writebackstage)
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /integration/ExecutionStage/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /integration/ExecutionStage/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201300 ps  Iteration: 1  Instance: /integration/fetchs/instruction_mem

@@ -18,6 +18,7 @@ ARCHITECTURE a_memory OF memory IS
 	
 	BEGIN 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		instruction(15 downto 0) <= inst_memory(to_integer(unsigned(address(19 downto 0))));
 		instruction (31 downto 16) <= inst_memory(to_integer(unsigned(address(19 downto 0))+1));--take the next 16 bit
@@ -27,16 +28,26 @@ ARCHITECTURE a_memory OF memory IS
 		instruction(31 downto 16) <= inst_memory(to_integer(unsigned(address(31 downto 16))));
 		temp(31 downto 16) <= inst_memory(to_integer(unsigned(address(31 downto 16))));
 >>>>>>> parent of e0f64bb (fix fetch)
+=======
+		instruction(31 downto 16) <= inst_memory(to_integer(unsigned(address(31 downto 16))));
+		temp(31 downto 16) <= inst_memory(to_integer(unsigned(address(31 downto 16))));
+>>>>>>> parent of e0f64bb (fix fetch)
 
 		-- process (temp)--trigger on instruction value change
 		-- begin
 			
+<<<<<<< HEAD
 <<<<<<< HEAD
 		-- 	-- countery <= std_logic_vector(unsigned(countery) + 1) ;
 		-- 	-- county <= countery;
 
 		-- 	if temp(31 downto 30) = "10" then 
 		-- 		instruction (15 downto 0) <= inst_memory(to_integer(unsigned(address(19 downto 0))+1));--take the next 16 bit
+=======
+
+			if temp(31 downto 30) = "10" then 
+				instruction (15 downto 0) <= inst_memory(to_integer(unsigned(address(15 downto 0))));--take the next 16 bit
+>>>>>>> parent of e0f64bb (fix fetch)
 =======
 
 			if temp(31 downto 30) = "10" then 

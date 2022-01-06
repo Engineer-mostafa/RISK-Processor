@@ -12,6 +12,7 @@ vsim -gui work.fetch -gm=2 -gn=32
 # Loading work.mux_2x1(a_mux_2x1)
 # Loading work.memory(a_memory)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 mem load -i {./Test Cases/OneOperand.mem} /fetch/instruction_mem/inst_memory
 
@@ -34,6 +35,9 @@ mem load -i {./Test Cases/OneOperand.mem} /fetch/instruction_mem/inst_memory
 # mem load -filltype value -filldata { 0010100000001000} -fillradix symbolic /fetch/instruction_mem/inst_memory(25)
 # mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /fetch/instruction_mem/inst_memory(26)
 
+=======
+mem load -filltype value -filldata 00000ZZZZZZZZZZZ -fillradix symbolic /fetch/instruction_mem/inst_memory(0)
+>>>>>>> parent of e0f64bb (fix fetch)
 =======
 mem load -filltype value -filldata 00000ZZZZZZZZZZZ -fillradix symbolic /fetch/instruction_mem/inst_memory(0)
 >>>>>>> parent of e0f64bb (fix fetch)

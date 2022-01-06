@@ -22,24 +22,26 @@ ARCHITECTURE a_memory OF memory IS
 	BEGIN 
 
 		instruction(31 downto 16) <= inst_memory(to_integer(unsigned(address(19 downto 0))));
+		instruction (15 downto 0) <= inst_memory(to_integer(unsigned(address(19 downto 0))+1));--take the next 16 bit
+		
 		temp(31 downto 16) <= inst_memory(to_integer(unsigned(address(19 downto 0))));
 
-		process (temp)--trigger on instruction value change
-		begin
+		-- process (temp)--trigger on instruction value change
+		-- begin
 			
-			-- countery <= std_logic_vector(unsigned(countery) + 1) ;
-			-- county <= countery;
+		-- 	-- countery <= std_logic_vector(unsigned(countery) + 1) ;
+		-- 	-- county <= countery;
 
-			if temp(31 downto 30) = "10" then 
-				instruction (15 downto 0) <= inst_memory(to_integer(unsigned(address(19 downto 0))+1));--take the next 16 bit
+		-- 	if temp(31 downto 30) = "10" then 
+		-- 		instruction (15 downto 0) <= inst_memory(to_integer(unsigned(address(19 downto 0))+1));--take the next 16 bit
 				
-			else 
-				instruction(15 downto 0) <= (OTHERS=>'Z');
+		-- 	else 
+		-- 		instruction(15 downto 0) <= (OTHERS=>'Z');
 			
-			end if;
+		-- 	end if;
 
 			OP <= temp(31 downto 30);
 
-		end process;
+		-- end process;
  
 END a_memory ;

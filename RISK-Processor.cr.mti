@@ -1,56 +1,4 @@
-{D:/faculty/CMP3/computer architecture/RISK-Processor/Memory_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Memory_Stage.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity MEM_STAGE
--- Compiling architecture arch_MEM_STAGE of MEM_STAGE
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity dff
--- Compiling architecture a_Dff of dff
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/Generic_Buffer.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Generic_Buffer.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity generic_buffer
--- Compiling architecture BehavioralGeneric_buffer of generic_buffer
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/decoder3x8.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/decoder3x8.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity decoder3x8
--- Compiling architecture arch1 of decoder3x8
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/alu.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/alu.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_SIGNED
--- Loading package NUMERIC_STD
--- Compiling entity ALU_VHDL
--- Compiling architecture Behavioral of ALU_VHDL
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/dff_fedge.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/dff_fedge.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity dff_fedge
--- Compiling architecture a_Dff of dff_fedge
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/Register_File.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Register_File.vhd}
+{D:/faculty/CMP3/computer architecture/RISK-Processor/Register_File.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Register_File.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -58,6 +6,15 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Loading package NUMERIC_STD
 -- Compiling entity register_file
 -- Compiling architecture arch1 of register_file
+
+} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/Integration.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Integration.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity integration
+-- Compiling architecture arch1 of integration
 
 } {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
@@ -68,6 +25,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity mux_2x1
 -- Compiling architecture a_mux_2x1 of mux_2x1
 
+} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity dff
+-- Compiling architecture a_Dff of dff
+
 } {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
@@ -76,84 +41,5 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Loading package NUMERIC_STD
 -- Compiling entity mux_4x1
 -- Compiling architecture a_mux_4x1 of mux_4x1
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/WriteBack_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/WriteBack_Stage.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity WriteBackStage
--- Compiling architecture arch_WriteBackStage of WriteBackStage
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/Execution_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Execution_Stage.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity EXStage
--- Compiling architecture arch_EXStage of EXStage
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity adder
--- Compiling architecture a_Adder of adder
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/Control_Unit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Control_Unit.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity control_unit_VHDL
--- Compiling architecture Behavioral of control_unit_VHDL
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/Decoding_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Decoding_Stage.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity decode_stage
--- Compiling architecture arch1 of decode_stage
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/tristate_buffer.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/tristate_buffer.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity tristate_buffer
--- Compiling architecture arch1 of tristate_buffer
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/mux_8x1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/mux_8x1.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity mux_8x1
--- Compiling architecture a_mux_8x1 of mux_8x1
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/Fetching_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/Fetching_Stage.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity fetch
--- Compiling architecture a_fetch of fetch
-
-} {} {}} {D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd} {1 {vcom -work work -2002 -explicit -stats=none {D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity memory
--- Compiling architecture a_memory of memory
 
 } {} {}}

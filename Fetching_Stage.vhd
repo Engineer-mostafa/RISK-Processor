@@ -66,7 +66,6 @@ component memory IS
 	PORT(
 		address : IN  std_logic_vector(31 DOWNTO 0);--PC is the address 
 		instruction : OUT std_logic_vector(31 DOWNTO 0);
-		-- county: OUT std_logic_vector(3 DOWNTO 0);
 		OP : OUT std_logic_vector(1 DOWNTO 0));
 end component;
 
@@ -74,7 +73,6 @@ signal empty :  std_logic_vector(31 downto 0);
 signal out_pc, out_PC_in, out_PC_mux_in,instruction_out,
 out_add_in_extended,newPcSignal,reset_val : std_logic_vector(31 DOWNTO 0);
 signal out_add_in,OP,sth1,sth2: std_logic_vector(1 downto 0);
--- signal county:  std_logic_vector(3 DOWNTO 0);
 
 BEGIN
 
@@ -104,7 +102,7 @@ BEGIN
 	port map(newPcSignal,out_pc,HLT_Signal,out_PC_mux_in);
 
 	-----------2
-	instruction_mem :memory port map(out_pc, instruction_out  , OP);
+	instruction_mem :memory port map(out_pc, instruction_out , OP);
 	--if OP == "10" then read from memory twice, but we don't know op!!!
 	--so we will waste a cycle to know **in decode** that it needs to go to fetch again
 	--or try to give the output to adder

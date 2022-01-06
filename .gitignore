@@ -1,9 +1,11 @@
 
 *.mpf
 *.qdb
-work/_info
+*.bak
 *.qpg
 *.qtl
-*.qpg
-*.qdb
-*.qdb
+*.zip
+*.cr.mti
+work/_info
+work/*
+*.wlf

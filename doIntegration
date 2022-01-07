@@ -28,6 +28,8 @@ vsim -gui work.integration
 add wave -unsigned -position insertpoint  \
 sim:/integration/Cycle
 add wave -position insertpoint  \
+sim:/integration/WriteBack_Stage/mux/sel
+add wave -position insertpoint  \
 sim:/integration/ds/regfile/write_reg
 add wave -position insertpoint  \
 sim:/integration/ds/regfile/write_data
@@ -39,6 +41,8 @@ add wave -position insertpoint  \
 sim:/integration/ds/regfile/read_data_3
 add wave -position insertpoint  \
 sim:/integration/ds/regfile/read_reg3
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/out_signal
 add wave -position insertpoint  \
 sim:/integration/clk \
 sim:/integration/rst \
@@ -132,7 +136,7 @@ run
 run
 force -freeze sim:/integration/in_port x\"0005\" 0
 run
-force -freeze sim:/integration/in_port x\"000A\" 0
+force -freeze sim:/integration/in_port x\"0010\" 0
 run
 force -freeze sim:/integration/in_port x\"0000\" 0
 run

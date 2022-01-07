@@ -103,15 +103,18 @@ Port(
         
 
 
- COMPONENT WriteBackStage is
-       GENERIC ( n : integer :=16 );
-Port( 	
-	ALUresult 			: in std_logic_vector(15 downto 0);
-	In_Data	  			: in std_logic_vector(15 downto 0);
-	WBtoReg			: in std_logic;
-	result_WritingOutput		: out std_logic_vector(15 downto 0)
-);
+    COMPONENT WriteBackStage IS 
+    GENERIC ( n : integer :=16 );
+    Port( 	
+        ALUresult 			: in std_logic_vector(15 downto 0);
+        In_Data	  			: in std_logic_vector(15 downto 0);
+        RdstData	  		: in std_logic_vector(15 downto 0);
+        WBtoReg 			: in std_logic;
+        out_signal			: in std_logic;
+        result_WritingOutput		: out std_logic_vector(15 downto 0)
+    );
     end COMPONENT;
+
     SIGNAL Instruction,NewPc:  std_logic_vector(31 DOWNTO 0);
     -- SIGNAL InstructionOut,NewPcOut:  std_logic_vector(31 DOWNTO 0);
     SIGNAL RegWrite,WB_To_Reg,HLT,SETC,RSTs,OUT_PORT_SIG,IN_PORT_SIG: std_logic;
@@ -158,7 +161,7 @@ Port(
 
         -- The Decode Stage:
         ds: decode_stage GENERIC MAP (n) PORT MAP(ifidout(63 DOWNTO 32),ifidout(31 DOWNTO 0), pc_outD, opcode,
-        rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, memwbout(31), IN_PORT_SIG, OUT_PORT_SIG, in_port, in_dataD, out_port,
+        rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, memwbout(31), IN_PORT_SIG, memwbout(24), in_port, in_dataD, out_port,
         memwbout(23 DOWNTO 21), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
 
 
@@ -199,7 +202,8 @@ Port(
      
         exmemin(63 DOWNTO 24 ) <= aluResult & idexout(70 DOWNTO 55) & idexout(2) & idexout(1) & CFlag & NFlag & ZFlag & idexout(0) & RSTs & idexout(165);  
 	    exmemin(23 DOWNTO 21)  <= idexout(89 DOWNTO 87);
-	    exmemin(20 DOWNTO 0)   <= (OTHERS => '0');
+	    exmemin(20 DOWNTO 5)  <= idexout(22 DOWNTO 7);
+	    exmemin(4 DOWNTO 0)   <= (OTHERS => '0');
                            			             -- 16<63,48> + 16<47,32> + 1<31> +     1<30>   + 1<29> + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> = 40
 	
         ccr_inD <=  '0' & exmemout(29) & exmemout(28) & exmemout(27) ;
@@ -208,7 +212,7 @@ Port(
         MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(exmemout , memwbin , clk);
         -- buffer between memory and writeback
 	    IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(memwbin, memwbout, clk, RSTs);
-	    WriteBack_Stage: WriteBackStage PORT MAP ( memwbout(63 downto 48) , memwbout(47 downto 32) , memwbout(30),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
+	    WriteBack_Stage: WriteBackStage PORT MAP ( memwbout(63 downto 48) , memwbout(47 downto 32), memwbout(20 DOWNTO 5) ,memwbout(30),memwbout(24),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
 	
         PROCESS(clk,rst)
         BEGIN

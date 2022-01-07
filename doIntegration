@@ -42,26 +42,37 @@ sim:/integration/ZFlag \
 sim:/integration/NFlag \
 sim:/integration/CFlag \
 sim:/integration/RegWrite \
+sim:/integration/aluResult \
 sim:/integration/WB_To_Reg \
 sim:/integration/HLT \
 sim:/integration/SETC \
 sim:/integration/RSTs \
 sim:/integration/OUT_PORT_SIG \
 sim:/integration/IN_PORT_SIG \
-sim:/integration/input_buffer_between_ID_IEX \
-sim:/integration/out_buffer_between_ID_IEX \
+sim:/integration/ifidin \
+sim:/integration/ifidout \
+sim:/integration/idexin \
+sim:/integration/idexout \
 sim:/integration/input_buffer_between_IEX_IMEM \
 sim:/integration/out_buffer_between_IEX_IMEM \
 sim:/integration/input_buffer_between_IMEM_IWB \
 sim:/integration/out_buffer_between_IMEM_IWB \
-sim:/integration/result_WriteBackOutput_sig \
-
+sim:/integration/result_WriteBackOutput_sig
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/q0 \
+sim:/integration/ds/regfile/q1 \
+sim:/integration/ds/regfile/q2 \
+sim:/integration/ds/regfile/q3 \
+sim:/integration/ds/regfile/q4 \
+sim:/integration/ds/regfile/q5 \
+sim:/integration/ds/regfile/q6 \
+sim:/integration/ds/regfile/q7
 
 force -freeze sim:/integration/in_port x\"0000\" 0
 force -freeze sim:/integration/out_port x\"0000\" 0
 
 # You can run the following command instead of importing the memory word by word:
-mem load -i {./Test Cases/OneOperand.mem} /integration/fetchs/instruction_mem/inst_memory
+mem load -i {./Test Cases/OneOperandNOP.mem} /integration/fetchs/instruction_mem/inst_memory
 
 # mem load -filltype value -filldata { 0000000010100000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(0)
 # mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(1)

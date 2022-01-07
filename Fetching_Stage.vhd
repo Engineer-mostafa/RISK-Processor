@@ -63,15 +63,17 @@ dataout : out std_logic_vector(n-1 DOWNTO 0)); -- output data
 end component;
 
 component memory IS
-	PORT(
-		address : IN  std_logic_vector(31 DOWNTO 0);--PC is the address 
-		instruction : OUT std_logic_vector(31 DOWNTO 0);
-		-- county: OUT std_logic_vector(3 DOWNTO 0);
-		OP : OUT std_logic_vector(1 DOWNTO 0));
+PORT(
+	rst: IN std_logic;
+	address : IN  std_logic_vector(31 DOWNTO 0);--PC is the address 
+	instruction : OUT std_logic_vector(31 DOWNTO 0);
+	pcReset : OUT  std_logic_vector(31 DOWNTO 0);
+	-- county: OUT std_logic_vector(3 DOWNTO 0);
+	OP : OUT std_logic_vector(1 DOWNTO 0));
 end component;
 
 signal empty :  std_logic_vector(31 downto 0);
-signal out_pc, out_PC_in, out_PC_mux_in,instruction_out,
+signal out_pc,out_pc_out, out_PC_in, out_PC_mux_in,instruction_out,
 out_add_in_extended,newPcSignal,reset_val : std_logic_vector(31 DOWNTO 0);
 signal out_add_in,OP,sth1,sth2: std_logic_vector(1 downto 0);
 -- signal county:  std_logic_vector(3 DOWNTO 0);
@@ -80,8 +82,8 @@ BEGIN
 
 	-----------1
 	-- we need to initialize, so begin with reset
-	-- reset_val <= (others => '0');
-	reset_val <= "00000000000000000000000010100000";
+	reset_val <= (others => '0');
+	-- reset_val <= "00000000000000000000000010100000";
 	PC: dff port map(Clk,Rst,enable,reset_val,out_PC_in,out_pc);
 
 	-----------5
@@ -89,7 +91,7 @@ BEGIN
 	-- when Rst='1' 
 	-- else out_pc;
 
-	pc_adder: adder port map(out_pc , out_add_in_extended , newPcSignal );
+	pc_adder: adder port map(out_pc_out , out_add_in_extended , newPcSignal );
 	NewPc <= newPcSignal;
 
 	-----------7
@@ -101,13 +103,22 @@ BEGIN
 	-----------6
 	PC_hlt_mux_2x1 : mux_2x1 
 	generic map(n => 32)
-	port map(newPcSignal,out_pc,HLT_Signal,out_PC_mux_in);
+	port map(newPcSignal,out_pc_out,HLT_Signal,out_PC_mux_in);
 
 	-----------2
-	instruction_mem :memory port map(out_pc, instruction_out  , OP);
+	instruction_mem :memory port map(Rst, out_pc, instruction_out , out_pc_out , OP);
 	--if OP == "10" then read from memory twice, but we don't know op!!!
 	--so we will waste a cycle to know **in decode** that it needs to go to fetch again
 	--or try to give the output to adder
+		
+	-- process(Clk,instruction_out)
+
+	-- 	begin
+	-- 		if(Rst='1') then
+	-- 			out_pc <= instruction_out;
+	-- 		end if;
+
+	-- end process;
 
 	Instruction <=instruction_out;
 

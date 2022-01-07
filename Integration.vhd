@@ -123,14 +123,14 @@ Port(
     SIGNAL pc_01, pc_10: std_logic_vector(31 DOWNTO 0);  --> Need to connect this
     SIGNAL ifidin,ifidout: std_logic_vector(63 DOWNTO 0);
     SIGNAL opcode: std_logic_vector(4 downto 0);
-    SIGNAL pc_outD: std_logic_vector(31 DOWNTO 0); --> Need to connect this
-    SIGNAL rsrc1addrD, rsrc2addrD,rdstaddrD: std_logic_vector(2 DOWNTO 0); --> Need to connect this
+    SIGNAL pc_outD: std_logic_vector(31 DOWNTO 0);
+    SIGNAL rsrc1addrD, rsrc2addrD,rdstaddrD: std_logic_vector(2 DOWNTO 0);
     SIGNAL extrabits: std_logic_vector(1 DOWNTO 0); --> Need to connect this
-    SIGNAL immmediate_offsetD: std_logic_vector(15 DOWNTO 0); --> Need to connect this
-    SIGNAL in_dataD: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this to id/ex buffer as IN
-    SIGNAL write_reg: std_logic_vector(2 DOWNTO 0); --> Need to connect this
+    SIGNAL immmediate_offsetD: std_logic_vector(15 DOWNTO 0);
+    SIGNAL in_dataD: std_logic_vector(n-1 DOWNTO 0);
+    -- SIGNAL write_reg: std_logic_vector(2 DOWNTO 0); --> Need to connect this
     -- SIGNAL write_data: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this
-    SIGNAL read_data_1D, read_data_2D, read_data_3D: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this to id/ex buffer as IN
+    SIGNAL read_data_1D, read_data_2D, read_data_3D: std_logic_vector(n-1 DOWNTO 0);
     SIGNAL ccr_inD, ccr_outD: std_logic_vector(3 DOWNTO 0); --> Need to connect this
     SIGNAL sp_inD, sp_outD: std_logic_vector(31 DOWNTO 0);--> Need to connect this
     SIGNAL int_signal, rti_signal: std_logic; --> Need to connect this
@@ -138,7 +138,7 @@ Port(
     Signal ZFlag,NFlag,CFlag:  std_logic;
     Signal exmemin , exmemout , memwbin,memwbout: std_logic_vector(63 downto 0);
     Signal idexin , idexout : std_logic_vector(255 downto 0);
-    Signal OUT_OUTSig_sig , OUT_RegWrite_sig, enable_pc: std_logic;
+    Signal OUT_OUTSig_sig , OUT_RegWrite_sig, enable_pc: std_logic; --> Need to connect this
     Signal result_WriteBackOutput_sig: std_logic_vector(15 downto 0); 
     Signal Cycle : integer;
 

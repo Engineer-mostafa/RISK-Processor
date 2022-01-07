@@ -138,10 +138,20 @@ ARCHITECTURE arch1 OF register_file IS
             -- IF(falling_edge(clk) AND RegWrite='1') THEN
             --     reglist(to_integer(unsigned(reg_write_dest))) <= write_data;
             -- END IF;
-            IF(falling_edge(clk) AND out_signal='1') THEN
+            IF(falling_edge(clk)) THEN
+                p0 <= q0;
+                p1 <= q1;
+                p2 <= q2;
+                p3 <= q3;
+                p4 <= q4;
+                p5 <= q5;
+                p6 <= q6;
+                p7 <= q7;
+            END IF;
+            IF(rising_edge(clk) AND out_signal='1') THEN
                 out_port <= write_data;
             END IF;
-            IF(rising_edge(clk) AND in_signal='1') THEN
+            IF(falling_edge(clk) AND in_signal='1') THEN
                 in_data <= in_port;
             END IF;
         END PROCESS;
@@ -161,13 +171,13 @@ ARCHITECTURE arch1 OF register_file IS
     andeden7 <= (write_ens(7) and RegWrite);
     not_rti_signal <= not(rti_signal);
     q <= write_data;
-    p0 <= q0;
-    p1 <= q1;
-    p2 <= q2;
-    p3 <= q3;
-    p4 <= q4;
-    p5 <= q5;
-    p6 <= q6;
-    p7 <= q7;
+    -- p0 <= q0;
+    -- p1 <= q1;
+    -- p2 <= q2;
+    -- p3 <= q3;
+    -- p4 <= q4;
+    -- p5 <= q5;
+    -- p6 <= q6;
+    -- p7 <= q7;
 
 END arch1;

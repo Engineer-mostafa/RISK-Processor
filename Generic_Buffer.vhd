@@ -17,7 +17,7 @@ process(clk,rst)
 begin
  if(rst = '1') then
    RightOutput<= (others=>'0');
- elsif(rising_edge(clk)) then
+ elsif(falling_edge(clk)) then
 	RightOutput<= LeftInput; 
  end if;
 end process;

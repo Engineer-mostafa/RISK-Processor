@@ -124,3 +124,23 @@ force -freeze sim:/integration/enable_pc 1 0
 run
 run
 run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/integration/in_port x\"0005\" 0
+run
+force -freeze sim:/integration/in_port x\"000A\" 0
+run
+force -freeze sim:/integration/in_port x\"0000\" 0
+run
+run
+run
+run
+run
+run
+run
+run
+run

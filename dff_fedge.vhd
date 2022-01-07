@@ -22,7 +22,7 @@ BEGIN
 			--reset_value could be 0 for nomral registers 
 			--or default value for pc
 		--ELSIF ((rising_edge(clk)) and (en ='1') and (edge_signal='0')) THEN
-		ELSIF ((falling_edge(clk)) and (en ='1')) THEN
+		ELSIF ((rising_edge(clk)) and (en ='1')) THEN
 			q <= d;
 		--ELSEIF ((en ='1') and and (edge_signal='1')) --reem
 			--q <= d;

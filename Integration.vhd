@@ -133,10 +133,12 @@ Port(
     SIGNAL int_signal, rti_signal: std_logic; --> Need to connect this
     Signal aluResult : std_logic_vector(n - 1 downto 0);
     Signal ZFlag,NFlag,CFlag:  std_logic;
-    Signal input_buffer_between_IEX_IMEM , out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB,out_buffer_between_IMEM_IWB: std_logic_vector(63 downto 0);
+    Signal exmemin , exmemout , memwbin,memwbout: std_logic_vector(63 downto 0);
     Signal idexin , idexout : std_logic_vector(255 downto 0);
     Signal OUT_OUTSig_sig , OUT_RegWrite_sig, enable_pc: std_logic;
     Signal result_WriteBackOutput_sig: std_logic_vector(15 downto 0); 
+    Signal Cycle : integer;
+
     BEGIN
     
     -- Constants: To be implemeted later:
@@ -156,8 +158,9 @@ Port(
 
         -- The Decode Stage:
         ds: decode_stage GENERIC MAP (n) PORT MAP(ifidout(63 DOWNTO 32),ifidout(31 DOWNTO 0), pc_outD, opcode,
-        rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, out_buffer_between_IMEM_IWB(31), IN_PORT_SIG, OUT_PORT_SIG, in_port, in_dataD, out_port,
-        out_buffer_between_IMEM_IWB(23 DOWNTO 21), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
+        rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, memwbout(31), IN_PORT_SIG, OUT_PORT_SIG, in_port, in_dataD, out_port,
+        memwbout(23 DOWNTO 21), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
+
 
         -- The Buffer between the Decode and Execute Stages.
         idex: generic_buffer GENERIC MAP(256) PORT MAP(idexin, idexout, clk, RSTs);
@@ -190,21 +193,31 @@ Port(
 					-- src 16-bits , opcode , alu_result, RSTs , flags
         
         -- buffer between execution and memory
-        IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, RSTs); 
+        IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(exmemin, exmemout, clk, RSTs); 
                                 -- input -> aluresult + inData / output -> aluresult + inData
         
-        input_buffer_between_IEX_IMEM(63 DOWNTO 24 ) <= aluResult & idexout(70 DOWNTO 55) & idexout(2) & idexout(1) & CFlag & NFlag & ZFlag & idexout(0) & RSTs & idexout(165);  
-	    input_buffer_between_IEX_IMEM(23 DOWNTO 21)  <= idexout(89 DOWNTO 87);
-	    input_buffer_between_IEX_IMEM(20 DOWNTO 0)   <= (OTHERS => '0');
-                           			                    -- 16<63,48> + 16<47,32>            + 1<31> +     1<30>   + 1<29> + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> = 40
+     
+        exmemin(63 DOWNTO 24 ) <= aluResult & idexout(70 DOWNTO 55) & idexout(2) & idexout(1) & CFlag & NFlag & ZFlag & idexout(0) & RSTs & idexout(165);  
+	    exmemin(23 DOWNTO 21)  <= idexout(89 DOWNTO 87);
+	    exmemin(20 DOWNTO 0)   <= (OTHERS => '0');
+                           			             -- 16<63,48> + 16<47,32> + 1<31> +     1<30>   + 1<29> + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> = 40
 	
-        ccr_inD <=  '0' & out_buffer_between_IEX_IMEM(29) & out_buffer_between_IEX_IMEM(28) & out_buffer_between_IEX_IMEM(27) ;
+        ccr_inD <=  '0' & exmemout(29) & exmemout(28) & exmemout(27) ;
 	
-        MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB , clk);
-        
+
+        MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(exmemout , memwbin , clk);
         -- buffer between memory and writeback
-	    IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IMEM_IWB, out_buffer_between_IMEM_IWB, clk, RSTs);
-        WriteBack_Stage: WriteBackStage PORT MAP ( out_buffer_between_IMEM_IWB(63 downto 48) , out_buffer_between_IMEM_IWB(47 downto 32) , out_buffer_between_IMEM_IWB(30), result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
+	    IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(memwbin, memwbout, clk, RSTs);
+	    WriteBack_Stage: WriteBackStage PORT MAP ( memwbout(63 downto 48) , memwbout(47 downto 32) , memwbout(30),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
 	
+        PROCESS(clk,rst)
+        BEGIN
+            IF(rst = '1') THEN
+                Cycle <= 0; 
+            ELSIF (rising_edge(clk)) THEN
+                Cycle <= Cycle + 1;
+            END IF;
+        END PROCESS;
+
 
     END arch1; 

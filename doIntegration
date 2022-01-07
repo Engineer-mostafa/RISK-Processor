@@ -25,6 +25,20 @@ vsim -gui work.integration
 # Loading work.alu_vhdl(behavioral)
 # Loading work.mem_stage(arch_mem_stage)
 # Loading work.writebackstage(arch_writebackstage)
+add wave -unsigned -position insertpoint  \
+sim:/integration/Cycle
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/write_reg
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/write_data
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/read_data_1
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/read_data_2
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/read_data_3
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/read_reg3
 add wave -position insertpoint  \
 sim:/integration/clk \
 sim:/integration/rst \
@@ -53,10 +67,10 @@ sim:/integration/ifidin \
 sim:/integration/ifidout \
 sim:/integration/idexin \
 sim:/integration/idexout \
-sim:/integration/input_buffer_between_IEX_IMEM \
-sim:/integration/out_buffer_between_IEX_IMEM \
-sim:/integration/input_buffer_between_IMEM_IWB \
-sim:/integration/out_buffer_between_IMEM_IWB \
+sim:/integration/exmemin \
+sim:/integration/exmemout \
+sim:/integration/memwbin \
+sim:/integration/memwbout \
 sim:/integration/result_WriteBackOutput_sig
 add wave -position insertpoint  \
 sim:/integration/ds/regfile/q0 \

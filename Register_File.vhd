@@ -149,6 +149,8 @@ ARCHITECTURE arch1 OF register_file IS
     --read_data_1 <= reglist(to_integer(unsigned(reg_read_addr_1)));
     --read_data_2 <= reglist(to_integer(unsigned(reg_read_addr_2)));
 
+    
+
     andeden0 <= (write_ens(0) and RegWrite);
     andeden1 <= (write_ens(1) and RegWrite);
     andeden2 <= (write_ens(2) and RegWrite);

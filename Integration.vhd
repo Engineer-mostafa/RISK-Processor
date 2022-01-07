@@ -115,6 +115,7 @@ Port(
         result_WritingOutput		: out std_logic_vector(15 downto 0)
     );
     end COMPONENT;
+
     SIGNAL Instruction,NewPc:  std_logic_vector(31 DOWNTO 0);
     -- SIGNAL InstructionOut,NewPcOut:  std_logic_vector(31 DOWNTO 0);
     SIGNAL RegWrite,WB_To_Reg,HLT,SETC,RSTs,OUT_PORT_SIG,IN_PORT_SIG: std_logic;
@@ -123,14 +124,14 @@ Port(
     SIGNAL pc_01, pc_10: std_logic_vector(31 DOWNTO 0);  --> Need to connect this
     SIGNAL ifidin,ifidout: std_logic_vector(63 DOWNTO 0);
     SIGNAL opcode: std_logic_vector(4 downto 0);
-    SIGNAL pc_outD: std_logic_vector(31 DOWNTO 0); --> Need to connect this
-    SIGNAL rsrc1addrD, rsrc2addrD,rdstaddrD: std_logic_vector(2 DOWNTO 0); --> Need to connect this
+    SIGNAL pc_outD: std_logic_vector(31 DOWNTO 0);
+    SIGNAL rsrc1addrD, rsrc2addrD,rdstaddrD: std_logic_vector(2 DOWNTO 0);
     SIGNAL extrabits: std_logic_vector(1 DOWNTO 0); --> Need to connect this
-    SIGNAL immmediate_offsetD: std_logic_vector(15 DOWNTO 0); --> Need to connect this
-    SIGNAL in_dataD: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this to id/ex buffer as IN
-    SIGNAL write_reg: std_logic_vector(2 DOWNTO 0); --> Need to connect this
+    SIGNAL immmediate_offsetD: std_logic_vector(15 DOWNTO 0);
+    SIGNAL in_dataD: std_logic_vector(n-1 DOWNTO 0);
+    -- SIGNAL write_reg: std_logic_vector(2 DOWNTO 0); --> Need to connect this
     -- SIGNAL write_data: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this
-    SIGNAL read_data_1D, read_data_2D, read_data_3D: std_logic_vector(n-1 DOWNTO 0); --> Need to connect this to id/ex buffer as IN
+    SIGNAL read_data_1D, read_data_2D, read_data_3D: std_logic_vector(n-1 DOWNTO 0);
     SIGNAL ccr_inD, ccr_outD: std_logic_vector(3 DOWNTO 0); --> Need to connect this
     SIGNAL sp_inD, sp_outD: std_logic_vector(31 DOWNTO 0);--> Need to connect this
     SIGNAL int_signal, rti_signal: std_logic; --> Need to connect this
@@ -138,7 +139,7 @@ Port(
     Signal ZFlag,NFlag,CFlag , aluOP , oldZero_Flag, oldNegative_Flag, oldCarry_Flag : std_logic;
     Signal exmemin , exmemout , memwbin,memwbout: std_logic_vector(63 downto 0);
     Signal idexin , idexout : std_logic_vector(255 downto 0);
-    Signal OUT_OUTSig_sig , OUT_RegWrite_sig, enable_pc: std_logic;
+    Signal OUT_OUTSig_sig , OUT_RegWrite_sig, enable_pc: std_logic; --> Need to connect this
     Signal result_WriteBackOutput_sig: std_logic_vector(15 downto 0); 
     Signal Cycle : integer;
      
@@ -163,6 +164,7 @@ Port(
         ds: decode_stage GENERIC MAP (n) PORT MAP(ifidout(63 DOWNTO 32),ifidout(31 DOWNTO 0), pc_outD, opcode,
         rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, memwbout(31), IN_PORT_SIG, memwbout(24), in_port, in_dataD, out_port,
         memwbout(23 DOWNTO 21), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, aluOP, sp_inD, sp_outD, int_signal, rti_signal);
+
 
 
         -- The Buffer between the Decode and Execute Stages.
@@ -215,6 +217,7 @@ Port(
         -- buffer between memory and writeback
 	    IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(memwbin, memwbout, clk, RSTs);
 	    WriteBack_Stage: WriteBackStage PORT MAP ( memwbout(63 downto 48) , memwbout(47 downto 32) ,memwbout(20 DOWNTO 5) ,memwbout(30),memwbout(24),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
+
 	
         PROCESS(clk,rst)
         BEGIN

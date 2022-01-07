@@ -15,10 +15,14 @@ architecture BehavioralGeneric_buffer of generic_buffer is
 begin
 process(clk,rst)
 begin
+
+
  if(rst = '1') then
    RightOutput<= (others=>'0');
+
  elsif(falling_edge(clk)) then
 	RightOutput<= LeftInput; 
  end if;
 end process;
+
 end BehavioralGeneric_buffer;

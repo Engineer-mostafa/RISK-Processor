@@ -64,6 +64,7 @@ ARCHITECTURE arch1 OF integration IS
         read_data_3: OUT std_logic_vector(n-1 DOWNTO 0);
         ccr_in: IN std_logic_vector(3 DOWNTO 0);
         ccr_out: OUT std_logic_vector(3 DOWNTO 0);
+        aluOP : in std_logic;
         sp_in: IN std_logic_vector(31 DOWNTO 0);
         sp_out: OUT std_logic_vector(31 DOWNTO 0);
         int_signal: IN std_logic; -- Used to store the Flags in a special register in case of INT instruction
@@ -76,8 +77,8 @@ ARCHITECTURE arch1 OF integration IS
          Input : in std_logic_vector(15 downto 0); 			-- Rdst
          Opcode : in std_logic_vector(4 downto 0); 			-- function select
          aluResult: out std_logic_vector(15 downto 0); 			-- ALU Output Result
-	     RSTs : in std_logic;
-         zero_Flag,negative_Flag,carry_Flag : out std_logic            	-- Z<0>:=CCR<0> ; zero flag 
+         oldZero_Flag, oldNegative_Flag, oldCarry_Flag  : in std_logic;
+         zero_Flag,negative_Flag,carry_Flag,aluOP : out std_logic            	-- Z<0>:=CCR<0> ; zero flag 
                                            				-- N<0>:=CCR<1> ; negative flag
                                    					-- C<0>:=CCR<2> ; carry flag
          );    
@@ -135,13 +136,13 @@ Port(
     SIGNAL sp_inD, sp_outD: std_logic_vector(31 DOWNTO 0);--> Need to connect this
     SIGNAL int_signal, rti_signal: std_logic; --> Need to connect this
     Signal aluResult : std_logic_vector(n - 1 downto 0);
-    Signal ZFlag,NFlag,CFlag:  std_logic;
+    Signal ZFlag,NFlag,CFlag , aluOP , oldZero_Flag, oldNegative_Flag, oldCarry_Flag : std_logic;
     Signal exmemin , exmemout , memwbin,memwbout: std_logic_vector(63 downto 0);
     Signal idexin , idexout : std_logic_vector(255 downto 0);
     Signal OUT_OUTSig_sig , OUT_RegWrite_sig, enable_pc: std_logic; --> Need to connect this
     Signal result_WriteBackOutput_sig: std_logic_vector(15 downto 0); 
     Signal Cycle : integer;
-
+     
     BEGIN
     
     -- Constants: To be implemeted later:
@@ -162,7 +163,8 @@ Port(
         -- The Decode Stage:
         ds: decode_stage GENERIC MAP (n) PORT MAP(ifidout(63 DOWNTO 32),ifidout(31 DOWNTO 0), pc_outD, opcode,
         rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, memwbout(31), IN_PORT_SIG, memwbout(24), in_port, in_dataD, out_port,
-        memwbout(23 DOWNTO 21), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
+        memwbout(23 DOWNTO 21), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, aluOP, sp_inD, sp_outD, int_signal, rti_signal);
+
 
 
         -- The Buffer between the Decode and Execute Stages.
@@ -189,11 +191,13 @@ Port(
         idexin(1) <= WB_To_Reg;                     -- WB_To_Reg Signal           ( 1 bit )
         idexin(0) <= SETC;                          -- SETC Signal                ( 1 bit )
         -- idexin(2 DOWNTO 0) <= (OTHERS => '0');
-        
+        oldZero_Flag <= idexout(3) ;
+        oldNegative_Flag <= idexout(4); 
+        oldCarry_Flag <= idexout(5);
         -- The Execution Stage
         -- Add a CCR in to the Execution Stage
-	    ExecutionStage: EXStage PORT MAP (idexout(22 DOWNTO 7), idexout(164 DOWNTO 160), aluResult , RSTs, ZFlag , NFlag , CFlag); 
-					-- src 16-bits , opcode , alu_result, RSTs , flags
+	    ExecutionStage: EXStage PORT MAP (idexout(22 DOWNTO 7), idexout(164 DOWNTO 160), aluResult , oldZero_Flag, oldNegative_Flag, oldCarry_Flag , ZFlag , NFlag , CFlag , aluOP); 
+					                            -- src 16-bits , opcode , alu_result, RSTs , flags
         
         -- buffer between execution and memory
         IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(exmemin, exmemout, clk, RSTs); 
@@ -206,13 +210,14 @@ Port(
 	    exmemin(4 DOWNTO 0)   <= (OTHERS => '0');
                            			             -- 16<63,48> + 16<47,32> + 1<31> +     1<30>   + 1<29> + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> = 40
 	
-        ccr_inD <=  '0' & exmemout(29) & exmemout(28) & exmemout(27) ;
+        ccr_inD <=  '0' & CFlag & NFlag & ZFlag ;
 	
 
         MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(exmemout , memwbin , clk);
         -- buffer between memory and writeback
 	    IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(memwbin, memwbout, clk, RSTs);
-	    WriteBack_Stage: WriteBackStage PORT MAP ( memwbout(63 downto 48) , memwbout(47 downto 32), memwbout(20 DOWNTO 5) ,memwbout(30),memwbout(24),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
+	    WriteBack_Stage: WriteBackStage PORT MAP ( memwbout(63 downto 48) , memwbout(47 downto 32) ,memwbout(20 DOWNTO 5) ,memwbout(30),memwbout(24),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
+
 	
         PROCESS(clk,rst)
         BEGIN

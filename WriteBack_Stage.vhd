@@ -1,8 +1,6 @@
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.numeric_std.all;  
-
 use work.all;
 ENTITY WriteBackStage IS 
 GENERIC ( n : integer :=16 );
@@ -15,10 +13,6 @@ Port(
 	result_WritingOutput		: out std_logic_vector(15 downto 0)
 );
 end WriteBackStage;
-
-
-
-
 ARCHITECTURE arch_WriteBackStage OF WriteBackStage IS
 COMPONENT mux_2x1 IS
 GENERIC ( n : integer :=16 );
@@ -50,7 +44,7 @@ begin
 	MuxSelect <= out_signal & WBtoReg;
 --  mux : mux_2x1 GENERIC MAP(n => 16) PORT MAP(ALUresult, In_Data, WBtoReg, result_WritingOutput); 
  	mux : mux_4x1 GENERIC MAP(m => 16) PORT MAP(ALUresult, In_Data, RdstData, Empty, MuxSelect, result_WritingOutput); 
-	
+
 
 
 end arch_WriteBackStage;

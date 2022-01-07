@@ -32,10 +32,12 @@ PORT (
     read_data_3: OUT std_logic_vector(n-1 DOWNTO 0);
     ccr_in: IN std_logic_vector(3 DOWNTO 0);
     ccr_out: OUT std_logic_vector(3 DOWNTO 0);
+    aluOP : in std_logic;
     sp_in: IN std_logic_vector(31 DOWNTO 0);
     sp_out: OUT std_logic_vector(31 DOWNTO 0);
     int_signal: IN std_logic; -- Used to store the Flags in a special register in case of INT instruction
     rti_signal: IN std_logic -- Used to restore Flags from the special register in case of RTI instruction
+     
 );
 END decode_stage;
 
@@ -61,6 +63,7 @@ ARCHITECTURE arch1 OF decode_stage IS
         read_data_3: OUT std_logic_vector(n-1 DOWNTO 0);
         ccr_in: IN std_logic_vector(3 DOWNTO 0);
         ccr_out: OUT std_logic_vector(3 DOWNTO 0);
+        aluOP : in std_logic;
         sp_in: IN std_logic_vector(31 DOWNTO 0);
         sp_out: OUT std_logic_vector(31 DOWNTO 0);
         int_signal: IN std_logic; -- Used to store the Flags in a special register in case of INT instruction
@@ -70,7 +73,7 @@ ARCHITECTURE arch1 OF decode_stage IS
 
     BEGIN
 
-    regfile: register_file GENERIC MAP(n) PORT MAP(clk,rst,RegWrite,in_signal,out_signal,in_port,in_data,out_port,instruction(26 DOWNTO 24),instruction(23 DOWNTO 21),instruction(20 DOWNTO 18),write_reg,write_data,read_data_1,read_data_2,read_data_3,ccr_in,ccr_out,sp_in,sp_out,int_signal,rti_signal);
+    regfile: register_file GENERIC MAP(n) PORT MAP(clk,rst,RegWrite,in_signal,out_signal,in_port,in_data,out_port,instruction(26 DOWNTO 24),instruction(23 DOWNTO 21),instruction(20 DOWNTO 18),write_reg,write_data,read_data_1,read_data_2,read_data_3,ccr_in,ccr_out , aluOP ,sp_in,sp_out,int_signal,rti_signal);
     pc_out <= pc_in;
     opfncode <= instruction(31 DOWNTO 27);
     rsrc1addr <= instruction(26 DOWNTO 24);

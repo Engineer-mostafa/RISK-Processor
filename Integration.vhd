@@ -12,7 +12,6 @@ PORT (
 );
 END integration;
 
-
 ARCHITECTURE arch1 OF integration IS
 
     COMPONENT control_unit_VHDL is
@@ -134,48 +133,76 @@ Port(
     Signal aluResult : std_logic_vector(n - 1 downto 0);
     Signal ZFlag,NFlag,CFlag:  std_logic;
     Signal input_buffer_between_IEX_IMEM , out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB,out_buffer_between_IMEM_IWB: std_logic_vector(63 downto 0);
-    Signal input_buffer_between_ID_IEX , out_buffer_between_ID_IEX : std_logic_vector(127 downto 0);
+    Signal idexin , idexout : std_logic_vector(255 downto 0);
     Signal OUT_OUTSig_sig , OUT_RegWrite_sig, enable_pc: std_logic;
     Signal result_WriteBackOutput_sig: std_logic_vector(15 downto 0); 
     BEGIN
-
+    
+    -- Constants: To be implemeted later:
+    rti_signal <= '0'; -- Need to send this from the control unit instead
+    
+        -- The Control Unit
         cu: control_unit_VHDL PORT MAP(opcode, rst, RegWrite, WB_To_Reg, HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG);
+        -- Need to add extrabits to it as input.
 
+        -- The Fetch Stage:
         fetchs: fetch PORT MAP(HLT, clk, RSTs, enable_pc, PCSrc, pc_01, pc_10, NewPc,Instruction);
 
+        -- The Buffer between the Fetch and Decode Stages.
         ifid: generic_buffer GENERIC MAP(64) PORT MAP(ifidin, ifidout, clk, RSTs);
+        ifidin(63 DOWNTO 32) <= Instruction; -- Fetched Instruction (32 bits)
+        ifidin(31 DOWNTO 0) <= NewPc;        -- NewPC from Fetch    (32 bits)
 
+        -- The Decode Stage:
         ds: decode_stage GENERIC MAP (n) PORT MAP(ifidout(63 DOWNTO 32),ifidout(31 DOWNTO 0), pc_outD, opcode,
         rsrc1addrD, rsrc2addrD,rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, RegWrite, IN_PORT_SIG, OUT_PORT_SIG, in_port, in_dataD, out_port,
-        write_reg, result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
+        out_buffer_between_IMEM_IWB(23 DOWNTO 21), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, sp_inD, sp_outD, int_signal, rti_signal);
 
-
-        ifidin(63 DOWNTO 32) <= Instruction;
-        ifidin(31 DOWNTO 0) <= NewPc;
-	
-
-   	input_buffer_between_ID_IEX(127 DOWNTO 59) <= read_data_3D & in_dataD & RegWrite & WB_To_Reg & SETC & RSTs & OUT_PORT_SIG & NewPc;
-				 		    -- 16<127,112> + 16<111,96>  + 1 + 1 + 1 + 1 + 1 + 32<75,44> = 69
-   	input_buffer_between_ID_IEX(58 DOWNTO 0) <= (OTHERS => '0');
-	
-    -- buffer between decode and execution
-	ID_IEX: generic_buffer GENERIC MAP(128) PORT MAP(input_buffer_between_ID_IEX, out_buffer_between_ID_IEX, clk, RSTs);
-	
-	ExecutionStage: EXStage PORT MAP (read_data_3D , opcode , aluResult , RSTs , ZFlag , NFlag , CFlag); 
+        -- The Buffer between the Decode and Execute Stages.
+        idex: generic_buffer GENERIC MAP(256) PORT MAP(idexin, idexout, clk, RSTs);
+        idexin(255 DOWNTO 166) <= (OTHERS => '0');
+        idexin(165) <= OUT_PORT_SIG;                -- OUT_PORT_SIG Signal        ( 1 bit )
+        idexin(164 DOWNTO 160) <= opcode;           -- OpCode                     ( 5 bits)
+        idexin(159 DOWNTO 128) <= sp_outD;          -- SP From Decode Stage       (32 bits)
+        idexin(127 DOWNTO 96) <= pc_outD;           -- PC From Decode Stage       (32 bits)
+        idexin(95 DOWNTO 93) <= rsrc1addrD;         -- Rsrc1 Address From Decode  ( 3 bits)
+        idexin(92 DOWNTO 90) <= rsrc2addrD;         -- Rsrc2 Address From Decode  ( 3 bits)
+        idexin(89 DOWNTO 87) <= rdstaddrD;          -- Rdst Address From Decode   ( 3 bits)
+        idexin(86 DOWNTO 71) <= immmediate_offsetD; -- Offset/Immediate Data      (16 bits)
+        idexin(70 DOWNTO 55) <= in_dataD;           -- Data from Input Port       (16 bits)
+        idexin(54 DOWNTO 39) <= read_data_1D;       -- Value of Rsrc1 [Rsrc1]     (16 bits)
+        idexin(38 DOWNTO 23) <= read_data_2D;       -- Value of Rsrc2 [Rsrc2]     (16 bits)
+        idexin(22 DOWNTO 7) <= read_data_3D;        -- Value of Rdst  [Rdst]      (16 bits)
+        idexin(6 DOWNTO 3) <= ccr_outD;             -- Value of Flags [CCR]       ( 4 bits)
+        -- Signals
+        -- Execute Signals:
+        -- Memory Signals:
+        -- Write Back Signals:
+        idexin(2) <= RegWrite;                      -- RegWrite Signal            ( 1 bit )
+        idexin(1) <= WB_To_Reg;                     -- WB_To_Reg Signal           ( 1 bit )
+        idexin(0) <= SETC;                          -- SETC Signal                ( 1 bit )
+        -- idexin(2 DOWNTO 0) <= (OTHERS => '0');
+        
+        -- The Execution Stage
+        -- Add a CCR in to the Execution Stage
+	    ExecutionStage: EXStage PORT MAP (idexout(22 DOWNTO 7), idexout(164 DOWNTO 160), aluResult , RSTs, ZFlag , NFlag , CFlag); 
 					-- src 16-bits , opcode , alu_result, RSTs , flags
-
-    	input_buffer_between_IEX_IMEM(63 DOWNTO 24 ) <= aluResult & in_dataD & RegWrite & WB_To_Reg & ZFlag & NFlag & CFlag & SETC & RSTs & OUT_PORT_SIG;  
-	input_buffer_between_IEX_IMEM(23 DOWNTO 0)   <= (OTHERS => '0');
-                               			     -- 16<63,48> + 16<47,32> + 1<31> +     1<30>   + 1<29> + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> = 40
--- buffer between execution and memory
-	IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, RSTs); 
-							-- input -> aluresult + inData / output -> aluresult + inData
+        
+        -- buffer between execution and memory
+        IEX_IMEM: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IEX_IMEM, out_buffer_between_IEX_IMEM, clk, RSTs); 
+                                -- input -> aluresult + inData / output -> aluresult + inData
+        
+        input_buffer_between_IEX_IMEM(63 DOWNTO 24 ) <= aluResult & idexout(70 DOWNTO 55) & idexout(2) & idexout(1) & CFlag & NFlag & ZFlag & idexout(0) & RSTs & idexout(165);  
+	    input_buffer_between_IEX_IMEM(23 DOWNTO 21)  <= idexout(89 DOWNTO 87);
+	    input_buffer_between_IEX_IMEM(20 DOWNTO 0)   <= (OTHERS => '0');
+                           			             -- 16<63,48> + 16<47,32> + 1<31> +     1<30>   + 1<29> + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> = 40
 	
-	ccr_inD <=  '0' & out_buffer_between_IEX_IMEM(29) & out_buffer_between_IEX_IMEM(28) & out_buffer_between_IEX_IMEM(27) ;
-	MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB);
--- buffer between memory and writeback
-	IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IMEM_IWB, out_buffer_between_IMEM_IWB, clk, RSTs);
-	WriteBack_Stage: WriteBackStage PORT MAP ( out_buffer_between_IMEM_IWB(63 downto 48) , out_buffer_between_IMEM_IWB(47 downto 32) , out_buffer_between_IMEM_IWB(30),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
+        ccr_inD <=  '0' & out_buffer_between_IEX_IMEM(29) & out_buffer_between_IEX_IMEM(28) & out_buffer_between_IEX_IMEM(27) ;
+	
+        MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(out_buffer_between_IEX_IMEM , input_buffer_between_IMEM_IWB);
+        -- buffer between memory and writeback
+	    IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(input_buffer_between_IMEM_IWB, out_buffer_between_IMEM_IWB, clk, RSTs);
+	    WriteBack_Stage: WriteBackStage PORT MAP ( out_buffer_between_IMEM_IWB(63 downto 48) , out_buffer_between_IMEM_IWB(47 downto 32) , out_buffer_between_IMEM_IWB(30),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
 	
 
 END arch1; 

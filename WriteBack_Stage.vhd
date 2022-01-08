@@ -42,7 +42,7 @@ begin
 
 	Empty <= (OTHERS => '0');
 	MuxSelect <= out_signal & WBtoReg;
---  mux : mux_2x1 GENERIC MAP(n => 16) PORT MAP(ALUresult, In_Data, WBtoReg, result_WritingOutput); 
+
  	mux : mux_4x1 GENERIC MAP(m => 16) PORT MAP(ALUresult, In_Data, RdstData, Empty, MuxSelect, result_WritingOutput); 
 
 

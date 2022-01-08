@@ -121,7 +121,7 @@ for i in range(len(lines)):
                 addresses_dict[memaddress] +=opCodes[instwords[1]]+opCodes[Rsrc2]+'00000\n'
                 memaddress += 1
                 offset = ( bin(int(offset, 16))[2:] ).zfill(16)
-                addresses_dict[memaddress] += format(memaddress, 'X')+': '+offset+'\n'
+                addresses_dict[memaddress] = format(memaddress, 'X')+': '+offset+'\n'
                 memaddress += 1
                 break
             # Check if the instruction is LDD:
@@ -131,7 +131,7 @@ for i in range(len(lines)):
                 addresses_dict[memaddress] += opCodes[Rsrc]+'000'+opCodes[instwords[1]]+'00\n'
                 memaddress += 1
                 offset = ( bin(int(offset, 16))[2:] ).zfill(16)
-                addresses_dict[memaddress] += format(memaddress, 'X')+': '+offset+'\n'
+                addresses_dict[memaddress] = format(memaddress, 'X')+': '+offset+'\n'
                 memaddress += 1
                 break
             # Check if the instruction is LDM:
@@ -140,7 +140,7 @@ for i in range(len(lines)):
                 addresses_dict[memaddress] += '000000'+opCodes[instwords[1]]+'00\n'
                 memaddress += 1
                 immediate = ( bin(int(instwords[2], 16))[2:] ).zfill(16)
-                addresses_dict[memaddress] += format(memaddress, 'X')+': '+immediate+'\n'
+                addresses_dict[memaddress] = format(memaddress, 'X')+': '+immediate+'\n'
                 memaddress += 1
                 break
 
@@ -177,7 +177,7 @@ for i in range(len(lines)):
             # Check for immediate in case of IADD
             if immediate != '':
                 immediateinbin = ( bin(int(immediate, 16))[2:] ).zfill(16)
-                addresses_dict[memaddress] += format(memaddress, 'X')+': '+immediateinbin+'\n'
+                addresses_dict[memaddress] = format(memaddress, 'X')+': '+immediateinbin+'\n'
                 memaddress += 1
             break
 

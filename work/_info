@@ -10,25 +10,25 @@ z2
 cModel Technology
 dD:/Third Year/CA/RISK-Processor
 Eadder
-Z0 w1639473374
+Z0 w1641552723
 Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 131
-Z4 dD:/faculty/CMP3/computer architecture/RISK-Processor
-Z5 8D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd
-Z6 FD:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd
+!i122 153
+Z4 dD:/faculty/CMP3/computer architecture/again/RISK-Processor
+Z5 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Adder.vhd
+Z6 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Adder.vhd
 l0
 L6 1
 VC@CMoM[DP=LAmWlG@V5kL0
 !s100 5oPeJ<087WLmRBIRc[OX?0
 Z7 OV;C;2020.1;71
 32
-Z8 !s110 1641459749
+Z8 !s110 1641645390
 !i10b 1
-Z9 !s108 1641459749.000000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd|
-Z11 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Adder.vhd|
+Z9 !s108 1641645390.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Adder.vhd|
+Z11 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Adder.vhd|
 !i113 1
 Z12 o-work work -2002 -explicit
 Z13 tExplicit 1 CvgOpt 0
@@ -37,7 +37,7 @@ R1
 R2
 R3
 DEx4 work 5 adder 0 22 C@CMoM[DP=LAmWlG@V5kL0
-!i122 131
+!i122 153
 l17
 L16 8
 VIfC:;A@:OB>X19f8Sa3373
@@ -53,27 +53,27 @@ R11
 R12
 R13
 Ealu_vhdl
-Z14 w1640851095
+Z14 w1641642572
 R1
 Z15 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z16 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
 R2
 R3
-!i122 132
+!i122 154
 R4
-Z17 8D:/faculty/CMP3/computer architecture/RISK-Processor/alu.vhd
-Z18 FD:/faculty/CMP3/computer architecture/RISK-Processor/alu.vhd
+Z17 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/alu.vhd
+Z18 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/alu.vhd
 l0
 L11 1
-VadVlLTTe5e>2=jYN][h@41
-!s100 OBn@2hY=bJ`>fFOVGV^XW2
+V@BaCAGDXTg?j_=E23nAJO3
+!s100 @o5<OMh@=L=HZf?cGDd383
 R7
 32
-R8
+Z19 !s110 1641645391
 !i10b 1
 R9
-Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/alu.vhd|
-Z20 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/alu.vhd|
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/alu.vhd|
+Z21 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/alu.vhd|
 !i113 1
 R12
 R13
@@ -83,83 +83,83 @@ R15
 R16
 R2
 R3
-DEx4 work 8 alu_vhdl 0 22 adVlLTTe5e>2=jYN][h@41
-!i122 132
-l28
-L26 24
-V=1>KQM]8LT3X3lSQC]5^h1
-!s100 l5A]l2jboka3VnQOGjkbJ1
+DEx4 work 8 alu_vhdl 0 22 @BaCAGDXTg?j_=E23nAJO3
+!i122 154
+l30
+L28 38
+V]Non@EBZLA6dUA>TRQQU91
+!s100 f4hf>P=RcKaQUiJLEP[W:2
 R7
 32
-R8
+R19
 !i10b 1
 R9
-R19
 R20
+R21
 !i113 1
 R12
 R13
 Econtrol_unit_vhdl
-R0
+Z22 w1641642571
 R2
 R3
-!i122 133
+!i122 155
 R4
-Z21 8D:/faculty/CMP3/computer architecture/RISK-Processor/Control_Unit.vhd
-Z22 FD:/faculty/CMP3/computer architecture/RISK-Processor/Control_Unit.vhd
+Z23 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Control_Unit.vhd
+Z24 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Control_Unit.vhd
 l0
-L10 1
-VHm3OMBSB6]2KVO42BdBP_3
-!s100 ;3c>TOQ_hd1XKB08hS]V<0
+L8 1
+VC75P<?L3b:P`O_:o01Y4m3
+!s100 `c_6]0^oEF8R6VFnd=KGj1
 R7
 32
-Z23 !s110 1641459750
+Z25 !s110 1641645392
 !i10b 1
-Z24 !s108 1641459750.000000
-Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Control_Unit.vhd|
-Z26 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Control_Unit.vhd|
+Z26 !s108 1641645392.000000
+Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Control_Unit.vhd|
+Z28 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Control_Unit.vhd|
 !i113 1
 R12
 R13
 Abehavioral
 R2
 R3
-DEx4 work 17 control_unit_vhdl 0 22 Hm3OMBSB6]2KVO42BdBP_3
-!i122 133
-l21
-L19 83
-Vb?iN]oa8@VmHNfE?n_X<l2
-!s100 Q=I7_nz?1BC5N8z`>D=k03
+DEx4 work 17 control_unit_vhdl 0 22 C75P<?L3b:P`O_:o01Y4m3
+!i122 155
+l24
+L22 160
+VnlKNX^Uo<LmP]RMS2dbnV3
+!s100 Zb5PKXRZhWLj>TOiZ2REc0
 R7
 32
-R23
-!i10b 1
-R24
 R25
+!i10b 1
 R26
+R27
+R28
 !i113 1
 R12
 R13
 Edecode_stage
-Z27 w1640291833
+Z29 w1641617803
 R1
 R2
 R3
-!i122 135
+!i122 158
 R4
-Z28 8D:/faculty/CMP3/computer architecture/RISK-Processor/Decoding_Stage.vhd
-Z29 FD:/faculty/CMP3/computer architecture/RISK-Processor/Decoding_Stage.vhd
+Z30 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Decoding_Stage.vhd
+Z31 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Decoding_Stage.vhd
 l0
 L6 1
-V^ZeUDeXlkS]XVSKj92C<H0
-!s100 2KUOaCeUFIA5VWAzh4zzY0
+VlSjdA^o>AMJJmNg`j_zXV0
+!s100 _WdmQ@Y4MjM057z4`[zE61
 R7
 32
-R23
+Z32 !s110 1641645393
 !i10b 1
-R24
-Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Decoding_Stage.vhd|
-Z31 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Decoding_Stage.vhd|
+R26
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Decoding_Stage.vhd|
+Z34 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Decoding_Stage.vhd|
 !i113 1
 R12
 R13
@@ -167,41 +167,41 @@ Aarch1
 R1
 R2
 R3
-DEx4 work 12 decode_stage 0 22 ^ZeUDeXlkS]XVSKj92C<H0
-!i122 135
-l71
-L42 41
-VNRHf6PIb?JhjPTXIUGE]g0
-!s100 Hn8ne3lNgB8<H_X?o?h>C2
+DEx4 work 12 decode_stage 0 22 lSjdA^o>AMJJmNg`j_zXV0
+!i122 158
+l74
+L44 42
+V5[[SfR`iKBQ_]da4FmnB:1
+!s100 zNBBZ5J:34AC6Z6^m3hhL2
 R7
 32
-R23
+R32
 !i10b 1
-R24
-R30
-R31
+R26
+R33
+R34
 !i113 1
 R12
 R13
 Edecoder3x8
-R27
+Z35 w1641552732
 R2
 R3
-!i122 134
+!i122 157
 R4
-Z32 8D:/faculty/CMP3/computer architecture/RISK-Processor/decoder3x8.vhd
-Z33 FD:/faculty/CMP3/computer architecture/RISK-Processor/decoder3x8.vhd
+Z36 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/decoder3x8.vhd
+Z37 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/decoder3x8.vhd
 l0
 L4 1
 VRX0[hFYFNO^^`1PLk9cZo1
 !s100 Q9cIgE`1Y^]8FJNTNU8Ng2
 R7
 32
-R23
+R25
 !i10b 1
-R24
-Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/decoder3x8.vhd|
-Z35 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/decoder3x8.vhd|
+R26
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/decoder3x8.vhd|
+Z39 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/decoder3x8.vhd|
 !i113 1
 R12
 R13
@@ -209,40 +209,40 @@ Aarch1
 R2
 R3
 DEx4 work 10 decoder3x8 0 22 RX0[hFYFNO^^`1PLk9cZo1
-!i122 134
+!i122 157
 l11
 L10 13
 V1k:dN@RGT[T7?bLh>9C642
 !s100 f[?AeQG<9N7m3GkjZ<:i32
 R7
 32
-R23
+R25
 !i10b 1
-R24
-R34
-R35
+R26
+R38
+R39
 !i113 1
 R12
 R13
 Edff
-Z36 w1640080700
+R35
 R2
 R3
-!i122 146
+!i122 169
 R4
-Z37 8D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd
-Z38 FD:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd
+Z40 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/register.vhd
+Z41 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/register.vhd
 l0
 L4 1
 VjfmPkIS5k0Un_aGUS>fA>0
 !s100 8a=c?OD8NYD78Xj<Q=KaU0
 R7
 32
-Z39 !s110 1641459754
+Z42 !s110 1641645396
 !i10b 1
-Z40 !s108 1641459753.000000
-Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd|
-Z42 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/register.vhd|
+Z43 !s108 1641645396.000000
+Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/register.vhd|
+Z45 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/register.vhd|
 !i113 1
 R12
 R13
@@ -250,40 +250,40 @@ Aa_dff
 R2
 R3
 DEx4 work 3 dff 0 22 jfmPkIS5k0Un_aGUS>fA>0
-!i122 146
+!i122 169
 l17
-Z43 L16 17
+Z46 L16 17
 VOPC;NzGmW<_nVezT=:bHW1
 !s100 >Rj=LPnYPmmzoN:0]c>QC1
 R7
 32
-R39
-!i10b 1
-R40
-R41
 R42
+!i10b 1
+R43
+R44
+R45
 !i113 1
 R12
 R13
 Edff_fedge
-R27
+R29
 R2
 R3
-!i122 136
+!i122 159
 R4
-Z44 8D:/faculty/CMP3/computer architecture/RISK-Processor/dff_fedge.vhd
-Z45 FD:/faculty/CMP3/computer architecture/RISK-Processor/dff_fedge.vhd
+Z47 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/dff_fedge.vhd
+Z48 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/dff_fedge.vhd
 l0
 L4 1
 VCZaDa:Q7`PJ>Ce9`NblTd0
 !s100 iF1^oOgGkUjNoKKn^FFRH2
 R7
 32
-Z46 !s110 1641459751
+R32
 !i10b 1
-R24
-Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/dff_fedge.vhd|
-Z48 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/dff_fedge.vhd|
+Z49 !s108 1641645393.000000
+Z50 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/dff_fedge.vhd|
+Z51 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/dff_fedge.vhd|
 !i113 1
 R12
 R13
@@ -291,41 +291,84 @@ Aa_dff
 R2
 R3
 DEx4 work 9 dff_fedge 0 22 CZaDa:Q7`PJ>Ce9`NblTd0
-!i122 136
+!i122 159
 l17
-R43
-VAccJi;PVZM^9_CToij<MM3
-!s100 ND]UUmmTU;aHED;W43@D]0
+R46
+V3EkKVz[i5ZlUN<ERX0D[d2
+!s100 Y76QQG<9W2daZ0zCVYe6E1
 R7
 32
-R46
+R32
 !i10b 1
-R24
-R47
-R48
+R49
+R50
+R51
+!i113 1
+R12
+R13
+Edmemory
+Z52 w1641655386
+R1
+R2
+R3
+!i122 177
+R4
+Z53 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Data Memory.vhd
+Z54 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Data Memory.vhd
+l0
+L6 1
+VMS[_j5U1=eU3`L3W25jeX2
+!s100 VBlHcJcAK=@L:[b6MFAM81
+R7
+32
+Z55 !s110 1641664809
+!i10b 1
+Z56 !s108 1641664808.000000
+Z57 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Data Memory.vhd|
+Z58 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Data Memory.vhd|
+!i113 1
+R12
+R13
+Aa_dmemory
+R1
+R2
+R3
+DEx4 work 7 dmemory 0 22 MS[_j5U1=eU3`L3W25jeX2
+!i122 177
+l36
+L20 72
+VL<S6fJ`kX;[B6e^:062UU1
+!s100 EHP8@;4Sn4`WUdd<i?WD93
+R7
+32
+R55
+!i10b 1
+R56
+R57
+R58
 !i113 1
 R12
 R13
 Eexstage
-R14
+R22
 R1
 R2
 R3
-!i122 137
+!i122 160
 R4
-Z49 8D:/faculty/CMP3/computer architecture/RISK-Processor/Execution_Stage.vhd
-Z50 FD:/faculty/CMP3/computer architecture/RISK-Processor/Execution_Stage.vhd
+Z59 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Execution_Stage.vhd
+Z60 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Execution_Stage.vhd
 l0
 L9 1
-VlBP2fVZj=Zf?36m7^7LRT0
-!s100 GoOR=BdZ;9ZjPQ82=XJRZ2
+V=]`aiI_MIJk;D^FjlTn4=0
+!s100 RBGP<4?:FOFQoN:k3g18^1
 R7
 32
-R46
+R32
 !i10b 1
-Z51 !s108 1641459751.000000
-Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Execution_Stage.vhd|
-Z53 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Execution_Stage.vhd|
+R49
+Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Execution_Stage.vhd|
+Z62 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Execution_Stage.vhd|
 !i113 1
 R12
 R13
@@ -333,42 +376,42 @@ Aarch_exstage
 R1
 R2
 R3
-DEx4 work 7 exstage 0 22 lBP2fVZj=Zf?36m7^7LRT0
-!i122 137
-l36
-L24 17
-VMUA?]AI1T]MABS=A5I0l33
-!s100 4FUQ67f8Joz>oijA<@N;92
+DEx4 work 7 exstage 0 22 =]`aiI_MIJk;D^FjlTn4=0
+!i122 160
+l42
+L27 22
+V]mnGL;ii:faob7O?GlmdA0
+!s100 1H<jBUVAK[4^5F5:HAlkP2
 R7
 32
-R46
+R32
 !i10b 1
-R51
-R52
-R53
+R49
+R61
+R62
 !i113 1
 R12
 R13
 Efetch
-Z54 w1641467049
+Z63 w1641631155
 R1
 R2
 R3
-!i122 152
+!i122 161
 R4
-Z55 8D:/faculty/CMP3/computer architecture/RISK-Processor/Fetching_Stage.vhd
-Z56 FD:/faculty/CMP3/computer architecture/RISK-Processor/Fetching_Stage.vhd
+Z64 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Fetching_Stage.vhd
+Z65 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Fetching_Stage.vhd
 l0
 L7 1
 VNI;oeS6D@=b;CDz9TfDHg0
 !s100 [_nC0c=]d0?b^PPUo]JE?0
 R7
 32
-Z57 !s110 1641467056
+R32
 !i10b 1
-Z58 !s108 1641467056.000000
-Z59 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Fetching_Stage.vhd|
-Z60 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Fetching_Stage.vhd|
+R49
+Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Fetching_Stage.vhd|
+Z67 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Fetching_Stage.vhd|
 !i113 1
 R12
 R13
@@ -376,41 +419,41 @@ Aa_fetch
 R1
 R2
 R3
-Z61 DEx4 work 5 fetch 0 22 NI;oeS6D@=b;CDz9TfDHg0
-!i122 152
-l79
-L23 106
-V^O2F2[FA@6>VLbg`6Ok6R2
-!s100 ^bgh6;oNIBUBLE]g_6h;R3
+DEx4 work 5 fetch 0 22 NI;oeS6D@=b;CDz9TfDHg0
+!i122 161
+l81
+L23 117
+VDQ=U7RDI]9z:TJ3EQ@[2H3
+!s100 D^SbW9e?[ESjD9nH=Q@K63
 R7
 32
-R57
+R32
 !i10b 1
-R58
-R59
-R60
+R49
+R66
+R67
 !i113 1
 R12
 R13
 Egeneric_buffer
-R27
+R29
 R2
 R3
-!i122 139
+!i122 162
 R4
-Z62 8D:/faculty/CMP3/computer architecture/RISK-Processor/Generic_Buffer.vhd
-Z63 FD:/faculty/CMP3/computer architecture/RISK-Processor/Generic_Buffer.vhd
+Z68 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Generic_Buffer.vhd
+Z69 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Generic_Buffer.vhd
 l0
 L4 1
 VAo8;0[LUXTHXNedVzc`L?2
 !s100 T[`]j@EPckG[PNEnB9d?[3
 R7
 32
-R46
+Z70 !s110 1641645394
 !i10b 1
-R51
-Z64 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Generic_Buffer.vhd|
-Z65 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Generic_Buffer.vhd|
+Z71 !s108 1641645394.000000
+Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Generic_Buffer.vhd|
+Z73 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Generic_Buffer.vhd|
 !i113 1
 R12
 R13
@@ -418,41 +461,41 @@ Abehavioralgeneric_buffer
 R2
 R3
 DEx4 work 14 generic_buffer 0 22 Ao8;0[LUXTHXNedVzc`L?2
-!i122 139
+!i122 162
 l15
-L14 11
-VUNVYc@gk35X9Qb1abjV4S3
-!s100 3zo3g_?5V>GZO>:zdPm1a3
+L14 15
+V?ZooQk9n1SO^AO_T@_WK71
+!s100 UUYfJk2LcI;zF50Snaz0B0
 R7
 32
-R46
+R70
 !i10b 1
-R51
-R64
-R65
+R71
+R72
+R73
 !i113 1
 R12
 R13
 Eintegration
-R14
+Z74 w1641664947
 R1
 R2
 R3
-!i122 141
+!i122 181
 R4
-Z66 8D:/faculty/CMP3/computer architecture/RISK-Processor/Integration.vhd
-Z67 FD:/faculty/CMP3/computer architecture/RISK-Processor/Integration.vhd
+Z75 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Integration.vhd
+Z76 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Integration.vhd
 l0
 L6 1
-VQbcfPAI=W>L>cBj>[kPS10
-!s100 CMYM8Ghk6n^DC4i13=8cP0
+VOcGYh0fcDRTB0[c]OXR;W0
+!s100 n]aJ91<S]ez4Sck53Zc4m1
 R7
 32
-Z68 !s110 1641459752
+Z77 !s110 1641664952
 !i10b 1
-Z69 !s108 1641459752.000000
-Z70 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Integration.vhd|
-Z71 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Integration.vhd|
+Z78 !s108 1641664952.000000
+Z79 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Integration.vhd|
+Z80 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Integration.vhd|
 !i113 1
 R12
 R13
@@ -460,42 +503,42 @@ Aarch1
 R1
 R2
 R3
-DEx4 work 11 integration 0 22 QbcfPAI=W>L>cBj>[kPS10
-!i122 141
-l140
-L16 166
-VW`dDFDHDMT0FbB]6]1g_o2
-!s100 1jh=nWN?;aWV`;U1B:ID]2
+Z81 DEx4 work 11 integration 0 22 OcGYh0fcDRTB0[c]OXR;W0
+!i122 181
+l164
+L15 249
+VPLnYAJE;8YnURSWZ=z5DL0
+!s100 Cg:M7hNFRl4WS9zLWohFQ2
 R7
 32
-R68
+R77
 !i10b 1
-R69
-R70
-R71
+R78
+R79
+R80
 !i113 1
 R12
 R13
 Emem_stage
-R27
+Z82 w1641659154
 R1
 R2
 R3
-!i122 142
+!i122 179
 R4
-Z72 8D:/faculty/CMP3/computer architecture/RISK-Processor/Memory_Stage.vhd
-Z73 FD:/faculty/CMP3/computer architecture/RISK-Processor/Memory_Stage.vhd
+Z83 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Memory_Stage.vhd
+Z84 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Memory_Stage.vhd
 l0
 L9 1
-VIZX]Q9No6Qgm@N]C9kmi83
-!s100 BGmXM^FooZ5>?e`KeBT790
+V9kIJT0^jBOb5K3F5C8:6V3
+!s100 3kjk`XBXdk32`mIS@nH390
 R7
 32
-R68
+R55
 !i10b 1
-R69
-Z74 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Memory_Stage.vhd|
-Z75 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Memory_Stage.vhd|
+Z85 !s108 1641664809.000000
+Z86 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Memory_Stage.vhd|
+Z87 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Memory_Stage.vhd|
 !i113 1
 R12
 R13
@@ -503,42 +546,42 @@ Aarch_mem_stage
 R1
 R2
 R3
-DEx4 work 9 mem_stage 0 22 IZX]Q9No6Qgm@N]C9kmi83
-!i122 142
-l22
-L20 9
-VbIAo8dYTR0QD:Z>hj9Kg;3
-!s100 1m12YgbC4O5k2elH=iK^41
+DEx4 work 9 mem_stage 0 22 9kIJT0^jBOb5K3F5C8:6V3
+!i122 179
+l51
+L35 30
+VLWQfh_P[?81e@@kW8[UaL3
+!s100 aNKa0FWOlG[2dhZ;H@N4Y1
 R7
 32
-R68
+R55
 !i10b 1
-R69
-R74
-R75
+R85
+R86
+R87
 !i113 1
 R12
 R13
 Ememory
-Z76 w1641461296
+Z88 w1641630737
 R1
 R2
 R3
-!i122 151
+!i122 163
 R4
-Z77 8D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd
-Z78 FD:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd
+Z89 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/instruction memory.vhd
+Z90 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/instruction memory.vhd
 l0
 L6 1
-VZiak<?g;H3AAX>bUDV>nT0
-!s100 ]:KE;W_KnVzd0Q7h^>^BF0
+ViAGFW^gVZPBa[_@@leWNk3
+!s100 4nNBeNlHfF0G1c@GXj_>Z3
 R7
 32
-Z79 !s110 1641467029
+R70
 !i10b 1
-Z80 !s108 1641467029.000000
-Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd|
-Z82 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/instruction memory.vhd|
+R71
+Z91 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/instruction memory.vhd|
+Z92 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/instruction memory.vhd|
 !i113 1
 R12
 R13
@@ -546,42 +589,42 @@ Aa_memory
 R1
 R2
 R3
-DEx4 work 6 memory 0 22 Ziak<?g;H3AAX>bUDV>nT0
-!i122 151
-l22
-L14 34
-VUJ;<zT;8EJKj[=a]13CJm3
-!s100 FMibSZ4AKBP;VUO<6=49a0
+DEx4 work 6 memory 0 22 iAGFW^gVZPBa[_@@leWNk3
+!i122 163
+l24
+L16 39
+VSeV8N4Pc<X[Oo;]<FUI@S0
+!s100 =XmUhfY2RWNEW@h`]113z2
 R7
 32
-R79
+R70
 !i10b 1
-R80
-R81
-R82
+R71
+R91
+R92
 !i113 1
 R12
 R13
 Emux_2x1
-R36
+R35
 R1
 R2
 R3
-!i122 143
+!i122 166
 R4
-Z83 8D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd
-Z84 FD:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd
+Z93 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_2x1.vhd
+Z94 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_2x1.vhd
 l0
 L7 1
 VNBi9Kk0J7l7j2hI4_hCZE1
 !s100 6O;Qd2k5jB:kk_FZ1h;P;2
 R7
 32
-Z85 !s110 1641459753
+Z95 !s110 1641645395
 !i10b 1
-R40
-Z86 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd|
-Z87 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/mux_2x1.vhd|
+Z96 !s108 1641645395.000000
+Z97 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_2x1.vhd|
+Z98 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_2x1.vhd|
 !i113 1
 R12
 R13
@@ -590,41 +633,41 @@ R1
 R2
 R3
 DEx4 work 7 mux_2x1 0 22 NBi9Kk0J7l7j2hI4_hCZE1
-!i122 143
+!i122 166
 l18
 L16 14
 V<]40^Y97=m=lin9Ri@z9S2
 !s100 T_L<53]b<DGX[hH<9c93i3
 R7
 32
-R85
+R95
 !i10b 1
-R40
-R86
-R87
+R96
+R97
+R98
 !i113 1
 R12
 R13
 Emux_4x1
-R36
+R35
 R1
 R2
 R3
-!i122 144
+!i122 167
 R4
-Z88 8D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd
-Z89 FD:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd
+Z99 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_4x1.vhd
+Z100 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_4x1.vhd
 l0
 L7 1
 VDJ0`<eKIfg]Ug?A00[1Mm2
 !s100 4PLBz^eBcUb_hB?_@HzzQ3
 R7
 32
-R85
+R95
 !i10b 1
-R40
-Z90 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd|
-Z91 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/mux_4x1.vhd|
+R96
+Z101 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_4x1.vhd|
+Z102 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_4x1.vhd|
 !i113 1
 R12
 R13
@@ -633,41 +676,41 @@ R1
 R2
 R3
 DEx4 work 7 mux_4x1 0 22 DJ0`<eKIfg]Ug?A00[1Mm2
-!i122 144
+!i122 167
 l21
 L19 16
 VJ6?kA]kE4V48f5;?M0F6U2
 !s100 6PdDLI9?GjIocLWbgJ_011
 R7
 32
-R85
+R95
 !i10b 1
-R40
-R90
-R91
+R96
+R101
+R102
 !i113 1
 R12
 R13
 Emux_8x1
-R27
+R35
 R1
 R2
 R3
-!i122 145
+!i122 168
 R4
-Z92 8D:/faculty/CMP3/computer architecture/RISK-Processor/mux_8x1.vhd
-Z93 FD:/faculty/CMP3/computer architecture/RISK-Processor/mux_8x1.vhd
+Z103 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_8x1.vhd
+Z104 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_8x1.vhd
 l0
 L7 1
 VVEE@M4dF?^52Rn^`lz5?n0
 !s100 3C;XWYjC<k<^fV1@MmkF?1
 R7
 32
-R85
+R95
 !i10b 1
-R40
-Z94 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/mux_8x1.vhd|
-Z95 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/mux_8x1.vhd|
+R96
+Z105 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_8x1.vhd|
+Z106 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/mux_8x1.vhd|
 !i113 1
 R12
 R13
@@ -676,41 +719,41 @@ R1
 R2
 R3
 DEx4 work 7 mux_8x1 0 22 VEE@M4dF?^52Rn^`lz5?n0
-!i122 145
+!i122 168
 l24
 L22 16
 VECW?dK_GVIBbVIZR_Chid3
 !s100 eT;VOn`EJ3RW9DAOUFDWZ0
 R7
 32
-R85
-!i10b 1
-R40
-R94
 R95
+!i10b 1
+R96
+R105
+R106
 !i113 1
 R12
 R13
 Eregister_file
-R27
+R29
 R1
 R2
 R3
-!i122 147
+!i122 170
 R4
-Z96 8D:/faculty/CMP3/computer architecture/RISK-Processor/Register_File.vhd
-Z97 FD:/faculty/CMP3/computer architecture/RISK-Processor/Register_File.vhd
+Z107 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/Register_File.vhd
+Z108 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/Register_File.vhd
 l0
 L5 1
-VAI3nJVJ1zYUIEekFZ6VBb0
-!s100 KE`NZDBWz>QWB<K1;P7hW0
+Vco@gNlXJ8MV09<gPJSNMJ2
+!s100 iM]@WXJ;KWzL7L_Sj_0RK1
 R7
 32
-R39
+R42
 !i10b 1
-Z98 !s108 1641459754.000000
-Z99 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/Register_File.vhd|
-Z100 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/Register_File.vhd|
+R43
+Z109 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/Register_File.vhd|
+Z110 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/Register_File.vhd|
 !i113 1
 R12
 R13
@@ -718,41 +761,41 @@ Aarch1
 R1
 R2
 R3
-DEx4 work 13 register_file 0 22 AI3nJVJ1zYUIEekFZ6VBb0
-!i122 147
-l80
-L32 142
-V>[CXYlV3dAVE^h=:[PiSz2
-!s100 mLQMBkN2H9?0jH1;Bea`_3
+DEx4 work 13 register_file 0 22 co@gNlXJ8MV09<gPJSNMJ2
+!i122 170
+l84
+L33 137
+VLEbSh:9?5O^[Ng>[aG>b32
+!s100 c[zW=7=nH<kU5YC1UC_hU0
 R7
 32
-R39
+R42
 !i10b 1
-R98
-R99
-R100
+R43
+R109
+R110
 !i113 1
 R12
 R13
 Etristate_buffer
-R27
+R35
 R2
 R3
-!i122 148
+!i122 171
 R4
-Z101 8D:/faculty/CMP3/computer architecture/RISK-Processor/tristate_buffer.vhd
-Z102 FD:/faculty/CMP3/computer architecture/RISK-Processor/tristate_buffer.vhd
+Z111 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/tristate_buffer.vhd
+Z112 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/tristate_buffer.vhd
 l0
 L4 1
 VYRdHNFAnKP9o0Zd__56F>2
 !s100 lRRTc;;bI8^Ugoj`M>1_]1
 R7
 32
-R39
+Z113 !s110 1641645397
 !i10b 1
-R98
-Z103 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/tristate_buffer.vhd|
-Z104 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/tristate_buffer.vhd|
+Z114 !s108 1641645397.000000
+Z115 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/tristate_buffer.vhd|
+Z116 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/tristate_buffer.vhd|
 !i113 1
 R12
 R13
@@ -760,41 +803,41 @@ Aarch1
 R2
 R3
 DEx4 work 15 tristate_buffer 0 22 YRdHNFAnKP9o0Zd__56F>2
-!i122 148
+!i122 171
 l12
 L11 7
 VCVFn;fZldEGlk@k`WX>]c1
 !s100 nO?zeRLI:00L4MaLYKE0D0
 R7
 32
-R39
+R113
 !i10b 1
-R98
-R103
-R104
+R114
+R115
+R116
 !i113 1
 R12
 R13
 Ewritebackstage
-R27
+R14
 R1
 R2
 R3
-!i122 149
+!i122 172
 R4
-Z105 8D:/faculty/CMP3/computer architecture/RISK-Processor/WriteBack_Stage.vhd
-Z106 FD:/faculty/CMP3/computer architecture/RISK-Processor/WriteBack_Stage.vhd
+Z117 8D:/faculty/CMP3/computer architecture/again/RISK-Processor/WriteBack_Stage.vhd
+Z118 FD:/faculty/CMP3/computer architecture/again/RISK-Processor/WriteBack_Stage.vhd
 l0
-L7 1
-V`da9mX:04kofOKzW96BVi1
-!s100 Vli>e;fO7zEIOPiRk:@9i0
+L5 1
+V3CGcdH7FkPoSKHo2PaQgM0
+!s100 D]^<a9IDDG:^<52aChQM?1
 R7
 32
-R39
+R113
 !i10b 1
-R98
-Z107 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/RISK-Processor/WriteBack_Stage.vhd|
-Z108 !s107 D:/faculty/CMP3/computer architecture/RISK-Processor/WriteBack_Stage.vhd|
+R114
+Z119 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/faculty/CMP3/computer architecture/again/RISK-Processor/WriteBack_Stage.vhd|
+Z120 !s107 D:/faculty/CMP3/computer architecture/again/RISK-Processor/WriteBack_Stage.vhd|
 !i113 1
 R12
 R13
@@ -802,19 +845,19 @@ Aarch_writebackstage
 R1
 R2
 R3
-DEx4 work 14 writebackstage 0 22 `da9mX:04kofOKzW96BVi1
-!i122 149
-l30
-L20 17
-VkhgNLQdl?T@b;F?;TKBn02
-!s100 jPcGc^_FIo9@<md<_6>Vf3
+DEx4 work 14 writebackstage 0 22 3CGcdH7FkPoSKHo2PaQgM0
+!i122 172
+l40
+L16 33
+V[[OKIGZP`d^RGRYf9i4ZL1
+!s100 PfVmHhKffZ8JZ8Xo89?cC2
 R7
 32
-R39
+R113
 !i10b 1
-R98
-R107
-R108
+R114
+R119
+R120
 !i113 1
 R12
 R13

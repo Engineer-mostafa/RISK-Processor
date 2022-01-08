@@ -103,12 +103,15 @@ ARCHITECTURE arch1 OF integration IS
     END COMPONENT;
 
     COMPONENT MEM_STAGE IS
-        GENERIC (n : INTEGER := 32);
-        PORT (
-            Left_OUTPUT_BUFFER : IN STD_LOGIC_VECTOR(n - 1 DOWNTO 0);
-            Right_INPUT_BUFFER : OUT STD_LOGIC_VECTOR(n - 1 DOWNTO 0);
-            clk : IN STD_LOGIC
-        );
+    GENERIC ( n : integer :=128 );
+    Port( 	
+        Left_OUTPUT_BUFFER 	: in std_logic_vector(n-1 downto 0);
+        Right_INPUT_BUFFER 	: out std_logic_vector(n-1 downto 0);
+        Clk,Rst,enable		: in std_logic;
+        PCsrc				: out std_logic_vector(31 downto 0); --branch
+        empty_stack			: out std_logic; --in integration call EPC to go to  M[2] and M[3]
+        invalid_add			: out std_logic --in integration call EPC to go to  M[4] and M[5]
+    );
     END COMPONENT;
 
     COMPONENT WriteBackStage IS

@@ -235,8 +235,7 @@ BEGIN
     -- 16<63,48> + 16<47,32> + 1<31> +     2<30 , 29>   + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> + 1<23> = 41
 
     ccr_inD <= '0' & CFlag & NFlag & ZFlag;
-    MemoryStage : MEM_STAGE GENERIC MAP(64) PORT MAP(exmemout, memwbin, clk);
-    -- buffer between memory and writeback
+    MemoryStage:  MEM_STAGE GENERIC MAP(128) PORT MAP(exmemout , memwbin , clk);    -- buffer between memory and writeback
     IMEM_IWB : generic_buffer GENERIC MAP(64) PORT MAP(memwbin, memwbout, clk, RSTs);
     WriteBack_Stage : WriteBackStage PORT MAP(memwbout(63 DOWNTO 48), memwbout(47 DOWNTO 32), memwbout(19 DOWNTO 4), memwbout(30 DOWNTO 29), memwbout(23), result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
 

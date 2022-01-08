@@ -94,12 +94,15 @@ end COMPONENT;
     end COMPONENT;
 
 COMPONENT MEM_STAGE is
-       GENERIC ( n : integer :=32 );
-Port( 	
-	Left_OUTPUT_BUFFER 	: in std_logic_vector(n-1 downto 0);
-	Right_INPUT_BUFFER 	: out std_logic_vector(n-1 downto 0);
-    clk                 : in std_logic
-);
+    GENERIC ( n : integer :=128 );
+    Port( 	
+        Left_OUTPUT_BUFFER 	: in std_logic_vector(n-1 downto 0);
+        Right_INPUT_BUFFER 	: out std_logic_vector(n-1 downto 0);
+        Clk,Rst,enable		: in std_logic;
+        PCsrc				: out std_logic_vector(31 downto 0); --branch
+        empty_stack			: out std_logic; --in integration call EPC to go to  M[2] and M[3]
+        invalid_add			: out std_logic --in integration call EPC to go to  M[4] and M[5]
+    );
     end COMPONENT;
         
 
@@ -213,7 +216,7 @@ Port(
         ccr_inD <=  '0' & CFlag & NFlag & ZFlag ;
 	
 
-        MemoryStage:  MEM_STAGE GENERIC MAP(64) PORT MAP(exmemout , memwbin , clk);
+        MemoryStage:  MEM_STAGE GENERIC MAP(128) PORT MAP(exmemout , memwbin , clk);
         -- buffer between memory and writeback
 	    IMEM_IWB: generic_buffer GENERIC MAP(64) PORT MAP(memwbin, memwbout, clk, RSTs);
 	    WriteBack_Stage: WriteBackStage PORT MAP ( memwbout(63 downto 48) , memwbout(47 downto 32) ,memwbout(20 DOWNTO 5) ,memwbout(30),memwbout(24),result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput

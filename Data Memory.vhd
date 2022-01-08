@@ -1,4 +1,3 @@
-
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.numeric_std.all;
@@ -15,30 +14,20 @@ GENERIC (
 		Read_data : OUT  std_logic_vector(15 DOWNTO 0);
         empty_stack	: OUT std_logic
         );
-END ENTITY Dmemory ;
-
-ARCHITECTURE a_Dmemory OF Dmemory IS
-
-    component dff IS
-    PORT(clk,rst,en : IN std_logic;
-        reset_value: IN std_logic_vector(n - 1 DOWNTO 0);
-        d : IN std_logic_vector(n - 1 DOWNTO 0);
-        q : OUT std_logic_vector(n - 1 DOWNTO 0));
-
-    end component;
+	ARCHITECTURE a_Dmemory OF Dmemory IS
 
 	TYPE Dmemory_type IS ARRAY(0 TO (2**20)-1) OF std_logic_vector(15 DOWNTO 0);
 	SIGNAL data_memory : Dmemory_type;
     -- signal empty,one :  std_logic_vector(31 downto 0);
     signal out_SP, out_SP_in,reset_val : std_logic_vector(31 DOWNTO 0);
 
-	
+
 	BEGIN 
 
         -- begin with reset --> then enable
         -- empty <= (OTHERS=>'0');
         -- one <= (OTHERS=>'1');
-        
+
         reset_val <= "00000000000100000000000000000000";
         SP: dff port map(Clk,Rst,enable,reset_val,out_SP_in,out_SP);
 
@@ -76,16 +65,15 @@ ARCHITECTURE a_Dmemory OF Dmemory IS
                 --Write_data: R[Rsrc1], Read_data: R[Rdst], Address: aluRes
                 --R[ Rdst ] ← M[R[ Rsrc] + offset]; 
                 Read_data <= data_memory(to_integer(unsigned(Write_data)+unsigned(Address)));
-            
+
             --STD
             elsif (OP = "10011") then 
                 --Write_data: R[Rsrc1], Address: aluRes, Rscr2: R[ Rsrc2]
                 --M[R[ Rsrc2] + offset] ←R[Rsrc1];  
                 data_memory(to_integer(unsigned(Rscr2)+unsigned(Address))) <= Write_data;
-            
+
             END IF;
 
         end if;
         end process;
-
 END a_Dmemory ;

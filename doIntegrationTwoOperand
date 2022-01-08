@@ -57,6 +57,15 @@ sim:/integration/NFlag \
 sim:/integration/CFlag \
 sim:/integration/RegWrite \
 sim:/integration/aluResult \
+sim:/integration/ExecutionStage/Rsrc1 \
+sim:/integration/ExecutionStage/Input \
+sim:/integration/ExecutionStage/Rsrc2 \
+sim:/integration/ExecutionStage/Imm \
+sim:/integration/ExecutionStage/alu/result \
+sim:/integration/ExecutionStage/mux_8x1_Selector \
+sim:/integration/ExecutionStage/s_OUT_mux_8x1 \
+sim:/integration/ExecutionStage/mux_4x1_Selector \
+sim:/integration/ExecutionStage/s_OUT_mux_4x1 \
 sim:/integration/WB_To_Reg \
 sim:/integration/HLT \
 sim:/integration/SETC \

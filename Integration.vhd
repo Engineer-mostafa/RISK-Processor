@@ -249,11 +249,15 @@ BEGIN
     --let Write_data = R[Rdst]
     ccr_inD <= '0' & CFlag & NFlag & ZFlag;
     MemoryStage : MEM_STAGE GENERIC MAP(128) PORT MAP(exmemout, memwbin, clk, RSTs, enable_pc,
-    exmemin(19 DOWNTO 4), exmemin(116 DOWNTO 101), exmemout(63 DOWNTO 48), exmemin(19 DOWNTO 4),
-    exmemout(52 DOWNTO 50),exmemin(22 DOWNTO 20), exmemin(100 DOWNTO 69), exmemin(68 DOWNTO 64));
+    exmemout(19 DOWNTO 4), exmemout(116 DOWNTO 101), exmemout(63 DOWNTO 48), exmemout(19 DOWNTO 4),
+    exmemout(52 DOWNTO 50),exmemout(22 DOWNTO 20), exmemout(100 DOWNTO 69), exmemout(68 DOWNTO 64));
     -- buffer between memory and writeback
     -- memwbin(127 downto 112) : read data from memory
+
+    
     IMEM_IWB : generic_buffer GENERIC MAP(128) PORT MAP(memwbin, memwbout, clk, RSTs);
+
+
     WriteBack_Stage : WriteBackStage PORT MAP(memwbout(63 DOWNTO 48), memwbout(47 DOWNTO 32), 
     memwbout(19 DOWNTO 4), memwbout(30 downto 29), memwbout(23), result_WriteBackOutput_sig); 
     -- ALUresult , In_Data , WBtoReg /  result_WritingOutput

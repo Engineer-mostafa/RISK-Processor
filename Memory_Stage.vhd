@@ -60,5 +60,13 @@ begin
 	Write_data,Address, Rscr2,Right_INPUT_BUFFER(127 downto 112), empty_stack
 	);
 
+	process(clk)
+	BEGIN
+	IF(rising_edge(clk)) THEN
+
+	Right_INPUT_BUFFER <= Left_OUTPUT_BUFFER;
+
+	end if;
+end process;
 
 end arch_MEM_STAGE;

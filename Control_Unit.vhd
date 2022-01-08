@@ -1,101 +1,181 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 -- VHDL code for Control Unit of the MIPS Processor
 
 ------------------------------
 -- One Operand Control_Unit
 ------------------------------
+ENTITY control_unit_VHDL IS
+  PORT (
+    opcode : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+    reset : IN STD_LOGIC;
+
+    -- One Operand 
+    RegWrite, WB_To_Reg, HLT, SETC, RST, OUT_PORT_SIG, IN_PORT_SIG : OUT STD_LOGIC;
 
 
-entity control_unit_VHDL is
-port (
-  opcode: in std_logic_vector(4 downto 0);
-  reset: in std_logic;
-  RegWrite,WB_To_Reg,HLT,SETC,RST,OUT_PORT_SIG,IN_PORT_SIG: out std_logic
- );
-end control_unit_VHDL;
+    -- Two Operand
+    ALUs1 , PC_SOURCE     : OUT STD_LOGIC_VECTOR(1 downto 0);
+    ALUs2 , INT           : OUT STD_LOGIC
+  );
+END control_unit_VHDL;
+ARCHITECTURE Behavioral OF control_unit_VHDL IS
 
+BEGIN
+  PROCESS (reset, opcode)
+  BEGIN
+    IF (reset = '1') THEN
+      RegWrite <= '0';
+      WB_To_Reg <= '0';
+      HLT <= '0';
+      SETC <= '0';
+      OUT_PORT_SIG <= '0';
+      IN_PORT_SIG <= '0';
+      RST <= '1';
 
-architecture Behavioral of control_unit_VHDL is
+    ELSE
+      CASE opcode IS
 
-begin
-process(reset,opcode)
-begin
- if(reset = '1') then
-   RegWrite <= '0';
-   WB_To_Reg <= '0';
-   HLT <= '0';
-   SETC <= '0';
-   OUT_PORT_SIG <= '0';
-   IN_PORT_SIG <= '0';
-   RST <= '1';
-  
- else 
- case opcode is
-  when "00001" => --HLT
-   RegWrite <= '0';
-   WB_To_Reg <= '0';
-   HLT <= '1';
-   SETC <= '0';
-   OUT_PORT_SIG <= '0';
-   IN_PORT_SIG <= '0';
-   RST <= '0';
+          ------------------------------
+          -- One Operand 
+          ------------------------------
+        WHEN "00001" => --HLT
+          RegWrite <= '0';
+          WB_To_Reg <= '0';
+          HLT <= '1';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
 
-  when "00010" => -- SETC
-   RegWrite <= '0';
-   WB_To_Reg <= '0';
-   HLT <= '0';
-   SETC <= '1';
-   OUT_PORT_SIG <= '0';
-   IN_PORT_SIG <= '0';
-   RST <= '0';
+        WHEN "00010" => -- SETC
+          RegWrite <= '0';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '1';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
 
-  when "00011" => -- NOT Rdst
-   RegWrite <= '1';
-   WB_To_Reg <= '0';
-   HLT <= '0';
-   SETC <= '0';
-   OUT_PORT_SIG <= '0';
-   IN_PORT_SIG <= '0';
-   RST <= '0';  
+        WHEN "00011" => -- NOT Rdst
+          RegWrite <= '1';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
 
-  when "00100" => -- INC Rdst
-   RegWrite <= '1';
-   WB_To_Reg <= '0';
-   HLT <= '0';
-   SETC <= '0';
-   OUT_PORT_SIG <= '0';
-   IN_PORT_SIG <= '0';
-   RST <= '0';  
+        WHEN "00100" => -- INC Rdst
+          RegWrite <= '1';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
 
-  when "00101" => -- OUT Rdst
-   RegWrite <= '0';
-   WB_To_Reg <= '0';
-   HLT <= '0';
-   SETC <= '0';
-   OUT_PORT_SIG <= '1';
-   IN_PORT_SIG <= '0';
-   RST <= '0';
+        WHEN "00101" => -- OUT Rdst
+          RegWrite <= '0';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '1';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
 
-  when "00110" => -- IN Rdst
-   RegWrite <= '1';
-   WB_To_Reg <= '1';
-   HLT <= '0';
-   SETC <= '0';
-   OUT_PORT_SIG <= '0';
-   IN_PORT_SIG <= '1';
-   RST <= '0';    
+        WHEN "00110" => -- IN Rdst
+          RegWrite <= '1';
+          WB_To_Reg <= '1';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '1';
+          RST <= '0';
 
-  when others =>   -- Like NOP
-   RegWrite <= '0';
-   WB_To_Reg <= '0';
-   HLT <= '0';
-   SETC <= '0';
-   OUT_PORT_SIG <= '0';
-   IN_PORT_SIG <= '0';
-   RST <= '0';    
- end case;
- end if;
-end process;
+          ------------------------------
+          -- Two Operand 
+          ------------------------------
 
-end Behavioral;
+          WHEN "01000" => -- MOV Rsrc, Rdst
+          RegWrite <= '1';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
+          PC_SOURCE <= "00";
+          ALUs1 <= "00";
+          ALUs2 <= '0';
+          INT <= '0';
+
+          WHEN "01001" => -- ADD Rdst, Rsrc1, Rsrc2
+          RegWrite <= '1';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
+          PC_SOURCE <= "00";
+          ALUs1 <= "00";
+          ALUs2 <= '0';
+          INT <= '0';
+
+          WHEN "01010" => -- SUB Rdst,Rsrc1, Rsrc2
+          RegWrite <= '1';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
+          PC_SOURCE <= "00";
+          ALUs1 <= "00";
+          ALUs2 <= '0';
+          INT <= '0';
+
+          WHEN "01011" => -- AND Rdst, Rsrc1, Rsrc2
+          RegWrite <= '1';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
+          PC_SOURCE <= "00";
+          ALUs1 <= "00";
+          ALUs2 <= '0';
+          INT <= '0';
+
+          WHEN "10000" => -- IADD Rdst, Rsrc,Imm
+          RegWrite <= '1';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
+          PC_SOURCE <= "00";
+          ALUs1 <= "00";
+          ALUs2 <= '1';
+          INT <= '0';
+
+        WHEN OTHERS => -- Like NOP
+          RegWrite <= '0';
+          WB_To_Reg <= '0';
+          HLT <= '0';
+          SETC <= '0';
+          OUT_PORT_SIG <= '0';
+          IN_PORT_SIG <= '0';
+          RST <= '0';
+          PC_SOURCE <= "00";
+          ALUs1 <= "00";
+          ALUs2 <= '0';
+          INT <= '0';
+      END CASE;
+    END IF;
+  END PROCESS;
+
+END Behavioral;

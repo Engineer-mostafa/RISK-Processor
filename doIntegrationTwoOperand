@@ -104,5 +104,11 @@ run
 force -freeze sim:/integration/in_port x\"FFFF\" 0
 run
 force -freeze sim:/integration/in_port x\"F320\" 0
+run
+run
+run
+run
+run
+run
 
 

@@ -11,11 +11,11 @@ ENTITY control_unit_VHDL IS
     reset : IN STD_LOGIC;
 
     -- One Operand 
-    RegWrite, WB_To_Reg, HLT, SETC, RST, OUT_PORT_SIG, IN_PORT_SIG : OUT STD_LOGIC;
+    RegWrite, HLT, SETC, RST, OUT_PORT_SIG, IN_PORT_SIG : OUT STD_LOGIC;
 
 
     -- Two Operand
-    ALUs1 , PC_SOURCE     : OUT STD_LOGIC_VECTOR(1 downto 0);
+    ALUs1 , PC_SOURCE ,WB_To_Reg    : OUT STD_LOGIC_VECTOR(1 downto 0);
     ALUs2 , INT           : OUT STD_LOGIC
   );
 END control_unit_VHDL;
@@ -26,7 +26,7 @@ BEGIN
   BEGIN
     IF (reset = '1') THEN
       RegWrite <= '0';
-      WB_To_Reg <= '0';
+      WB_To_Reg <= "00";
       HLT <= '0';
       SETC <= '0';
       OUT_PORT_SIG <= '0';
@@ -41,7 +41,7 @@ BEGIN
           ------------------------------
         WHEN "00001" => --HLT
           RegWrite <= '0';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "00";
           HLT <= '1';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -50,7 +50,7 @@ BEGIN
 
         WHEN "00010" => -- SETC
           RegWrite <= '0';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "00";
           HLT <= '0';
           SETC <= '1';
           OUT_PORT_SIG <= '0';
@@ -59,7 +59,7 @@ BEGIN
 
         WHEN "00011" => -- NOT Rdst
           RegWrite <= '1';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "01";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -68,7 +68,7 @@ BEGIN
 
         WHEN "00100" => -- INC Rdst
           RegWrite <= '1';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "01";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -77,7 +77,7 @@ BEGIN
 
         WHEN "00101" => -- OUT Rdst
           RegWrite <= '0';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "01";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '1';
@@ -86,7 +86,7 @@ BEGIN
 
         WHEN "00110" => -- IN Rdst
           RegWrite <= '1';
-          WB_To_Reg <= '1';
+          WB_To_Reg <= "10";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -99,7 +99,7 @@ BEGIN
 
           WHEN "01000" => -- MOV Rsrc, Rdst
           RegWrite <= '1';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "01";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -112,7 +112,7 @@ BEGIN
 
           WHEN "01001" => -- ADD Rdst, Rsrc1, Rsrc2
           RegWrite <= '1';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "01";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -125,7 +125,7 @@ BEGIN
 
           WHEN "01010" => -- SUB Rdst,Rsrc1, Rsrc2
           RegWrite <= '1';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "01";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -138,7 +138,7 @@ BEGIN
 
           WHEN "01011" => -- AND Rdst, Rsrc1, Rsrc2
           RegWrite <= '1';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "01";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -151,7 +151,7 @@ BEGIN
 
           WHEN "10000" => -- IADD Rdst, Rsrc,Imm
           RegWrite <= '1';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "01";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';
@@ -164,7 +164,7 @@ BEGIN
 
         WHEN OTHERS => -- Like NOP
           RegWrite <= '0';
-          WB_To_Reg <= '0';
+          WB_To_Reg <= "00";
           HLT <= '0';
           SETC <= '0';
           OUT_PORT_SIG <= '0';

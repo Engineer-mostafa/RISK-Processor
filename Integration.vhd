@@ -18,10 +18,10 @@ ARCHITECTURE arch1 OF integration IS
         PORT (
             opcode : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
             reset : IN STD_LOGIC;
-            RegWrite, WB_To_Reg, HLT, SETC, RST, OUT_PORT_SIG, IN_PORT_SIG : OUT STD_LOGIC;
+            RegWrite, HLT, SETC, RST, OUT_PORT_SIG, IN_PORT_SIG : OUT STD_LOGIC;
 
             -- Two Operand
-            ALUs1, PC_SOURCE : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+            ALUs1, PC_SOURCE , WB_To_Reg : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
             ALUs2, INT : OUT STD_LOGIC
         );
     END COMPONENT;
@@ -115,14 +115,14 @@ ARCHITECTURE arch1 OF integration IS
             ALUresult : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
             In_Data : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
             RdstData : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-            WBtoReg : IN STD_LOGIC;
+            WBtoReg : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
             out_signal : IN STD_LOGIC;
             result_WritingOutput : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
         );
     END COMPONENT;
     SIGNAL Instruction, NewPc : STD_LOGIC_VECTOR(31 DOWNTO 0);
     -- SIGNAL InstructionOut,NewPcOut:  std_logic_vector(31 DOWNTO 0);
-    SIGNAL RegWrite, WB_To_Reg, HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG : STD_LOGIC;
+    SIGNAL RegWrite, HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG : STD_LOGIC;
     SIGNAL alwayson : STD_LOGIC := '1';
     SIGNAL PCSrc : STD_LOGIC_VECTOR(1 DOWNTO 0);
     SIGNAL pc_01, pc_10 : STD_LOGIC_VECTOR(31 DOWNTO 0); --> Need to connect this
@@ -149,7 +149,7 @@ ARCHITECTURE arch1 OF integration IS
     SIGNAL Cycle : INTEGER;
 
     -- Two Operand
-    SIGNAL ALUs1, PC_SOURCE : STD_LOGIC_VECTOR(1 DOWNTO 0);
+    SIGNAL ALUs1, PC_SOURCE, WB_To_Reg : STD_LOGIC_VECTOR(1 DOWNTO 0);
     SIGNAL ALUs2, INT : STD_LOGIC;
 
 
@@ -159,7 +159,7 @@ BEGIN
     rti_signal <= '0'; -- Need to send this from the control unit instead
 
     -- The Control Unit
-    cu : control_unit_VHDL PORT MAP(opcode, rst, RegWrite, WB_To_Reg, HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG, ALUs1, PC_SOURCE, ALUs2, INT);
+    cu : control_unit_VHDL PORT MAP(opcode, rst, RegWrite,  HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG, ALUs1, PC_SOURCE, WB_To_Reg , ALUs2, INT);
     -- Need to add extrabits to it as input.
 
     -- The Fetch Stage:
@@ -174,12 +174,12 @@ BEGIN
     -- The Decode Stage:
     ds : decode_stage GENERIC MAP(
         n) PORT MAP(ifidout(63 DOWNTO 32), ifidout(31 DOWNTO 0), pc_outD, opcode,
-        rsrc1addrD, rsrc2addrD, rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, memwbout(31), IN_PORT_SIG, memwbout(24), in_port, in_dataD, out_port,
-        memwbout(23 DOWNTO 21), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, aluOP, sp_inD, sp_outD, int_signal, rti_signal);
+        rsrc1addrD, rsrc2addrD, rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, memwbout(31), IN_PORT_SIG, memwbout(23), in_port, in_dataD, out_port,
+        memwbout(22 DOWNTO 20), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, aluOP, sp_inD, sp_outD, int_signal, rti_signal);
     -- The Buffer between the Decode and Execute Stages.
     idex : generic_buffer GENERIC MAP(256) PORT MAP(idexin, idexout, clk, RSTs);
-    idexin(255 DOWNTO 166) <= (OTHERS => '0');
-
+    idexin(255 DOWNTO 167) <= (OTHERS => '0');
+    idexin(166) <= SETC; -- SETC Signal                ( 1 bit )
     -- Two Operand
     idexin(171) <= INT;         -- inturupt (1 bit)
     idexin(170) <= ALUs2;       -- inturselector of the second input for alu upt (1 bit)
@@ -205,8 +205,7 @@ BEGIN
     -- Memory Signals:
     -- Write Back Signals:
     idexin(2) <= RegWrite; -- RegWrite Signal            ( 1 bit )
-    idexin(1) <= WB_To_Reg; -- WB_To_Reg Signal           ( 1 bit )
-    idexin(0) <= SETC; -- SETC Signal                ( 1 bit )
+    idexin(1 downto 0) <= WB_To_Reg; -- WB_To_Reg Signal           ( 1 bit )
     -- idexin(2 DOWNTO 0) <= (OTHERS => '0');
     oldZero_Flag <= idexout(3);
     oldNegative_Flag <= idexout(4);
@@ -220,17 +219,17 @@ BEGIN
     -- buffer between execution and memory
     IEX_IMEM : generic_buffer GENERIC MAP(64) PORT MAP(exmemin, exmemout, clk, RSTs);
                             -- input -> aluresult + inData / output -> aluresult + inData
-    exmemin(63 DOWNTO 24) <= aluResult & idexout(70 DOWNTO 55) & idexout(2) & idexout(1) & CFlag & NFlag & ZFlag & idexout(0) & RSTs & idexout(165) ;
-    exmemin(23 DOWNTO 21) <= idexout(89 DOWNTO 87);
-    exmemin(20 DOWNTO 5) <= idexout(22 DOWNTO 7);
-    exmemin(4 DOWNTO 0) <= (OTHERS => '0');
-    -- 16<63,48> + 16<47,32> + 1<31> +     1<30>   + 1<29> + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> = 40
+    exmemin(63 DOWNTO 23) <= aluResult & idexout(70 DOWNTO 55) & idexout(2) & idexout(1 downto 0) & CFlag & NFlag & ZFlag & idexout(166) & RSTs & idexout(165) ;
+    exmemin(22 DOWNTO 20) <= idexout(89 DOWNTO 87);
+    exmemin(19 DOWNTO 4) <= idexout(22 DOWNTO 7);
+    exmemin(3 DOWNTO 0) <= (OTHERS => '0');
+    -- 16<63,48> + 16<47,32> + 1<31> +     2<30 , 29>   + 1<28> + 1<27> + 1<26> + 1<25> + 1<24> + 1<23> = 41
 
     ccr_inD <= '0' & CFlag & NFlag & ZFlag;
     MemoryStage : MEM_STAGE GENERIC MAP(64) PORT MAP(exmemout, memwbin, clk);
     -- buffer between memory and writeback
     IMEM_IWB : generic_buffer GENERIC MAP(64) PORT MAP(memwbin, memwbout, clk, RSTs);
-    WriteBack_Stage : WriteBackStage PORT MAP(memwbout(63 DOWNTO 48), memwbout(47 DOWNTO 32), memwbout(20 DOWNTO 5), memwbout(30), memwbout(24), result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
+    WriteBack_Stage : WriteBackStage PORT MAP(memwbout(63 DOWNTO 48), memwbout(47 DOWNTO 32), memwbout(19 DOWNTO 4), memwbout(30 downto 29), memwbout(23), result_WriteBackOutput_sig); -- ALUresult , In_Data , WBtoReg /  result_WritingOutput
 
     PROCESS (clk, rst)
     BEGIN

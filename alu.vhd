@@ -11,7 +11,6 @@ USE IEEE.numeric_std.ALL;
 ENTITY ALU_VHDL IS
   PORT (
     -- One Operand 
-    Input1 : IN STD_LOGIC_VECTOR(15 DOWNTO 0); --  Rdst
     opcode : IN STD_LOGIC_VECTOR(4 DOWNTO 0); -- function select
     alu_result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0); -- ALU Output Result
     oldZero_Flag, oldNegative_Flag, oldCarry_Flag : IN STD_LOGIC;
@@ -21,7 +20,7 @@ ENTITY ALU_VHDL IS
     
     
     -- Two Operand 
-    Rsrc1 , Rsrc2 , Imm : IN STD_LOGIC_VECTOR(15 DOWNTO 0) -- Rsrc1 , Rsrc 2 , Imm
+    Rsrc1 , Rsrc2 : IN STD_LOGIC_VECTOR(15 DOWNTO 0) -- Rsrc1 , Rsrc 2 , Rdst , Imm
     );
 END ALU_VHDL;
 
@@ -51,15 +50,17 @@ BEGIN
   
   WITH opcode SELECT result <=
     -- One Operand 
-    '0' & NOT (Input1) WHEN "00011", -- NOT Rdst
-    STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Input1)) + 1, 17)) WHEN "00100", -- INC Rdst
-    '0' & Input1  WHEN "00101", -- OUT Rdst
+    '0' & NOT (Rsrc1) WHEN "00011", -- NOT Rdst
+    STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) + 1, 17)) WHEN "00100", -- INC Rdst
+    '0' & Rsrc1  WHEN "00101", -- OUT Rdst
+    
+    
     -- Two Operand 
-    '0' & Rsrc1  WHEN "01000", -- MOV Rsrc, Rdst
+    ('1' & Rsrc1)  WHEN "01000", -- MOV Rsrc, Rdst
     STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) + to_integer(unsigned(Rsrc2)), 17)) WHEN "01001",  -- ADD Rdst, Rsrc1, Rsrc2
     STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) - to_integer(unsigned(Rsrc2)), 17)) WHEN "01010",  -- SUB Rdst,Rsrc1, Rsrc2
     '0' & (Rsrc1 AND Rsrc2) WHEN "01011",                                                                       -- AND Rdst, Rsrc1, Rsrc2     
-    STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) + to_integer(unsigned(Imm)), 17)) WHEN "10000",    -- IADD Rdst, Rsrc,Imm    
+    STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) + to_integer(unsigned(Rsrc2)), 17)) WHEN "10000",    -- IADD Rdst, Rsrc,Imm    
     (OTHERS => '0') WHEN OTHERS; -- Others
   alu_result <= result(15 DOWNTO 0);
 END Behavioral;

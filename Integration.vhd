@@ -165,6 +165,7 @@ BEGIN
     -- The Fetch Stage:
     fetchs : fetch PORT MAP(HLT, clk, RSTs, enable_pc, PCSrc, pc_01, pc_10, NewPc, Instruction);
 
+
     -- The Buffer between the Fetch and Decode Stages.
     ifid : generic_buffer GENERIC MAP(64) PORT MAP(ifidin, ifidout, clk, RSTs);
     ifidin(63 DOWNTO 32) <= Instruction; -- Fetched Instruction (32 bits)
@@ -240,3 +241,4 @@ BEGIN
         END IF;
     END PROCESS;
 END arch1;
+

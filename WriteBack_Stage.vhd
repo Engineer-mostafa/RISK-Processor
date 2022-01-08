@@ -8,7 +8,7 @@ Port(
 	ALUresult 			: in std_logic_vector(15 downto 0);
 	In_Data	  			: in std_logic_vector(15 downto 0);
 	RdstData	  		: in std_logic_vector(15 downto 0);
-	WBtoReg 			: in std_logic;
+	WBtoReg 			: in std_logic_vector(1 downto 0);
 	out_signal			: in std_logic;
 	result_WritingOutput		: out std_logic_vector(15 downto 0)
 );
@@ -36,14 +36,12 @@ COMPONENT mux_4x1 is
 end COMPONENT ;
 
 SIGNAL Empty: std_logic_vector(15 downto 0);
-SIGNAL MuxSelect: std_logic_vector(1 DOWNTO 0);
 
 begin
 
 	Empty <= (OTHERS => '0');
-	MuxSelect <= out_signal & WBtoReg;
 
- 	mux : mux_4x1 GENERIC MAP(m => 16) PORT MAP(ALUresult, In_Data, RdstData, Empty, MuxSelect, result_WritingOutput); 
+ 	mux : mux_4x1 GENERIC MAP(m => 16) PORT MAP(Empty , ALUresult,  In_Data, RdstData,  WBtoReg, result_WritingOutput); 
 
 
 

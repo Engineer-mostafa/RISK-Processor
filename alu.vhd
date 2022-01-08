@@ -53,7 +53,7 @@ BEGIN
     -- One Operand 
     '0' & NOT (Input1) WHEN "00011", -- NOT Rdst
     STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Input1)) + 1, 17)) WHEN "00100", -- INC Rdst
-
+    '0' & Input1  WHEN "00101", -- OUT Rdst
     -- Two Operand 
     '0' & Rsrc1  WHEN "01000", -- MOV Rsrc, Rdst
     STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) + to_integer(unsigned(Rsrc2)), 17)) WHEN "01001",  -- ADD Rdst, Rsrc1, Rsrc2

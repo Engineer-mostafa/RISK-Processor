@@ -135,17 +135,20 @@ BEGIN
 
     PROCESS (clk)
     BEGIN
+        -- IF(falling_edge(clk) AND RegWrite='1') THEN
+        --     reglist(to_integer(unsigned(reg_write_dest))) <= write_data;
+        -- END IF;
 
-
-        IF(out_signal='1') THEN
-                out_port <= write_data;
-           END IF;
+        IF (rising_edge(clk) AND out_signal = '1') THEN
+            out_port <= write_data;
+        END IF;
         IF (in_signal = '1') THEN
             in_data <= in_port;
         END IF;
       
     END PROCESS;
-
+    --read_data_1 <= reglist(to_integer(unsigned(reg_read_addr_1)));
+    --read_data_2 <= reglist(to_integer(unsigned(reg_read_addr_2)));
 
     andeden0 <= (write_ens(0) AND RegWrite);
     andeden1 <= (write_ens(1) AND RegWrite);
@@ -167,4 +170,3 @@ BEGIN
     p7 <= q7;
 
 END arch1;
-

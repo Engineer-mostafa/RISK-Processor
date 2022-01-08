@@ -15,7 +15,7 @@ END ENTITY memory ;
 
 ARCHITECTURE a_memory OF memory IS
 
-	TYPE memory_type IS ARRAY(0 TO (2**20)-1) OF std_logic_vector(15 DOWNTO 0);
+	TYPE memory_type IS ARRAY(0 TO (2**20)) OF std_logic_vector(15 DOWNTO 0);
 	SIGNAL inst_memory : memory_type;
 	SIGNAL temp,temp1 : std_logic_vector(31 DOWNTO 0);
 	-- SIGNAL  countery : std_logic_vector(3 downto 0) := "0000";

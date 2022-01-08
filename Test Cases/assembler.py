@@ -62,30 +62,26 @@ oldfname.pop()
 outfilename = ''.join(oldfname) + '.mem'
 outfile = open(outfilename, 'w+')
 outfile.write('// format=mti addressradix=h dataradix=b version=1.0 wordsperline=1\n')
-addresses_dict = {}
-memaddress = 0
+currentaddress = 0
 for i in range(len(lines)):    
     if lines[i].startswith('.ORG'):
         #print('Split =',lines[i].split(' ')[1])
         memaddress = int(lines[i].split(' ')[1], 16)
-        print('Before: Memory Address=',memaddress)
-        # while memaddress> currentaddress :
-        #     outfile.write(format(currentaddress, 'X')+': '+emptymemaddress+'\n')
-        #     currentaddress += 1
+        #print('Before: Memory Address=',memaddress,'Current Address',currentaddress)
+        while memaddress> currentaddress :
+            outfile.write(format(currentaddress, 'X')+': '+emptymemaddress+'\n')
+            currentaddress += 1
         i+=1
-        addresses_dict[memaddress] = ''
         if all(c in string.hexdigits for c in lines[i]):
             #print('Entered if')
             #print(lines[i])
             if int(lines[i], 16) < 65536: #Then the first will contain the address and the 2nd will contain zeros
-                # outfile.write(format(memaddress, 'X')+': '+( bin(int(lines[i], 16))[2:] ).zfill(16)+'\n')
-                addresses_dict[memaddress] = format(memaddress, 'X')+': '+( bin(int(lines[i], 16))[2:] ).zfill(16)+'\n'
-                memaddress += 1
-                # outfile.write(format(memaddress, 'X')+': '+zeromemaddress+'\n')
-                addresses_dict[memaddress] = format(memaddress, 'X')+': '+zeromemaddress+'\n'
-                memaddress += 1
-            # else: # Split the address into the 2 memory addresses (Very rare for our testcases so I'll write it's handeling later)
-            #     longaddress =  bin(int(lines[i], 16))
+                outfile.write(format(currentaddress, 'X')+': '+( bin(int(lines[i], 16))[2:] ).zfill(16)+'\n')
+                currentaddress += 1
+                outfile.write(format(currentaddress, 'X')+': '+zeromemaddress+'\n')
+                currentaddress += 1
+            else: # Split the address into the 2 memory addresses (Very rare for our testcases so I'll write it's handeling later)
+                longaddress =  bin(int(lines[i], 16))
                 # outfile.write(format(currentaddress, 'X')+': '+emptymemaddress+'\n')
                 # currentaddress += 1
                 # outfile.write(format(currentaddress, 'X')+': '+( bin(int(lines[i+1], 16)) ).zfill(16)+'\n')
@@ -99,49 +95,49 @@ for i in range(len(lines)):
             instwords = [x.strip() for x in instwords] #Remove Extra WhiteSpace
             instwords = [i for i in instwords if i]    #Remove Empty string elements
             # Write the OpCode + Fn (5 bits)
-            addresses_dict[memaddress] = format(memaddress, 'X')+': '+opCodes[j]
+            outfile.write(format(currentaddress, 'X')+': '+opCodes[j])
             print('Instwords=',instwords,'Lines[i]=',lines[i],'j=',j,'Opcode[j]=', opCodes[j])
             # Check if the instruction is INT:
             if instwords[0] == 'INT':
                 if instwords[1] == '0': #Case of index = 0
-                    addresses_dict[memaddress] += '00000000000\n'
+                    outfile.write('00000000000\n')
                 else:# Case of index = 2
-                    addresses_dict[memaddress] += '00000000010\n'
-                memaddress += 1
+                    outfile.write('00000000010\n')
+                currentaddress += 1
                 break
             # Check if the instruction is MOV:
             if instwords[0] == 'MOV':
-                addresses_dict[memaddress] += opCodes[instwords[1]]+'000'+opCodes[instwords[2]]+'00\n'
-                memaddress += 1
+                outfile.write(opCodes[instwords[1]]+'000'+opCodes[instwords[2]]+'00\n')
+                currentaddress += 1
                 break
             # Check if the instruction is STD:
             if instwords[0] == 'STD':
                 offset = instwords[2].split('(')[0]
                 Rsrc2 = instwords[2].split('(')[1].split(')')[0]
-                addresses_dict[memaddress] +=opCodes[instwords[1]]+opCodes[Rsrc2]+'00000\n'
-                memaddress += 1
+                outfile.write(opCodes[instwords[1]]+opCodes[Rsrc2]+'00000\n')
+                currentaddress += 1
                 offset = ( bin(int(offset, 16))[2:] ).zfill(16)
-                addresses_dict[memaddress] = format(memaddress, 'X')+': '+offset+'\n'
-                memaddress += 1
+                outfile.write(format(currentaddress, 'X')+': '+offset+'\n')
+                currentaddress += 1
                 break
             # Check if the instruction is LDD:
             if instwords[0] == 'LDD':
                 offset = instwords[2].split('(')[0]
                 Rsrc = instwords[2].split('(')[1].split(')')[0]
-                addresses_dict[memaddress] += opCodes[Rsrc]+'000'+opCodes[instwords[1]]+'00\n'
-                memaddress += 1
+                outfile.write(opCodes[Rsrc]+'000'+opCodes[instwords[1]]+'00\n')
+                currentaddress += 1
                 offset = ( bin(int(offset, 16))[2:] ).zfill(16)
-                addresses_dict[memaddress] = format(memaddress, 'X')+': '+offset+'\n'
-                memaddress += 1
+                outfile.write(format(currentaddress, 'X')+': '+offset+'\n')
+                currentaddress += 1
                 break
             # Check if the instruction is LDM:
             if instwords[0] == 'LDM':
                 # Write the address of Rdst and the rest is Zeros
-                addresses_dict[memaddress] += '000000'+opCodes[instwords[1]]+'00\n'
-                memaddress += 1
+                outfile.write('000000'+opCodes[instwords[1]]+'00\n')
+                currentaddress += 1
                 immediate = ( bin(int(instwords[2], 16))[2:] ).zfill(16)
-                addresses_dict[memaddress] = format(memaddress, 'X')+': '+immediate+'\n'
-                memaddress += 1
+                outfile.write(format(currentaddress, 'X')+': '+immediate+'\n')
+                currentaddress += 1
                 break
 
             # If the instruction is not INT or MOV or STD or LDD or LDM:
@@ -151,14 +147,14 @@ for i in range(len(lines)):
             # If the instruction doesn't have any operands
             if len(instwords) == 0:
                 # Write the 11 bits remaining as Zeros
-                addresses_dict[memaddress] += inbinary+'\n'
-                memaddress += 1
+                outfile.write(inbinary+'\n')
+                currentaddress += 1
                 break
             # If the instruction has only operand which is luckily always Rdst
             if len(instwords) == 1:
                 # Write the address of Rdst and the rest is Zeros
-                addresses_dict[memaddress] += '000000'+opCodes[instwords[0]]+'00\n'
-                memaddress += 1
+                outfile.write('000000'+opCodes[instwords[0]]+'00\n')
+                currentaddress += 1
                 break
             
             # Mainly if the instruction is ADD or SUB or AND or IADD:
@@ -171,26 +167,16 @@ for i in range(len(lines)):
             print('Inbinary=',inbinary)
             # # Write the 2 extra bits first
             # outfile.write('00\n')
-            addresses_dict[memaddress] += inbinary+'\n'
-            memaddress += 1
+            outfile.write(inbinary+'\n')
+            currentaddress += 1
 
             # Check for immediate in case of IADD
             if immediate != '':
                 immediateinbin = ( bin(int(immediate, 16))[2:] ).zfill(16)
-                addresses_dict[memaddress] = format(memaddress, 'X')+': '+immediateinbin+'\n'
-                memaddress += 1
+                outfile.write(format(currentaddress, 'X')+': '+immediateinbin+'\n')
+                currentaddress += 1
             break
 
-currentaddress = 0
-print(addresses_dict)
-
-for i in sorted (addresses_dict) :
-    print ((i, addresses_dict[i]))
-    while i> currentaddress :
-        outfile.write(format(currentaddress, 'X')+': '+emptymemaddress+'\n')
-        currentaddress += 1
-    currentaddress = i+1
-    outfile.write(addresses_dict[i])
 # Fill the rest of the memory with Xs, since memory is 1 MB (2^20)
 while currentaddress <= int('FFFFF', 16):
     outfile.write(format(currentaddress, 'X')+': '+emptymemaddress+'\n')

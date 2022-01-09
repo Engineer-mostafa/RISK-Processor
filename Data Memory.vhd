@@ -9,10 +9,10 @@ ENTITY Dmemory IS
     );
     PORT (
         -- MemRead, MemWrite,
-        Clk, Rst, enable : IN STD_LOGIC;
-        OP : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-        Write_data, Address, Rscr2 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+        Clk, Rst, enable, MemRead, MemWrite, allowStack : IN STD_LOGIC;
+        Address : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
         Read_data : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+        Write_data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
         empty_stack : OUT STD_LOGIC
     );
 END ENTITY Dmemory;
@@ -20,16 +20,17 @@ END ENTITY Dmemory;
 ARCHITECTURE a_Dmemory OF Dmemory IS
 
     COMPONENT dff IS
-        PORT (
-            clk, rst, en : IN STD_LOGIC;
-            reset_value : IN STD_LOGIC_VECTOR(n - 1 DOWNTO 0);
-            d : IN STD_LOGIC_VECTOR(n - 1 DOWNTO 0);
-            q : OUT STD_LOGIC_VECTOR(n - 1 DOWNTO 0));
-
+    GENERIC ( n : integer :=32 );
+	PORT(clk,rst,en : IN std_logic;
+	     reset_value: IN std_logic_vector(n - 1 DOWNTO 0); --reem
+	     --edge_signal: IN std_logic; --0:rise, 1:fall --reem
+	     d : IN std_logic_vector(n - 1 DOWNTO 0);
+	     q : OUT std_logic_vector(n - 1 DOWNTO 0));
     END COMPONENT;
 
     TYPE Dmemory_type IS ARRAY(0 TO (2 ** 20) - 1) OF STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL data_memory : Dmemory_type;
+    SIGNAL extendedAluResult, actual_mem_Address : STD_LOGIC_VECTOR(19 DOWNTO 0);
     -- signal empty,one :  std_logic_vector(31 downto 0);
     SIGNAL out_SP, out_SP_in, reset_val : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
@@ -39,22 +40,46 @@ BEGIN
     -- one <= (OTHERS=>'1');
 
     reset_val <= "00000000000100000000000000000000";
-    SP : dff PORT MAP(Clk, Rst, enable, reset_val, out_SP_in, out_SP);
+    extendedAluResult <= "0000" & Address;
+
+    SP : dff Generic Map(32) PORT MAP(Clk, Rst, enable, reset_val, out_SP_in, out_SP);
 
     PROCESS (Clk)
     BEGIN
-        IF (rising_edge(Clk)) THEN
-            -- push
-            IF (OP = "01100") THEN
-                --dec SP
+
+        -- write on rising edge omly
+        -- reading on every time (rising and falling)
+        IF (allowStack = '1') THEN
+            IF (MemWrite = '1') THEN
                 out_SP_in <= STD_LOGIC_VECTOR(unsigned(out_SP_in) - 1);
+            ELSIF (MemRead = '1') THEN
+                out_SP_in <= STD_LOGIC_VECTOR(unsigned(out_SP_in) + 1);
+            END IF;
+        END IF;
 
-                --put in memory Rdst value
-                data_memory(to_integer(unsigned(out_SP_in(19 DOWNTO 0)))) <= Write_data;
-                empty_stack <= '0';
+        IF (rising_edge(Clk)) THEN
+            -- push   --pop
+            IF (allowStack = '1') THEN
+                --dec SP
+                IF (MemWrite = '1') THEN
+                    --put in memory Rdst value
+                    data_memory(to_integer(unsigned(out_SP(19 DOWNTO 0)))) <= Write_data(15 DOWNTO 0);
+                    empty_stack <= '0';
+                END IF;
+            ELSE
+                IF (MemWrite = '1') THEN
 
-                --pop
-            ELSIF (OP = "01101") THEN
+                    --STD
+                    --Write_data: R[Rsrc1], Address: aluRes, Rscr2: R[ Rsrc2]
+                    --M[R[ Rsrc2] + offset] ←R[Rsrc1];  
+                    data_memory(to_integer(unsigned(Address))) <= Write_data(15 DOWNTO 0);
+                END IF;
+
+            END IF;
+        END IF;
+
+        IF (allowStack = '1') THEN
+            IF (MemRead = '1') THEN
                 --check empty stack
                 IF (out_SP = reset_val) THEN
                     empty_stack <= '1';
@@ -62,27 +87,16 @@ BEGIN
                     --update read data(R[Rdst])
                     Read_data <= data_memory(to_integer(unsigned(out_SP(19 DOWNTO 0))));
                     --inc SP
-                    out_SP_in <= STD_LOGIC_VECTOR(unsigned(out_SP_in) + 1);
                     empty_stack <= '0';
                 END IF;
-
-                --LDM
-            ELSIF (OP = "10000") THEN
-                Read_data <= Write_data;
-
-                --LDD
-            ELSIF (OP = "10010") THEN
-                --Write_data: R[Rsrc1], Read_data: R[Rdst], Address: aluRes
-                --R[ Rdst ] ← M[R[ Rsrc] + offset]; 
-                Read_data <= data_memory(to_integer(unsigned(Write_data) + unsigned(Address)));
-
-                --STD
-            ELSIF (OP = "10011") THEN
-                --Write_data: R[Rsrc1], Address: aluRes, Rscr2: R[ Rsrc2]
-                --M[R[ Rsrc2] + offset] ←R[Rsrc1];  
-                data_memory(to_integer(unsigned(Rscr2) + unsigned(Address))) <= Write_data;
-
             END IF;
+        ELSIF (MemRead = '1') THEN
+
+            -- Read_data <= Write_data;
+            --     --LDM                                        ----------------------- Don't Forget To update alu
+            -- ELSIF (OP = "10000") THEN
+
+            Read_data <= data_memory(to_integer(unsigned(Address)));
 
         END IF;
     END PROCESS;

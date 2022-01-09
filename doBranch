@@ -1,0 +1,141 @@
+vsim -gui work.integration
+# vsim -gui work.integration 
+# Start time: 21:19:13 on Dec 23,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.integration(arch1)
+# Loading work.control_unit_vhdl(behavioral)
+# Loading work.fetch(a_fetch)
+# Loading work.dff(a_dff)
+# Loading work.adder(a_adder)
+# Loading work.mux_4x1(a_mux_4x1)
+# Loading work.mux_2x1(a_mux_2x1)
+# Loading work.memory(a_memory)
+# Loading work.generic_buffer(behavioralgeneric_buffer)
+# Loading work.decode_stage(arch1)
+# Loading work.register_file(arch1)
+# Loading work.dff_fedge(a_dff)
+# Loading work.decoder3x8(arch1)
+# Loading work.tristate_buffer(arch1)
+# Loading work.exstage(arch_exstage)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading work.alu_vhdl(behavioral)
+# Loading work.mem_stage(arch_mem_stage)
+# Loading work.writebackstage(arch_writebackstage)
+add wave -unsigned -position insertpoint  \
+sim:/integration/Cycle
+add wave -position insertpoint  \
+sim:/integration/WriteBack_Stage/mux/sel
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/write_reg
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/write_data
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/read_data_1
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/read_data_2
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/read_data_3
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/read_reg3
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/out_signal
+add wave -position insertpoint  \
+sim:/integration/ds/regfile/out_port
+add wave -position insertpoint  \
+sim:/integration/clk \
+sim:/integration/rst \
+sim:/integration/in_port \
+sim:/integration/out_port \
+sim:/integration/Instruction \
+sim:/integration/NewPc \
+sim:/integration/enable_pc \
+sim:/integration/pc_outD \
+sim:/integration/read_data_3D \
+sim:/integration/opcode \
+sim:/integration/ccr_inD \
+sim:/integration/ccr_outD \
+sim:/integration/ZFlag \
+sim:/integration/NFlag \
+sim:/integration/CFlag \
+sim:/integration/RegWrite \
+sim:/integration/aluResult \
+sim:/integration/WB_To_Reg \
+sim:/integration/HLT \
+sim:/integration/SETC \
+sim:/integration/RSTs \
+sim:/integration/OUT_PORT_SIG \
+sim:/integration/IN_PORT_SIG \
+sim:/integration/ifidin \
+sim:/integration/ifidout \
+sim:/integration/idexin \
+sim:/integration/idexout \
+sim:/integration/exmemin \
+sim:/integration/exmemout \
+sim:/integration/memwbin \
+sim:/integration/memwbout \
+sim:/integration/result_WriteBackOutput_sig
+add wave -hex -position insertpoint  \
+sim:/integration/ds/regfile/q0 \
+sim:/integration/ds/regfile/q1 \
+sim:/integration/ds/regfile/q2 \
+sim:/integration/ds/regfile/q3 \
+sim:/integration/ds/regfile/q4 \
+sim:/integration/ds/regfile/q5 \
+sim:/integration/ds/regfile/q6 \
+sim:/integration/ds/regfile/q7
+
+# You can run the following command instead of importing the memory word by word:
+mem load -i {./Test Cases/Branch.mem} /integration/fetchs/instruction_mem/inst_memory
+
+# mem load -filltype value -filldata { 0000000010100000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(0)
+# mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(1)
+# mem load -filltype value -filldata { 0000000100000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(2)
+# mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(3)
+# mem load -filltype value -filldata { 0000000101010000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(4)
+# mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(5)
+# mem load -filltype value -filldata { 0000001000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(6)
+# mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(7)
+# mem load -filltype value -filldata { 0000001001010000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(8)
+# mem load -filltype value -filldata { 0000000000000000 } -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(9)
+
+
+# mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(16)
+# mem load -filltype value -filldata { 0000000000000000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(17)
+# mem load -filltype value -filldata { 0001100000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(18)
+# mem load -filltype value -filldata { 0010000000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(19)
+# mem load -filltype value -filldata { 0011000000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(20)
+# mem load -filltype value -filldata { 0011000000001000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(21)
+# mem load -filltype value -filldata { 0001100000001000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(22)
+# mem load -filltype value -filldata { 0010000000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(23)
+# mem load -filltype value -filldata { 0010100000000100} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(24)
+# mem load -filltype value -filldata { 0010100000001000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(25)
+# mem load -filltype value -filldata { 0001000000000000} -fillradix symbolic /integration/fetchs/instruction_mem/inst_memory(26)
+
+
+force -freeze sim:/integration/PCSrc 00 0
+force -freeze sim:/integration/enable_pc 0 0
+force -freeze sim:/integration/rst 1 0
+force -freeze sim:/integration/clk 1 0, 0 {50 ps} -r 100
+run
+run
+force -freeze sim:/integration/rst 0 0
+force -freeze sim:/integration/enable_pc 1 0
+run
+force -freeze sim:/integration/in_port x\"0030\" 0
+run
+force -freeze sim:/integration/in_port x\"0050\" 0
+run
+force -freeze sim:/integration/in_port x\"0100\" 0
+run
+force -freeze sim:/integration/in_port x\"0300\" 0
+run
+run
+run
+run
+run
+run
+

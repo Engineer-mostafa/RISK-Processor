@@ -77,20 +77,22 @@ ARCHITECTURE arch1 OF integration IS
     END COMPONENT;
 
     COMPONENT EXStage IS
-    port(
-        Input : in std_logic_vector(15 downto 0); 			-- Rdst
-        Opcode : in std_logic_vector(4 downto 0); 			-- function select
-        aluResult: out std_logic_vector(15 downto 0); 			-- ALU Output Result
-        oldZero_Flag, oldNegative_Flag, oldCarry_Flag  : in std_logic;
-        zero_Flag,negative_Flag,carry_Flag , aluOP: out std_logic;             	-- Z<0>:=CCR<0> ; zero flag 
-                                                          -- N<0>:=CCR<1> ; negative flag
-                                                      -- C<0>:=CCR<2> ; carry flag
-
-       -- Two Operand 
-       Rsrc1, Rsrc2, Imm , From_ALU_Result , From_WB_MUX : IN STD_LOGIC_VECTOR(15 DOWNTO 0);-- Rsrc1 , Rsrc 2 , Imm
-       ALUs1 :  IN STD_LOGIC_VECTOR(1 DOWNTO 0); 
-       ALUs2 , ForwardtoMUX8 , ForwardToMUX4  :  in std_logic
-        );
+    PORT (
+        Input : IN STD_LOGIC_VECTOR(15 DOWNTO 0); -- Rdst
+        Opcode : IN STD_LOGIC_VECTOR(4 DOWNTO 0); -- function select
+        aluResult : OUT STD_LOGIC_VECTOR(15 DOWNTO 0); -- ALU Output Result
+        indata1,indata2 : IN STD_LOGIC_VECTOR(15 DOWNTO 0); -- Input Port Value
+        oldZero_Flag, oldNegative_Flag, oldCarry_Flag : IN STD_LOGIC;
+        zero_Flag, negative_Flag, carry_Flag, aluOP : OUT STD_LOGIC; -- Z<0>:=CCR<0> ; zero flag 
+        -- N<0>:=CCR<1> ; negative flag
+        -- C<0>:=CCR<2> ; carry flag
+    
+        -- Two Operand 
+        Rsrc1, Rsrc2, Imm , From_ALU_Result , From_WB_MUX : IN STD_LOGIC_VECTOR(15 DOWNTO 0);-- Rsrc1 , Rsrc 2 , Imm
+        ALUs1 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+        ALUs2 : IN STD_LOGIC; 
+        ForwardtoMUX8, ForwardToMUX4 : IN STD_LOGIC_VECTOR(1 DOWNTO 0)
+      );
     END COMPONENT;
 
     COMPONENT generic_buffer IS
@@ -130,6 +132,21 @@ ARCHITECTURE arch1 OF integration IS
             result_WritingOutput : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
         );
     END COMPONENT;
+
+    COMPONENT forwarding_unit IS
+    PORT (
+        Rsrc1: IN std_logic_vector(2 DOWNTO 0);
+        Rsrc2: IN std_logic_vector(2 DOWNTO 0);
+        Rdst:  IN std_logic_vector(2 DOWNTO 0);
+        RdstExMem: IN std_logic_vector(2 DOWNTO 0);
+        RdstMemWB: IN std_logic_vector(2 DOWNTO 0);
+        MemtoForwarding: IN std_logic;
+        WBtoForwarding: IN std_logic;
+        ForwardToMux8: OUT std_logic_vector(1 DOWNTO 0);
+        ForwardToMux4: OUT std_logic_vector(1 DOWNTO 0)
+    );
+    END COMPONENT;
+
     SIGNAL Instruction, NewPc : STD_LOGIC_VECTOR(31 DOWNTO 0);
     -- SIGNAL InstructionOut,NewPcOut:  std_logic_vector(31 DOWNTO 0);
     SIGNAL RegWrite, HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG : STD_LOGIC;
@@ -162,79 +179,93 @@ ARCHITECTURE arch1 OF integration IS
     SIGNAL ALUs1, PC_SOURCE, WB_To_Reg : STD_LOGIC_VECTOR(1 DOWNTO 0);
     SIGNAL ALUs2, INT: STD_LOGIC;
     SIGNAL From_ALU_Result , From_WB_MUX : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL ForwardtoMUX8 , ForwardToMUX4 : STD_LOGIC:= '0';
+    SIGNAL ForwardtoMUX8 , ForwardToMUX4 : STD_LOGIC_VECTOR(1 DOWNTO 0);
+
+    -- For Forwarding Unit:
+    SIGNAL MemtoForwarding,WBtoForwarding: STD_LOGIC;
 BEGIN
 
     -- Constants: To be implemeted later:
     rti_signal <= '0'; -- Need to send this from the control unit instead
-    ForwardtoMUX8 <= '0';
-    ForwardToMUX4 <= '0';
-    From_ALU_Result <= (OTHERS => '0');
-    From_WB_MUX <= (OTHERS => '0');
+    -- ForwardtoMUX8 <= '0';
+    -- ForwardToMUX4 <= '0';
+
     -- The Control Unit
     cu : control_unit_VHDL PORT MAP(opcode, rst, RegWrite, HLT, SETC, RSTs, OUT_PORT_SIG, IN_PORT_SIG, ALUs1, PC_SOURCE, WB_To_Reg, ALUs2, INT);
     -- Need to add extrabits to it as input.
-
+    
     -- The Fetch Stage:
     fetchs : fetch PORT MAP(HLT, clk, RSTs, enable_pc, PCSrc, pc_01, pc_10, NewPc, Instruction);
-
+    
     -- The Buffer between the Fetch and Decode Stages.
     ifid : generic_buffer GENERIC MAP(64) PORT MAP(ifidin, ifidout, clk, RSTs);
     ifidin(63 DOWNTO 32) <= Instruction; -- Fetched Instruction (32 bits)
     ifidin(31 DOWNTO 0) <= NewPc; -- NewPC from Fetch    (32 bits)
-
+    
     -- The Decode Stage:
     ds : decode_stage GENERIC MAP(
         n) PORT MAP(ifidout(63 DOWNTO 32), ifidout(31 DOWNTO 0), pc_outD, opcode,
         rsrc1addrD, rsrc2addrD, rdstaddrD, extrabits, immmediate_offsetD, clk, RSTs, memwbout(31), IN_PORT_SIG, memwbout(23), in_port, in_dataD, out_port,
         memwbout(22 DOWNTO 20), result_WriteBackOutput_sig, read_data_1D, read_data_2D, read_data_3D, ccr_inD, ccr_outD, aluOP, sp_inD, sp_outD, int_signal, rti_signal);
-    -- The Buffer between the Decode and Execute Stages.
-    idex : generic_buffer GENERIC MAP(256) PORT MAP(idexin, idexout, clk, RSTs);
-    idexin(255 DOWNTO 173) <= (OTHERS => '0');
-    idexin(172) <= SETC; -- SETC Signal                ( 1 bit )
-    -- Two Operand
-    idexin(171) <= INT; -- inturupt (1 bit)
-    idexin(170) <= ALUs2; -- inturselector of the second input for alu upt (1 bit)
-    idexin(169 DOWNTO 168) <= PC_SOURCE; -- pc source for choose the source of pc  (2 bit)
-    idexin(167 DOWNTO 166) <= ALUs1; -- selector of the first input for alu (2 bit)
-
-    -- One Operand
-    idexin(165) <= OUT_PORT_SIG; -- OUT_PORT_SIG Signal        ( 1 bit )
-    idexin(164 DOWNTO 160) <= opcode; -- OpCode                     ( 5 bits)
-    idexin(159 DOWNTO 128) <= sp_outD; -- SP From Decode Stage       (32 bits)
-    idexin(127 DOWNTO 96) <= pc_outD; -- PC From Decode Stage       (32 bits)
-    idexin(95 DOWNTO 93) <= rsrc1addrD; -- Rsrc1 Address From Decode  ( 3 bits)
-    idexin(92 DOWNTO 90) <= rsrc2addrD; -- Rsrc2 Address From Decode  ( 3 bits)
-    idexin(89 DOWNTO 87) <= rdstaddrD; -- Rdst Address From Decode   ( 3 bits)
-    idexin(86 DOWNTO 71) <= immmediate_offsetD; -- Offset/Immediate Data      (16 bits)
-    idexin(70 DOWNTO 55) <= in_dataD; -- Data from Input Port       (16 bits)
-    idexin(54 DOWNTO 39) <= read_data_1D; -- Value of Rsrc1 [Rsrc1]     (16 bits)
-    idexin(38 DOWNTO 23) <= read_data_2D; -- Value of Rsrc2 [Rsrc2]     (16 bits)
-    idexin(22 DOWNTO 7) <= read_data_3D; -- Value of Rdst  [Rdst]      (16 bits)
-    idexin(6 DOWNTO 3) <= ccr_outD; -- Value of Flags [CCR]       ( 4 bits)
-    -- Signals
-    -- Execute Signals:
-    -- Memory Signals:
-    -- Write Back Signals:
-    idexin(2) <= RegWrite; -- RegWrite Signal            ( 1 bit )
-    idexin(1 DOWNTO 0) <= WB_To_Reg; -- WB_To_Reg Signal           ( 1 bit )
-    -- idexin(2 DOWNTO 0) <= (OTHERS => '0');
-    oldZero_Flag <= idexout(3);
-    oldNegative_Flag <= idexout(4);
-    oldCarry_Flag <= idexout(5);
-    -- The Execution Stage
-    -- Add a CCR in to the Execution Stage
-    ExecutionStage : EXStage PORT MAP(
-        idexout(22 DOWNTO 7), idexout(164 DOWNTO 160), aluResult, oldZero_Flag, oldNegative_Flag, oldCarry_Flag,
-        ZFlag, NFlag, CFlag, aluOP, idexout(54 DOWNTO 39), idexout(38 DOWNTO 23), idexout(86 DOWNTO 71), From_ALU_Result , From_WB_MUX, idexout(167 DOWNTO 166),
-        idexout(170) , ForwardtoMUX8, ForwardToMUX4);
-    -- Rdst 16-bits , opcode , alu_result, RSTs , flags , aluOP , Rsrc 1 (16 bit) , Rsrc 2 (16 bit) , Imm (16 bit) , From_ALU_Result <16 bits> , From_WB_MUX <16 bits> ,  ALUs1 (2 bits) , ALUs2 (1 bit) , ForwardtoMUX8 (1 bit selector) , ForwardToMUX4 (1 bit selector)
-
-    -- buffer between execution and memory
-    IEX_IMEM : generic_buffer GENERIC MAP(128) PORT MAP(exmemin, exmemout, clk, RSTs);
-                            -- input -> aluresult + inData / output -> aluresult + inData
-    exmemin(116 DOWNTO 101) <= idexout(38 DOWNTO 23); --R[Rsrc 2]
-    exmemin(100 DOWNTO 69) <= idexout(127 DOWNTO 96); --pc to mem
+        -- The Buffer between the Decode and Execute Stages.
+        idex : generic_buffer GENERIC MAP(256) PORT MAP(idexin, idexout, clk, RSTs);
+        idexin(255 DOWNTO 173) <= (OTHERS => '0');
+        idexin(172) <= SETC; -- SETC Signal                ( 1 bit )
+        -- Two Operand
+        idexin(171) <= INT; -- inturupt (1 bit)
+        idexin(170) <= ALUs2; -- inturselector of the second input for alu upt (1 bit)
+        idexin(169 DOWNTO 168) <= PC_SOURCE; -- pc source for choose the source of pc  (2 bit)
+        idexin(167 DOWNTO 166) <= ALUs1; -- selector of the first input for alu (2 bit)
+        
+        -- One Operand
+        idexin(165) <= OUT_PORT_SIG; -- OUT_PORT_SIG Signal        ( 1 bit )
+        idexin(164 DOWNTO 160) <= opcode; -- OpCode                     ( 5 bits)
+        idexin(159 DOWNTO 128) <= sp_outD; -- SP From Decode Stage       (32 bits)
+        idexin(127 DOWNTO 96) <= pc_outD; -- PC From Decode Stage       (32 bits)
+        idexin(95 DOWNTO 93) <= rsrc1addrD; -- Rsrc1 Address From Decode  ( 3 bits)
+        idexin(92 DOWNTO 90) <= rsrc2addrD; -- Rsrc2 Address From Decode  ( 3 bits)
+        idexin(89 DOWNTO 87) <= rdstaddrD; -- Rdst Address From Decode   ( 3 bits)
+        idexin(86 DOWNTO 71) <= immmediate_offsetD; -- Offset/Immediate Data      (16 bits)
+        idexin(70 DOWNTO 55) <= in_dataD; -- Data from Input Port       (16 bits)
+        idexin(54 DOWNTO 39) <= read_data_1D; -- Value of Rsrc1 [Rsrc1]     (16 bits)
+        idexin(38 DOWNTO 23) <= read_data_2D; -- Value of Rsrc2 [Rsrc2]     (16 bits)
+        idexin(22 DOWNTO 7) <= read_data_3D; -- Value of Rdst  [Rdst]      (16 bits)
+        idexin(6 DOWNTO 3) <= ccr_outD; -- Value of Flags [CCR]       ( 4 bits)
+        -- Signals
+        -- Execute Signals:
+        -- Memory Signals:
+        -- Write Back Signals:
+        idexin(2) <= RegWrite; -- RegWrite Signal            ( 1 bit )
+        idexin(1 DOWNTO 0) <= WB_To_Reg; -- WB_To_Reg Signal           ( 1 bit )
+        -- idexin(2 DOWNTO 0) <= (OTHERS => '0');
+        oldZero_Flag <= idexout(3);
+        oldNegative_Flag <= idexout(4);
+        oldCarry_Flag <= idexout(5);
+        -- The Execution Stage
+        -- Add a CCR in to the Execution Stage
+        ExecutionStage : EXStage PORT MAP(
+            idexout(22 DOWNTO 7), idexout(164 DOWNTO 160), aluResult, idexout(70 DOWNTO 55), exmemout(47 DOWNTO 32),oldZero_Flag, oldNegative_Flag, oldCarry_Flag,
+            ZFlag, NFlag, CFlag, aluOP, idexout(54 DOWNTO 39), idexout(38 DOWNTO 23), idexout(86 DOWNTO 71), From_ALU_Result , From_WB_MUX, idexout(167 DOWNTO 166),
+            idexout(170) , ForwardtoMUX8, ForwardToMUX4);
+            -- Rdst 16-bits , opcode , alu_result, RSTs , flags , aluOP , Rsrc 1 (16 bit) , Rsrc 2 (16 bit) , Imm (16 bit) , From_ALU_Result <16 bits> , From_WB_MUX <16 bits> ,  ALUs1 (2 bits) , ALUs2 (1 bit) , ForwardtoMUX8 (1 bit selector) , ForwardToMUX4 (1 bit selector)
+            
+            -- Forwarding Unit:
+            
+            forwardunit : forwarding_unit PORT MAP(idexout(95 DOWNTO 93),idexout(92 DOWNTO 90),idexout(89 DOWNTO 87),exmemout(22 DOWNTO 20),memwbout(22 DOWNTO 20),MemtoForwarding,WBtoForwarding,ForwardtoMUX8, ForwardToMUX4);
+            -- forwardunit : forwarding_unit PORT MAP(idexout(95 DOWNTO 93),idexout(92 DOWNTO 90),idexout(89 DOWNTO 87),exmemout(22 DOWNTO 20),memwbout(22 DOWNTO 20),MemtoForwarding,WBtoForwarding,ForwardtoMUX8, ForwardToMUX4);
+            
+            -- These are correct wiring (Don't need to be removed)
+            From_ALU_Result <= exmemout(63 DOWNTO 48);
+            From_WB_MUX <= result_WriteBackOutput_sig;
+            MemtoForwarding <= exmemout(117);
+            WBtoForwarding <= memwbout(31);
+            
+            -- buffer between execution and memory
+            IEX_IMEM : generic_buffer GENERIC MAP(128) PORT MAP(exmemin, exmemout, clk, RSTs);
+            -- input -> aluresult + inData / output -> aluresult + inData
+            exmemin(117) <= idexout(2); -- RegWrite
+            exmemin(116 DOWNTO 101) <= idexout(38 DOWNTO 23); --R[Rsrc 2]
+            exmemin(100 DOWNTO 69) <= idexout(127 DOWNTO 96); --pc to mem
     exmemin(68 DOWNTO 64) <= idexout(164 DOWNTO 160); --op to mem
     --exmemout(52 DOWNTO 50) CCR
     --exmemout(63 DOWNTO 48) aluResult/offset/immediate/address

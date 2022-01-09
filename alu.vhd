@@ -41,6 +41,7 @@ BEGIN
     '1' WHEN "01010", -- SUB Rdst,Rsrc1, Rsrc2
     '1' WHEN "01011", -- AND Rdst, Rsrc1, Rsrc2 
     '1' WHEN "10000", -- IADD Rdst, Rsrc,Imm  
+    '1' WHEN "00110", -- IN   
     '0' WHEN OTHERS; -- Others
 
   Zero_Flag <= '1' WHEN result(15 DOWNTO 0) = x"0000" ELSE
@@ -60,7 +61,8 @@ BEGIN
     STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) + to_integer(unsigned(Rsrc2)), 17)) WHEN "01001",  -- ADD Rdst, Rsrc1, Rsrc2
     STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) - to_integer(unsigned(Rsrc2)), 17)) WHEN "01010",  -- SUB Rdst,Rsrc1, Rsrc2
     '0' & (Rsrc1 AND Rsrc2) WHEN "01011",                                                                       -- AND Rdst, Rsrc1, Rsrc2     
-    STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) + to_integer(unsigned(Rsrc2)), 17)) WHEN "10000",    -- IADD Rdst, Rsrc,Imm    
+    STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(Rsrc1)) + to_integer(unsigned(Rsrc2)), 17)) WHEN "10000",    -- IADD Rdst, Rsrc,Imm  
+    '0' & Rsrc1 WHEN "00110", -- IN  
     (OTHERS => '0') WHEN OTHERS; -- Others
   alu_result <= result(15 DOWNTO 0);
 END Behavioral;
